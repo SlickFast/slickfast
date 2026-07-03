@@ -1,30 +1,43 @@
 # SlickFast — charts & dashboards for AI agents
 
-SlickFast turns a small JSON spec into a polished, retina-quality chart — **47 chart and
-information-design types** (bar, line, pie, KPI, cards, funnel, gauge, heatmap, calendar,
-gantt, waterfall…), plus **multiple charts tiled into a single dashboard image in one call**.
-It runs as an [MCP](https://modelcontextprotocol.io) tool, so an AI agent hands it a spec and
-gets back a finished PNG (or SVG). Everything renders **locally** — nothing leaves your machine.
+**A tiny JSON spec in → a finished, retina-quality chart out. Milliseconds, a handful of
+tokens, nothing leaves your machine.**
+
+SlickFast is a **native SVG engine built for AI agents** — not a browser screenshotting a
+webpage, not a plotting library an agent has to write code against. A pure
+`spec → SVG → PNG` pipeline: **47 chart and information-design types** (bar, line, pie, KPI,
+cards, funnel, gauge, heatmap, calendar, gantt, waterfall…), plus **entire multi-chart
+dashboards tiled into one image in a single call**. It runs as an
+[MCP](https://modelcontextprotocol.io) tool, so an agent hands it a spec and gets back a
+finished PNG (or SVG).
 
 ```txt
 render_chart({ type: "bar", data: { labels: ["Q1","Q2","Q3"], series: [{ values: [12,19,8] }] } })
   → a retina PNG, rendered on your machine
 ```
 
-## Why it's built for agents
+## Why agents (and the people paying for their tokens) pick SlickFast
 
+- **Tokens are the real cost — a spec is nearly free.** An agent hand-writing SVG or
+  matplotlib code burns hundreds to thousands of output tokens, then often retries when it
+  doesn't render. A SlickFast spec is a few dozen tokens, and `{type, data}` alone is a
+  finished, well-designed chart. A whole dashboard is **one tool call**, not ten renders
+  and layout math.
+- **Changes are one-field edits.** Swap `bar` → `line`, change a palette, resize for a
+  slide: edit one key, re-render. The agent never rewrites code or reasons about a diff —
+  which is what makes iteration with a human ("make it dark, bigger title") actually cheap.
+- **No headless browser.** Most chart-to-image pipelines secretly spawn Puppeteer or
+  Playwright — hundreds of MB, slow cold starts, flaky output. SlickFast renders pure
+  in-memory, milliseconds per chart.
+- **Native SVG, vector-first.** Output is a few KB of crisp-at-any-scale SVG (or retina PNG
+  on demand) — small enough to cache, embed, or ship anywhere.
 - **Deterministic — same spec, same bytes, forever.** No randomness, no timestamps, no
-  headless-browser drift. Outputs are **cacheable, testable, and reproducible**, with zero
-  flaky pixel diffs. Almost no charting tool can promise this — and it's exactly what a
-  tool-calling agent needs.
-- **Never throws garbage at the model.** Empty data, a bad tile, a filtered-to-nothing series →
-  a clean, graceful frame, not a crash or a stack trace. Reliability is a feature when the
-  caller is an agent, not a human who can eyeball the error.
-- **Fails loud on real mistakes.** An unknown palette or enum is *rejected* with a clear error
-  listing the valid options — so the agent fixes it immediately instead of silently shipping the
-  wrong-looking chart.
-- **Good-looking by default.** A spec of just `{type, data}` renders a complete, well-designed
-  chart; fonts, colors, palettes, and size are optional overrides.
+  browser drift. Cacheable, testable, reproducible; zero flaky pixel diffs. Almost no
+  charting tool can promise this — and it's exactly what a tool-calling agent needs.
+- **Never throws garbage at the model.** Empty data, a bad tile, a filtered-to-nothing
+  series → a clean, graceful frame, not a crash or a stack trace. A real mistake (unknown
+  palette, bad enum) → a **loud error listing the valid options**, so the agent
+  self-corrects in one step.
 - **100% local & private.** Rendered and rasterized on your machine. Nothing is sent anywhere.
 
 ## Tools
