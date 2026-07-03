@@ -1,0 +1,22 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "com.slickfast/mcp",
+  "description": "Render 47 chart & info-design types (bar, line, pie, KPI, cards, funnel, gauge, calendar…) plus multi-chart dashboards tiled into one image, as PNG/SVG. Deterministic and 100% local — nothing leaves your machine.",
+  "repository": {
+    "url": "https://github.com/SlickFast/slickfast",
+    "source": "github"
+  },
+  "websiteUrl": "https://slickfast.com",
+  "version": "0.7.6",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@slickfast/mcp",
+      "version": "0.7.6",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}
