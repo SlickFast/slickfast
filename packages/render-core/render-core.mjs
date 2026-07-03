@@ -2742,26 +2742,54 @@ export function renderTierList(spec) {
 
   const PAD = 16, LABELW = 56, ROWH = 48, GAP = 6;
   const topY = title ? 50 : 14;
-  const W = spec.width || 560, H = spec.height || topY + n * (ROWH + GAP) + 12;
+  const W = spec.width || 560;
+
+  // Chips WRAP to new lines inside their tier (never silently dropped — the old
+  // behavior skipped any chip that didn't fit, leaving holes mid-ranking). A tier
+  // with L lines is L*26 + (L-1)*6 + 22 tall — exactly ROWH (48) when L=1, so
+  // single-line tier lists render byte-identically to the pre-wrap layout.
+  const chipH = 26, chipGapX = 8, chipGapY = 6;
+  const chipX0 = PAD + LABELW + 10, maxLineW = W - PAD - chipX0;
+  const layout = tiers.map((t) => {
+    const lines = [[]];
+    (Array.isArray(t.items) ? t.items : []).forEach((it) => {
+      let label = typeof it === 'string' ? it : (it && it.label) || '';
+      let cw = Math.round(label.length * (fs * 0.6) + 18);
+      if (cw > maxLineW) { // one chip wider than the whole row: shorten with an ellipsis, never drop
+        const maxChars = Math.max(1, Math.floor((maxLineW - 18) / (fs * 0.6)) - 1);
+        label = label.slice(0, maxChars) + '…';
+        cw = Math.min(Math.round((maxChars + 1) * (fs * 0.6) + 18), maxLineW);
+      }
+      const cur = lines[lines.length - 1];
+      const curW = cur.reduce((a, c) => a + c.cw + chipGapX, 0);
+      if (cur.length && curW + cw > maxLineW) lines.push([]);
+      lines[lines.length - 1].push({ label, cw });
+    });
+    return { lines, rowH: lines.length * chipH + (lines.length - 1) * chipGapY + 22 };
+  });
+  const H = spec.height || topY + Math.max(layout.reduce((a, l) => a + l.rowH + GAP, 0), ROWH + GAP) + 12;
 
   const p = [];
   p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${PAD}" y="31" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+  let ty = topY;
   tiers.forEach((t, i) => {
-    const y = topY + i * (ROWH + GAP);
+    const y = ty;
+    const { lines, rowH } = layout[i];
     const col = t.color || palette[i % palette.length];
-    p.push(`<rect x="${PAD}" y="${r(y)}" width="${LABELW}" height="${ROWH}" rx="6" fill="${col}"/>`);
-    p.push(`<text x="${r(PAD + LABELW / 2)}" y="${r(y + ROWH / 2 + 6)}" text-anchor="middle" font-size="${fs + 4}" ${wAttr(spec, 800)} fill="${contrastColor(col)}">${esc(t.label || '')}</text>`);
-    let cx = PAD + LABELW + 10;
-    (Array.isArray(t.items) ? t.items : []).forEach((it) => {
-      const label = typeof it === 'string' ? it : (it && it.label) || '';
-      const cw = Math.round(label.length * (fs * 0.6) + 18);
-      if (cx + cw > W - PAD) return;
-      p.push(`<rect x="${r(cx)}" y="${r(y + ROWH / 2 - 13)}" width="${cw}" height="26" rx="6" fill="${chipBg}"/>`);
-      p.push(`<text x="${r(cx + cw / 2)}" y="${r(y + ROWH / 2 + 5)}" text-anchor="middle" font-size="${fs}"${wOpt(spec)} fill="${chipTx}">${esc(label)}</text>`);
-      cx += cw + 8;
+    p.push(`<rect x="${PAD}" y="${r(y)}" width="${LABELW}" height="${rowH}" rx="6" fill="${col}"/>`);
+    p.push(`<text x="${r(PAD + LABELW / 2)}" y="${r(y + rowH / 2 + 6)}" text-anchor="middle" font-size="${fs + 4}" ${wAttr(spec, 800)} fill="${contrastColor(col)}">${esc(t.label || '')}</text>`);
+    lines.forEach((line, j) => {
+      let cx = chipX0;
+      const cy = y + 11 + j * (chipH + chipGapY);
+      line.forEach(({ label, cw }) => {
+        p.push(`<rect x="${r(cx)}" y="${r(cy)}" width="${cw}" height="26" rx="6" fill="${chipBg}"/>`);
+        p.push(`<text x="${r(cx + cw / 2)}" y="${r(cy + 18)}" text-anchor="middle" font-size="${fs}"${wOpt(spec)} fill="${chipTx}">${esc(label)}</text>`);
+        cx += cw + chipGapX;
+      });
     });
+    ty += rowH + GAP;
   });
   if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
   p.push(`</svg>`);
