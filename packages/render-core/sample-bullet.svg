@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 212" width="600" height="212" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="600" height="212" fill="#ffffff"/>
+<text x="300" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Performance vs target</text>
+<text x="24" y="67" font-size="13" font-weight="600" fill="#475569">Revenue</text>
+<text x="576" y="67" text-anchor="end" font-size="13" fill="#334155">275 / 250</text>
+<rect x="24" y="76" width="276" height="16" fill="#eef2f6"/>
+<rect x="300" y="76" width="138" height="16" fill="#dbe2ea"/>
+<rect x="438" y="76" width="138" height="16" fill="#c3cedb"/>
+<rect x="24" y="80" width="506" height="8" rx="2" fill="#2563eb"/>
+<line x1="484" y1="72" x2="484" y2="96" stroke="#0f172a" stroke-width="2.5"/>
+<text x="24" y="117" font-size="13" font-weight="600" fill="#475569">Profit</text>
+<text x="576" y="117" text-anchor="end" font-size="13" fill="#334155">82 / 100</text>
+<rect x="24" y="126" width="276" height="16" fill="#eef2f6"/>
+<rect x="300" y="126" width="138" height="16" fill="#dbe2ea"/>
+<rect x="438" y="126" width="138" height="16" fill="#c3cedb"/>
+<rect x="24" y="130" width="377.2" height="8" rx="2" fill="#2563eb"/>
+<line x1="484" y1="122" x2="484" y2="146" stroke="#0f172a" stroke-width="2.5"/>
+<text x="24" y="167" font-size="13" font-weight="600" fill="#475569">New customers</text>
+<text x="576" y="167" text-anchor="end" font-size="13" fill="#334155">134 / 120</text>
+<rect x="24" y="176" width="276" height="16" fill="#eef2f6"/>
+<rect x="300" y="176" width="138" height="16" fill="#dbe2ea"/>
+<rect x="438" y="176" width="138" height="16" fill="#c3cedb"/>
+<rect x="24" y="180" width="462.3" height="8" rx="2" fill="#2563eb"/>
+<line x1="438" y1="172" x2="438" y2="196" stroke="#0f172a" stroke-width="2.5"/>
+<text x="590" y="203" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

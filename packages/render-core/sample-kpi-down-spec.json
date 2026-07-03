@@ -1,0 +1,9 @@
+{
+  "type": "kpi",
+  "label": "Churn Rate",
+  "value": 3.2,
+  "valueUnit": "%",
+  "delta": -0.8,
+  "deltaGoodWhen": "down",
+  "palette": "Clean Corporate"
+}

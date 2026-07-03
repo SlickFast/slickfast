@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" width="640" height="420" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="640" height="420" fill="#ffffff"/>
+<path d="M228,225 L228,64 A161,161 0 0 1 277.75,378.12 Z" fill="#2563eb" stroke="#ffffff" stroke-width="2.58" stroke-linejoin="round"/>
+<text x="326.59" y="213.38" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">45%</text>
+<path d="M228,225 L277.75,378.12 A161,161 0 0 1 74.88,274.75 Z" fill="#7c3aed" stroke="#ffffff" stroke-width="2.58" stroke-linejoin="round"/>
+<text x="182.68" y="317.94" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">25%</text>
+<path d="M228,225 L74.88,274.75 A161,161 0 0 1 97.75,130.37 Z" fill="#059669" stroke="#ffffff" stroke-width="2.58" stroke-linejoin="round"/>
+<text x="129.41" y="213.38" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a1a">15%</text>
+<path d="M228,225 L97.75,130.37 A161,161 0 0 1 178.25,71.88 Z" fill="#d97706" stroke="#ffffff" stroke-width="2.58" stroke-linejoin="round"/>
+<text x="169.33" y="148.24" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a1a">10%</text>
+<path d="M228,225 L178.25,71.88 A161,161 0 0 1 228,64 Z" fill="#dc2626" stroke="#ffffff" stroke-width="2.58" stroke-linejoin="round"/>
+<rect x="464" y="53" width="11" height="11" rx="2.5" fill="#2563eb"/>
+<text x="482" y="62" font-size="12" fill="#475569">Organic · 45</text>
+<rect x="464" y="77" width="11" height="11" rx="2.5" fill="#7c3aed"/>
+<text x="482" y="86" font-size="12" fill="#475569">Direct · 25</text>
+<rect x="464" y="101" width="11" height="11" rx="2.5" fill="#059669"/>
+<text x="482" y="110" font-size="12" fill="#475569">Social · 15</text>
+<rect x="464" y="125" width="11" height="11" rx="2.5" fill="#d97706"/>
+<text x="482" y="134" font-size="12" fill="#475569">Referral · 10</text>
+<rect x="464" y="149" width="11" height="11" rx="2.5" fill="#dc2626"/>
+<text x="482" y="158" font-size="12" fill="#475569">Email · 5</text>
+<text x="320" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Traffic by Source</text>
+<text x="632" y="412" text-anchor="end" font-size="10" fill="#94a3b8" opacity="0.7">slickfast.com</text>
+</svg>

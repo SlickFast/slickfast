@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" width="640" height="420" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="640" height="420" fill="#ffffff"/>
+<path d="M228,64 A161,161 0 0 1 322.63,355.25 L282.89,300.55 A93.38,93.38 0 0 0 228,131.62 Z" fill="#f43f5e" stroke="#ffffff" stroke-width="2.58" stroke-linejoin="round"/>
+<text x="348.96" y="189.7" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a1a">40%</text>
+<path d="M322.63,355.25 A161,161 0 0 1 74.88,274.75 L139.19,253.86 A93.38,93.38 0 0 0 282.89,300.55 Z" fill="#f97316" stroke="#ffffff" stroke-width="2.58" stroke-linejoin="round"/>
+<text x="188.7" y="349.96" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a1a">30%</text>
+<path d="M74.88,274.75 A161,161 0 0 1 133.37,94.75 L173.11,149.45 A93.38,93.38 0 0 0 139.19,253.86 Z" fill="#eab308" stroke="#ffffff" stroke-width="2.58" stroke-linejoin="round"/>
+<text x="107.04" y="189.7" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a1a">20%</text>
+<path d="M133.37,94.75 A161,161 0 0 1 228,64 L228,131.62 A93.38,93.38 0 0 0 173.11,149.45 Z" fill="#22c55e" stroke="#ffffff" stroke-width="2.58" stroke-linejoin="round"/>
+<text x="188.7" y="108.04" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a1a">10%</text>
+<text x="228" y="223" text-anchor="middle" font-size="23" font-weight="800" fill="#0f172a">100 %</text>
+<text x="228" y="243" text-anchor="middle" font-size="12" fill="#475569">Total</text>
+<rect x="464" y="53" width="11" height="11" rx="2.5" fill="#f43f5e"/>
+<text x="482" y="62" font-size="12" fill="#475569">Engineering · 40 %</text>
+<rect x="464" y="77" width="11" height="11" rx="2.5" fill="#f97316"/>
+<text x="482" y="86" font-size="12" fill="#475569">Sales · 30 %</text>
+<rect x="464" y="101" width="11" height="11" rx="2.5" fill="#eab308"/>
+<text x="482" y="110" font-size="12" fill="#475569">Marketing · 20 %</text>
+<rect x="464" y="125" width="11" height="11" rx="2.5" fill="#22c55e"/>
+<text x="482" y="134" font-size="12" fill="#475569">Ops · 10 %</text>
+<text x="320" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Budget Allocation</text>
+<text x="632" y="412" text-anchor="end" font-size="10" fill="#94a3b8" opacity="0.7">slickfast.com</text>
+</svg>

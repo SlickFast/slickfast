@@ -1,0 +1,32 @@
+name: Feature request
+description: A new chart type, option, palette, or capability you'd like to see
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What would you like SlickFast to do?
+      description: Describe the chart type, option, or behavior. A sketch, screenshot, or link to an example of the visual you want is worth a thousand words.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: What are you trying to accomplish?
+      description: The underlying task — sometimes an existing type or option already covers it, and this helps us point you there.
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of request
+      options:
+        - New chart / info-design type
+        - New option on an existing type
+        - Palette / theming
+        - MCP tools & agent experience
+        - Hosted API
+        - Other
+    validations:
+      required: true

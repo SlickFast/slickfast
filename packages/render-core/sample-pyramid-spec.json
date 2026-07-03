@@ -1,0 +1,10 @@
+{
+  "type": "pyramid",
+  "title": "Operating model",
+  "levels": [
+    { "title": "Vision" },
+    { "title": "Strategy" },
+    { "title": "Execution" },
+    { "title": "Operations" }
+  ]
+}

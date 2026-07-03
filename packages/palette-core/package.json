@@ -1,0 +1,18 @@
+{
+  "name": "@bargraphfast/palette-core",
+  "version": "1.0.0",
+  "description": "Shared, DOM-free color engine + design tokens for the data-viz sites and rendering API.",
+  "type": "module",
+  "main": "palette-core.mjs",
+  "exports": {
+    ".": "./palette-core.mjs",
+    "./tokens": "./tokens.json",
+    "./golden": "./golden-vectors.json"
+  },
+  "scripts": {
+    "test": "node --test",
+    "golden": "node generate-golden.mjs"
+  },
+  "files": ["palette-core.mjs", "tokens.json", "golden-vectors.json", "_build-vectors.mjs", "README.md"],
+  "license": "UNLICENSED"
+}

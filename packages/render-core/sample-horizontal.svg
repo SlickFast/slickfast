@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="800" height="450" fill="#ffffff"/>
+<line x1="132.78" y1="54" x2="132.78" y2="404" stroke="#e2e8f0" stroke-width="1"/>
+<text x="132.78" y="422" text-anchor="middle" font-size="11" fill="#64748b">0</text>
+<line x1="255.82" y1="54" x2="255.82" y2="404" stroke="#e2e8f0" stroke-width="1"/>
+<text x="255.82" y="422" text-anchor="middle" font-size="11" fill="#64748b">200</text>
+<line x1="378.87" y1="54" x2="378.87" y2="404" stroke="#e2e8f0" stroke-width="1"/>
+<text x="378.87" y="422" text-anchor="middle" font-size="11" fill="#64748b">400</text>
+<line x1="501.91" y1="54" x2="501.91" y2="404" stroke="#e2e8f0" stroke-width="1"/>
+<text x="501.91" y="422" text-anchor="middle" font-size="11" fill="#64748b">600</text>
+<line x1="624.96" y1="54" x2="624.96" y2="404" stroke="#e2e8f0" stroke-width="1"/>
+<text x="624.96" y="422" text-anchor="middle" font-size="11" fill="#64748b">800</text>
+<line x1="748" y1="54" x2="748" y2="404" stroke="#e2e8f0" stroke-width="1"/>
+<text x="748" y="422" text-anchor="middle" font-size="11" fill="#64748b">1,000</text>
+<path d="M132.78,67.3 L632.26,67.3 Q637.26,67.3 637.26,72.3 L637.26,105.7 Q637.26,110.7 632.26,110.7 L132.78,110.7 Z" fill="#2563eb"/>
+<text x="629.26" y="93" text-anchor="end" font-size="12" font-weight="600" fill="#ffffff">820</text>
+<text x="122.78" y="93" text-anchor="end" font-size="12" fill="#475569">United States</text>
+<path d="M132.78,137.3 L503.06,137.3 Q508.06,137.3 508.06,142.3 L508.06,175.7 Q508.06,180.7 503.06,180.7 L132.78,180.7 Z" fill="#7c3aed"/>
+<text x="500.06" y="163" text-anchor="end" font-size="12" font-weight="600" fill="#ffffff">610</text>
+<text x="122.78" y="163" text-anchor="end" font-size="12" fill="#475569">India</text>
+<path d="M132.78,207.3 L392.32,207.3 Q397.32,207.3 397.32,212.3 L397.32,245.7 Q397.32,250.7 392.32,250.7 L132.78,250.7 Z" fill="#059669"/>
+<text x="389.32" y="233" text-anchor="end" font-size="12" font-weight="600" fill="#1a1a1a">430</text>
+<text x="122.78" y="233" text-anchor="end" font-size="12" fill="#475569">Brazil</text>
+<path d="M132.78,277.3 L309.27,277.3 Q314.27,277.3 314.27,282.3 L314.27,315.7 Q314.27,320.7 309.27,320.7 L132.78,320.7 Z" fill="#d97706"/>
+<text x="306.27" y="303" text-anchor="end" font-size="12" font-weight="600" fill="#1a1a1a">295</text>
+<text x="122.78" y="303" text-anchor="end" font-size="12" fill="#475569">Germany</text>
+<path d="M132.78,347.3 L275.43,347.3 Q280.43,347.3 280.43,352.3 L280.43,385.7 Q280.43,390.7 275.43,390.7 L132.78,390.7 Z" fill="#dc2626"/>
+<text x="272.43" y="373" text-anchor="end" font-size="12" font-weight="600" fill="#ffffff">240</text>
+<text x="122.78" y="373" text-anchor="end" font-size="12" fill="#475569">Japan</text>
+<text x="792" y="50" text-anchor="end" font-size="12" fill="#64748b">Total: 2,395</text>
+<text x="400" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Top Countries by Users</text>
+<text x="792" y="442" text-anchor="end" font-size="10" fill="#94a3b8" opacity="0.7">slickfast.com</text>
+</svg>

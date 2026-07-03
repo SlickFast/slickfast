@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 220" width="720" height="220" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="720" height="220" fill="#ffffff"/>
+<text x="360" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Company milestones</text>
+<line x1="44" y1="137" x2="676" y2="137" stroke="#cbd5e1" stroke-width="2"/>
+<circle cx="44" cy="137" r="6" fill="#2563eb" stroke="#ffffff" stroke-width="3"/>
+<text x="44" y="109" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">Launch</text>
+<text x="44" y="124" text-anchor="middle" font-size="12" fill="#475569">Q1</text>
+<circle cx="254.67" cy="137" r="6" fill="#7c3aed" stroke="#ffffff" stroke-width="3"/>
+<text x="254.67" y="157" text-anchor="middle" font-size="12" fill="#475569">Q2</text>
+<text x="254.67" y="174" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">Series A</text>
+<circle cx="465.33" cy="137" r="6" fill="#059669" stroke="#ffffff" stroke-width="3"/>
+<text x="465.33" y="109" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">100k users</text>
+<text x="465.33" y="124" text-anchor="middle" font-size="12" fill="#475569">Q3</text>
+<circle cx="676" cy="137" r="6" fill="#d97706" stroke="#ffffff" stroke-width="3"/>
+<text x="676" y="157" text-anchor="middle" font-size="12" fill="#475569">Q4</text>
+<text x="676" y="174" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">Profitable</text>
+<text x="710" y="211" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 460" width="600" height="460" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="600" height="460" fill="#ffffff"/>
+<text x="300" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Team overlap</text>
+<circle cx="230" cy="214" r="120" fill="#2563eb" fill-opacity="0.5"/>
+<text x="230" y="82" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">Design</text>
+<circle cx="370" cy="214" r="120" fill="#7c3aed" fill-opacity="0.5"/>
+<text x="370" y="82" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">Engineering</text>
+<text x="176" y="218" text-anchor="middle" font-size="15" font-weight="700" fill="#1a1a1a">120</text>
+<text x="424" y="218" text-anchor="middle" font-size="15" font-weight="700" fill="#1a1a1a">160</text>
+<text x="300" y="218" text-anchor="middle" font-size="15" font-weight="700" fill="#1a1a1a">40</text>
+<text x="590" y="451" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

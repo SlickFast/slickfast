@@ -1,0 +1,13 @@
+{
+  "type": "donut",
+  "title": "Monthly Budget",
+  "data": {
+    "labels": ["Rent", "Food", "Transport", "Savings"],
+    "series": [
+      { "values": [1800, 600, 300, 900] }
+    ]
+  },
+  "palette": "Vibrant",
+  "valuePrefix": "$",
+  "width": 640, "height": 420
+}

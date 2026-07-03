@@ -1,0 +1,9 @@
+{
+  "type": "gauge",
+  "title": "Capacity used",
+  "label": "of 500 GB",
+  "value": 372,
+  "min": 0,
+  "max": 500,
+  "valueUnit": "GB"
+}

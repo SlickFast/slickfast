@@ -1,0 +1,1 @@
+{ "type": "gantt", "title": "Launch plan (project weeks)", "tasks": [ { "label": "Design", "start": 20, "end": 24 }, { "label": "Build", "start": 23, "end": 30 }, { "label": "QA", "start": 29, "end": 33 }, { "label": "Launch", "start": 33, "end": 35 } ] }

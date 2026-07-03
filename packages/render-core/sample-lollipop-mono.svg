@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="800" height="450" fill="#ffffff"/>
+<line x1="56" y1="404" x2="776" y2="404" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="408" text-anchor="end" font-size="11" fill="#64748b">0</text>
+<line x1="56" y1="316.5" x2="776" y2="316.5" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="320.5" text-anchor="end" font-size="11" fill="#64748b">20</text>
+<line x1="56" y1="229" x2="776" y2="229" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="233" text-anchor="end" font-size="11" fill="#64748b">40</text>
+<line x1="56" y1="141.5" x2="776" y2="141.5" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="145.5" text-anchor="end" font-size="11" fill="#64748b">60</text>
+<line x1="56" y1="54" x2="776" y2="54" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="58" text-anchor="end" font-size="11" fill="#64748b">80</text>
+<line x1="128" y1="404" x2="128" y2="307.75" stroke="#c8cdd4" stroke-width="3" stroke-linecap="round"/>
+<circle cx="128" cy="307.75" r="7" fill="#c8cdd4"/>
+<text x="128" y="293.75" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">22</text>
+<text x="128" y="422" text-anchor="middle" font-size="12" fill="#475569">A</text>
+<line x1="272" y1="404" x2="272" y2="255.25" stroke="#a0a8b4" stroke-width="3" stroke-linecap="round"/>
+<circle cx="272" cy="255.25" r="7" fill="#a0a8b4"/>
+<text x="272" y="241.25" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">34</text>
+<text x="272" y="422" text-anchor="middle" font-size="12" fill="#475569">B</text>
+<line x1="416" y1="404" x2="416" y2="202.75" stroke="#78838f" stroke-width="3" stroke-linecap="round"/>
+<circle cx="416" cy="202.75" r="7" fill="#78838f"/>
+<text x="416" y="188.75" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">46</text>
+<text x="416" y="422" text-anchor="middle" font-size="12" fill="#475569">C</text>
+<line x1="560" y1="404" x2="560" y2="150.25" stroke="#57606a" stroke-width="3" stroke-linecap="round"/>
+<circle cx="560" cy="150.25" r="7" fill="#57606a"/>
+<text x="560" y="136.25" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">58</text>
+<text x="560" y="422" text-anchor="middle" font-size="12" fill="#475569">D</text>
+<line x1="704" y1="404" x2="704" y2="97.75" stroke="#3d4752" stroke-width="3" stroke-linecap="round"/>
+<circle cx="704" cy="97.75" r="7" fill="#3d4752"/>
+<text x="704" y="83.75" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">70</text>
+<text x="704" y="422" text-anchor="middle" font-size="12" fill="#475569">E</text>
+<text x="776" y="50" text-anchor="end" font-size="12" fill="#64748b">Total: 230</text>
+<text x="400" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Monochrome Contrast Floor</text>
+<text x="792" y="442" text-anchor="end" font-size="10" fill="#94a3b8" opacity="0.7">slickfast.com</text>
+</svg>

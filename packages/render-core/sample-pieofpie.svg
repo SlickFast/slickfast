@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" width="920" height="460" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="920" height="460" fill="#ffffff"/>
+<line x1="350.3" y1="70" x2="566.1" y2="120.47" stroke="#6B2D5C" stroke-width="1.73" stroke-opacity="0.4"/>
+<line x1="350.3" y1="358" x2="566.1" y2="307.53" stroke="#6B2D5C" stroke-width="1.73" stroke-opacity="0.4"/>
+<path d="M305.8,77.05 A144,144 0 1 1 305.8,350.95 L324.49,293.43 A83.52,83.52 0 1 0 324.49,134.57 Z" fill="#6B2D5C" stroke="#ffffff" stroke-width="2.88"/>
+<text x="464.06" y="218" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">60%</text>
+<path d="M291.4,350.95 A144,144 0 0 1 219.4,129.36 L268.33,164.91 A83.52,83.52 0 0 0 310.09,293.43 Z" fill="#C8324B"/>
+<text x="227.71" y="253.15" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">30%</text>
+<path d="M219.4,129.36 A144,144 0 0 1 291.4,77.05 L310.09,134.57 A83.52,83.52 0 0 0 268.33,164.91 Z" fill="#F2785C"/>
+<text x="269.03" y="125.97" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a1a">10%</text>
+<text x="335.9" y="53" text-anchor="middle" font-size="13" font-weight="700" fill="#475569">By segment</text>
+<path d="M620.1,106 A108,108 0 1 1 566.1,307.53 L588.78,268.25 A62.64,62.64 0 1 0 620.1,151.36 Z" fill="#F2913D"/>
+<text x="702.51" y="240.08" text-anchor="middle" font-size="11.26" font-weight="700" fill="#1a1a1a">58%</text>
+<path d="M566.1,307.53 A108,108 0 0 1 526.57,160 L565.85,182.68 A62.64,62.64 0 0 0 588.78,268.25 Z" fill="#F6B73C"/>
+<text x="537.69" y="240.08" text-anchor="middle" font-size="11.26" font-weight="700" fill="#1a1a1a">25%</text>
+<path d="M526.57,160 A108,108 0 0 1 620.1,106 L620.1,151.36 A62.64,62.64 0 0 0 565.85,182.68 Z" fill="#FCD848"/>
+<text x="577.44" y="144.11" text-anchor="middle" font-size="11.26" font-weight="700" fill="#1a1a1a">17%</text>
+<text x="620.1" y="53" text-anchor="middle" font-size="13" font-weight="700" fill="#475569">Enterprise</text>
+<rect x="275.1" y="365" width="10" height="10" rx="2.5" fill="#6B2D5C"/>
+<text x="291.1" y="374" font-size="12" fill="#475569">Enterprise · $60</text>
+<rect x="275.1" y="387" width="10" height="10" rx="2.5" fill="#C8324B"/>
+<text x="291.1" y="396" font-size="12" fill="#475569">SMB · $30</text>
+<rect x="275.1" y="409" width="10" height="10" rx="2.5" fill="#F2785C"/>
+<text x="291.1" y="418" font-size="12" fill="#475569">Consumer · $10</text>
+<rect x="579.1" y="365" width="10" height="10" rx="2.5" fill="#F2913D"/>
+<text x="595.1" y="374" font-size="12" fill="#475569">US · $35</text>
+<rect x="579.1" y="387" width="10" height="10" rx="2.5" fill="#F6B73C"/>
+<text x="595.1" y="396" font-size="12" fill="#475569">EU · $15</text>
+<rect x="579.1" y="409" width="10" height="10" rx="2.5" fill="#FCD848"/>
+<text x="595.1" y="418" font-size="12" fill="#475569">APAC · $10</text>
+<text x="460" y="26" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Revenue breakdown</text>
+<text x="912" y="452" text-anchor="end" font-size="10" fill="#94a3b8" opacity="0.7">slickfast.com</text>
+</svg>

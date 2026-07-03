@@ -1,0 +1,13 @@
+{
+  "type": "difference",
+  "title": "Revenue vs Cost",
+  "data": {
+    "labels": ["Jan", "Feb", "Mar", "Apr", "May"],
+    "series": [
+      { "name": "Revenue", "values": [120, 160, 150, 210, 260] },
+      { "name": "Cost",    "values": [90, 110, 140, 130, 180] }
+    ]
+  },
+  "palette": "Clean Corporate",
+  "width": 800, "height": 450
+}

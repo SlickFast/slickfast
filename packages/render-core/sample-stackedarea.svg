@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="800" height="450" fill="#ffffff"/>
+<line x1="56" y1="386" x2="776" y2="386" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="390" text-anchor="end" font-size="11" fill="#64748b">0</text>
+<line x1="56" y1="275.33" x2="776" y2="275.33" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="279.33" text-anchor="end" font-size="11" fill="#64748b">50</text>
+<line x1="56" y1="164.67" x2="776" y2="164.67" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="168.67" text-anchor="end" font-size="11" fill="#64748b">100</text>
+<line x1="56" y1="54" x2="776" y2="54" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="58" text-anchor="end" font-size="11" fill="#64748b">150</text>
+<text x="56" y="404" text-anchor="start" font-size="12" fill="#475569">Mon</text>
+<text x="236" y="404" text-anchor="middle" font-size="12" fill="#475569">Tue</text>
+<text x="416" y="404" text-anchor="middle" font-size="12" fill="#475569">Wed</text>
+<text x="596" y="404" text-anchor="middle" font-size="12" fill="#475569">Thu</text>
+<text x="776" y="404" text-anchor="end" font-size="12" fill="#475569">Fri</text>
+<path d="M56,297.47 L236,264.27 L416,275.33 L596,231.07 L776,242.13 L776,386 L596,386 L416,386 L236,386 L56,386 Z" fill="#2563eb" fill-opacity="0.8" stroke="none"/>
+<path d="M56,297.47 L236,264.27 L416,275.33 L596,231.07 L776,242.13" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="56" cy="297.47" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="236" cy="264.27" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="416" cy="275.33" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="596" cy="231.07" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="776" cy="242.13" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<path d="M56,231.07 L236,186.8 L416,175.73 L596,142.53 L776,120.4 L776,242.13 L596,231.07 L416,275.33 L236,264.27 L56,297.47 Z" fill="#7c3aed" fill-opacity="0.8" stroke="none"/>
+<path d="M56,231.07 L236,186.8 L416,175.73 L596,142.53 L776,120.4" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="56" cy="231.07" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="236" cy="186.8" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="416" cy="175.73" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="596" cy="142.53" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="776" cy="120.4" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
+<path d="M56,186.8 L236,131.47 L416,131.47 L596,76.13 L776,58.43 L776,120.4 L596,142.53 L416,175.73 L236,186.8 L56,231.07 Z" fill="#059669" fill-opacity="0.8" stroke="none"/>
+<path d="M56,186.8 L236,131.47 L416,131.47 L596,76.13 L776,58.43" fill="none" stroke="#059669" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="56" cy="186.8" r="3.5" fill="#059669" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="236" cy="131.47" r="3.5" fill="#059669" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="416" cy="131.47" r="3.5" fill="#059669" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="596" cy="76.13" r="3.5" fill="#059669" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="776" cy="58.43" r="3.5" fill="#059669" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="284.84" cy="430" r="5" fill="#2563eb"/>
+<text x="295.84" y="434" font-size="12" fill="#475569">Organic</text>
+<circle cx="369.8" cy="430" r="5" fill="#7c3aed"/>
+<text x="380.8" y="434" font-size="12" fill="#475569">Paid</text>
+<circle cx="432.92" cy="430" r="5" fill="#059669"/>
+<text x="443.92" y="434" font-size="12" fill="#475569">Referral</text>
+<text x="400" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Traffic by Channel</text>
+<text x="792" y="442" text-anchor="end" font-size="10" fill="#94a3b8" opacity="0.7">slickfast.com</text>
+</svg>

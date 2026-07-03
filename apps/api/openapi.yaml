@@ -1,0 +1,152 @@
+openapi: 3.0.3
+info:
+  title: SlickFast Chart API
+  version: "0.3.1"
+  description: >
+    Turn a chart spec (one JSON object) into a PNG or SVG image. Only `type` is always
+    required; a spec of just {type, data} renders a complete chart. The full field contract
+    is in render-core/SPEC.md. Same spec → same bytes, forever (responses cached immutable).
+servers:
+  - url: https://slickfast-platform-production.up.railway.app
+    description: soft-launch (public base becomes the RapidAPI host once listed)
+paths:
+  /render:
+    post:
+      summary: Render a chart from a JSON spec (body)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ChartSpec' }
+      responses:
+        '200':
+          description: the rendered chart
+          content:
+            image/png: { schema: { type: string, format: binary } }
+            image/svg+xml: { schema: { type: string } }
+        '400': { $ref: '#/components/responses/BadSpec' }
+        '403': { $ref: '#/components/responses/NeedKey' }
+  /chart.png:
+    get:
+      summary: Render a PNG; spec url-encoded in the query
+      parameters:
+        - name: spec
+          in: query
+          required: true
+          description: URL-encoded JSON chart spec (max 16 KB)
+          schema: { type: string }
+        - name: preset
+          in: query
+          required: false
+          description: aspect-ratio preset (Share Card, Wide, Square, Portrait, Tall, Classic)
+          schema: { type: string }
+        - name: ratio
+          in: query
+          required: false
+          description: bare aspect ratio, e.g. "16:9"
+          schema: { type: string }
+      responses:
+        '200':
+          description: PNG image
+          content:
+            image/png: { schema: { type: string, format: binary } }
+        '400': { $ref: '#/components/responses/BadSpec' }
+        '403': { $ref: '#/components/responses/NeedKey' }
+  /chart.svg:
+    get:
+      summary: Render an SVG; spec url-encoded in the query
+      parameters:
+        - name: spec
+          in: query
+          required: true
+          description: URL-encoded JSON chart spec (max 16 KB)
+          schema: { type: string }
+      responses:
+        '200':
+          description: SVG image
+          content:
+            image/svg+xml: { schema: { type: string } }
+        '400': { $ref: '#/components/responses/BadSpec' }
+        '403': { $ref: '#/components/responses/NeedKey' }
+  /health:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: ok
+          content:
+            text/plain: { schema: { type: string } }
+components:
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+  responses:
+    BadSpec:
+      description: Invalid spec — not JSON, not an object, missing type, render error, or too large
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    NeedKey:
+      description: API key required (metering enabled)
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+  schemas:
+    Error:
+      type: object
+      properties:
+        error: { type: string }
+    ChartType:
+      type: string
+      enum: [bar, grouped, stacked, stacked100, stackedh, horizontal, lollipop, diverging, line, smooth, area, stepped, stackedArea, difference, slope, pie, donut, pieofpie, kpi, cards, layers, progress, waffle, heatmap, funnel, pyramid, quadrant, timeline, venn, matrix, checklist, iconarray, steps, table, gauge, bullet, calendar, leaderboard, callout, ring, versus, gantt, waterfall, swimlane, tierlist, swot, dashboard]
+    Series:
+      type: object
+      required: [values]
+      properties:
+        name: { type: string }
+        values:
+          type: array
+          items: { type: number }
+        color: { type: string }
+        colors:
+          type: array
+          items: { type: string }
+    ChartData:
+      type: object
+      required: [labels, series]
+      properties:
+        labels:
+          type: array
+          items: { type: string }
+        series:
+          type: array
+          items: { $ref: '#/components/schemas/Series' }
+    ChartSpec:
+      type: object
+      required: [type]
+      additionalProperties: true
+      description: >
+        Only `type` is always required; `data` is required for every type except kpi and
+        pieofpie. Many optional style fields exist (fonts, colors, size, units, …) — see
+        render-core/SPEC.md for the full contract.
+      properties:
+        type: { $ref: '#/components/schemas/ChartType' }
+        title: { type: string }
+        data: { $ref: '#/components/schemas/ChartData' }
+        format:
+          type: string
+          enum: [png, svg]
+          default: png
+        palette: { type: string }
+        background: { type: string }
+        width: { type: integer }
+        height: { type: integer }
+        preset: { type: string }
+        valueUnit: { type: string }
+        valuePrefix: { type: string }
+        showValues: { type: boolean }
+        watermark: { type: boolean }
+security:
+  - rapidApiKey: []

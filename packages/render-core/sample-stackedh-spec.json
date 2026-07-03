@@ -1,0 +1,14 @@
+{
+  "type": "stackedh",
+  "title": "Budget Allocation by Team",
+  "data": {
+    "labels": ["Engineering", "Sales", "Marketing", "Support"],
+    "series": [
+      { "name": "Salaries", "values": [120, 90, 60, 70] },
+      { "name": "Tools",    "values": [40, 25, 35, 20] },
+      { "name": "Travel",   "values": [15, 45, 30, 10] }
+    ]
+  },
+  "palette": "Clean Corporate",
+  "width": 800, "height": 450
+}

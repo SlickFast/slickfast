@@ -1,0 +1,14 @@
+{
+  "type": "stacked100",
+  "title": "Revenue Mix by Quarter",
+  "data": {
+    "labels": ["Q1", "Q2", "Q3", "Q4"],
+    "series": [
+      { "name": "Core",     "values": [30, 35, 40, 45] },
+      { "name": "Add-ons",  "values": [18, 20, 19, 24] },
+      { "name": "Services", "values": [12, 14, 16, 15] }
+    ]
+  },
+  "palette": "Clean Corporate",
+  "width": 800, "height": 450
+}

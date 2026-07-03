@@ -1,0 +1,12 @@
+{
+  "type": "leaderboard",
+  "title": "Top regions by revenue",
+  "valueUnit": "k",
+  "items": [
+    { "label": "North", "value": 530 },
+    { "label": "South", "value": 480 },
+    { "label": "East", "value": 610 },
+    { "label": "West", "value": 390 },
+    { "label": "Central", "value": 450 }
+  ]
+}

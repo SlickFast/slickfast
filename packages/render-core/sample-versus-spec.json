@@ -1,0 +1,1 @@
+{ "type": "versus", "title": "Plan A vs Plan B", "sides": [ { "title": "Starter", "items": [ { "label": "Price /mo", "value": 9 }, { "label": "Seats", "value": 3 }, { "label": "API calls", "value": 1000 } ] }, { "title": "Pro", "items": [ { "label": "Price /mo", "value": 29 }, { "label": "Seats", "value": 10 }, { "label": "API calls", "value": 50000 } ] } ] }

@@ -1,0 +1,8 @@
+{
+  "type": "kpi",
+  "label": "Monthly Recurring Revenue",
+  "value": 128400,
+  "valuePrefix": "$",
+  "delta": 12.4,
+  "sparkline": [98, 104, 101, 112, 118, 121, 128]
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 370" width="600" height="370" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="600" height="370" fill="#ffffff"/>
+<text x="300" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Operating model</text>
+<path d="M300,54 L300,54 L369,129 L231,129 Z" fill="#2563eb"/>
+<text x="300" y="95.5" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Vision</text>
+<path d="M231,129 L369,129 L438,204 L162,204 Z" fill="#7c3aed"/>
+<text x="300" y="170.5" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Strategy</text>
+<path d="M162,204 L438,204 L507,279 L93,279 Z" fill="#059669"/>
+<text x="300" y="245.5" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a">Execution</text>
+<path d="M93,279 L507,279 L576,354 L24,354 Z" fill="#d97706"/>
+<text x="300" y="320.5" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a">Operations</text>
+<text x="590" y="361" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

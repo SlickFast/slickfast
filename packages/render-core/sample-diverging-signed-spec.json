@@ -1,0 +1,12 @@
+{
+  "type": "diverging",
+  "title": "Net flow by quarter (single signed series)",
+  "data": {
+    "labels": ["Q1", "Q2", "Q3", "Q4"],
+    "series": [
+      { "name": "Net flow", "values": [5, -3, 8, -2] }
+    ]
+  },
+  "palette": "Clean Corporate",
+  "width": 800, "height": 450
+}

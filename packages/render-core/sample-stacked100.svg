@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="800" height="450" fill="#ffffff"/>
+<line x1="56" y1="386" x2="776" y2="386" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="390" text-anchor="end" font-size="11" fill="#64748b">0</text>
+<line x1="56" y1="319.6" x2="776" y2="319.6" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="323.6" text-anchor="end" font-size="11" fill="#64748b">20</text>
+<line x1="56" y1="253.2" x2="776" y2="253.2" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="257.2" text-anchor="end" font-size="11" fill="#64748b">40</text>
+<line x1="56" y1="186.8" x2="776" y2="186.8" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="190.8" text-anchor="end" font-size="11" fill="#64748b">60</text>
+<line x1="56" y1="120.4" x2="776" y2="120.4" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="124.4" text-anchor="end" font-size="11" fill="#64748b">80</text>
+<line x1="56" y1="54" x2="776" y2="54" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="58" text-anchor="end" font-size="11" fill="#64748b">100</text>
+<rect x="98" y="220" width="96" height="166" fill="#2563eb"/>
+<text x="146" y="234" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Core</text>
+<text x="146" y="379" text-anchor="middle" font-size="12" font-weight="600" fill="#ffffff">50%</text>
+<rect x="98" y="120.4" width="96" height="99.6" fill="#7c3aed"/>
+<text x="146" y="134.4" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Add-ons</text>
+<text x="146" y="213" text-anchor="middle" font-size="12" font-weight="600" fill="#ffffff">30%</text>
+<path d="M98,120.4 L98,59 Q98,54 103,54 L189,54 Q194,54 194,59 L194,120.4 Z" fill="#059669"/>
+<text x="146" y="68" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a1a">Services</text>
+<text x="146" y="113.4" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a">20%</text>
+<text x="146" y="404" text-anchor="middle" font-size="12" fill="#475569">Q1</text>
+<rect x="278" y="216.68" width="96" height="169.32" fill="#2563eb"/>
+<text x="326" y="230.68" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Core</text>
+<text x="326" y="379" text-anchor="middle" font-size="12" font-weight="600" fill="#ffffff">51%</text>
+<rect x="278" y="120.4" width="96" height="96.28" fill="#7c3aed"/>
+<text x="326" y="134.4" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Add-ons</text>
+<text x="326" y="209.68" text-anchor="middle" font-size="12" font-weight="600" fill="#ffffff">29%</text>
+<path d="M278,120.4 L278,59 Q278,54 283,54 L369,54 Q374,54 374,59 L374,120.4 Z" fill="#059669"/>
+<text x="326" y="68" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a1a">Services</text>
+<text x="326" y="113.4" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a">20%</text>
+<text x="326" y="404" text-anchor="middle" font-size="12" fill="#475569">Q2</text>
+<rect x="458" y="206.72" width="96" height="179.28" fill="#2563eb"/>
+<text x="506" y="220.72" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Core</text>
+<text x="506" y="379" text-anchor="middle" font-size="12" font-weight="600" fill="#ffffff">54%</text>
+<rect x="458" y="123.72" width="96" height="83" fill="#7c3aed"/>
+<text x="506" y="137.72" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Add-ons</text>
+<text x="506" y="199.72" text-anchor="middle" font-size="12" font-weight="600" fill="#ffffff">25%</text>
+<path d="M458,123.72 L458,59 Q458,54 463,54 L549,54 Q554,54 554,59 L554,123.72 Z" fill="#059669"/>
+<text x="506" y="68" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a1a">Services</text>
+<text x="506" y="116.72" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a">21%</text>
+<text x="506" y="404" text-anchor="middle" font-size="12" fill="#475569">Q3</text>
+<rect x="638" y="206.72" width="96" height="179.28" fill="#2563eb"/>
+<text x="686" y="220.72" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Core</text>
+<text x="686" y="379" text-anchor="middle" font-size="12" font-weight="600" fill="#ffffff">54%</text>
+<rect x="638" y="113.76" width="96" height="92.96" fill="#7c3aed"/>
+<text x="686" y="127.76" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Add-ons</text>
+<text x="686" y="199.72" text-anchor="middle" font-size="12" font-weight="600" fill="#ffffff">28%</text>
+<path d="M638,113.76 L638,59 Q638,54 643,54 L729,54 Q734,54 734,59 L734,113.76 Z" fill="#059669"/>
+<text x="686" y="68" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a1a">Services</text>
+<text x="686" y="106.76" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a">18%</text>
+<text x="686" y="404" text-anchor="middle" font-size="12" fill="#475569">Q4</text>
+<rect x="279.84" y="425" width="11" height="11" rx="2.5" fill="#2563eb"/>
+<text x="296.84" y="434" font-size="12" fill="#475569">Core</text>
+<rect x="342.96" y="425" width="11" height="11" rx="2.5" fill="#7c3aed"/>
+<text x="359.96" y="434" font-size="12" fill="#475569">Add-ons</text>
+<rect x="427.92" y="425" width="11" height="11" rx="2.5" fill="#059669"/>
+<text x="444.92" y="434" font-size="12" fill="#475569">Services</text>
+<text x="400" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Revenue Mix by Quarter</text>
+<text x="792" y="442" text-anchor="end" font-size="10" fill="#94a3b8" opacity="0.7">slickfast.com</text>
+</svg>

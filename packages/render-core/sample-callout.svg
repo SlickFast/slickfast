@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 220" width="620" height="220" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="620" height="220" fill="#ffffff"/>
+<text x="28" y="33" font-size="18" font-weight="700" fill="#0f172a">Performance</text>
+<text x="28" y="135" font-size="71.4" font-weight="800" fill="#2563eb">3.4×</text>
+<text x="28" y="172.4" font-size="15" fill="#5b6270">faster than last quarter</text>
+<line x1="516" y1="56" x2="516" y2="200" stroke="#94a3b8" stroke-opacity="0.5"/>
+<rect x="530" y="62" width="62" height="26" rx="8" fill="#2563eb" fill-opacity="0.14"/>
+<text x="561" y="79" text-anchor="middle" font-size="13" font-weight="600" fill="#2563eb">vs Q1</text>
+<text x="610" y="211" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

@@ -1,0 +1,12 @@
+{
+  "type": "kpi",
+  "label": "Monthly Recurring Revenue",
+  "value": 128400,
+  "valuePrefix": "$",
+  "delta": 12.4,
+  "deltaUnit": "%",
+  "palette": "Clean Corporate",
+  "background": "#ffffff",
+  "width": 340,
+  "height": 180
+}

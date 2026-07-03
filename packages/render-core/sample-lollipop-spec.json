@@ -1,0 +1,13 @@
+{
+  "type": "lollipop",
+  "title": "Feature Adoption Rate",
+  "data": {
+    "labels": ["Search", "Filters", "Export", "Sharing", "API"],
+    "series": [
+      { "values": [78, 64, 52, 41, 29] }
+    ]
+  },
+  "palette": "Vibrant",
+  "valueUnit": "%",
+  "width": 800, "height": 450
+}

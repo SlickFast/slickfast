@@ -1,0 +1,9 @@
+{
+  "type": "bullet",
+  "title": "Performance vs target",
+  "bars": [
+    { "label": "Revenue", "value": 275, "target": 250, "max": 300, "bands": [150, 225] },
+    { "label": "Profit", "value": 82, "target": 100, "max": 120, "bands": [60, 90] },
+    { "label": "New customers", "value": 134, "target": 120, "max": 160, "bands": [80, 120] }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "line",
+  "title": "Monthly Active Users",
+  "data": {
+    "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    "series": [
+      { "name": "Product A", "values": [120, 190, 170, 250, 230, 310] },
+      { "name": "Product B", "values": [80, 110, 160, 140, 210, 260] }
+    ]
+  },
+  "palette": "Clean Corporate",
+  "background": "#ffffff",
+  "width": 800,
+  "height": 450
+}

@@ -1,0 +1,2762 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>SlickFast — new types demo</title>
+<style>
+:root{--bg:#f1f5f9;--card:#fff;--ink:#0f172a;--muted:#64748b;--line:#e2e8f0}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink)}
+header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line);padding:14px 20px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+header h1{font-size:16px;margin:0 12px 0 0;font-weight:700}
+header label{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center}
+select{font:inherit;font-size:13px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+.note{font-size:12px;color:var(--muted);margin-left:auto}
+main{padding:20px;display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(360px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;overflow:hidden}
+.card h3{margin:0 0 10px;font-size:13px;font-weight:700}
+.card h3 code{background:#eef2ff;color:#3730a3;padding:2px 7px;border-radius:6px;font-size:12px}
+.frame{border-radius:10px;overflow:hidden}.frame svg{display:block;width:100%;height:auto}
+.err{color:#b91c1c;font-size:12px;white-space:pre-wrap}
+</style></head><body>
+<header><h1>SlickFast — new types</h1>
+<label>Palette <select id="palette"><option>Clean Corporate</option><option>Pastel</option><option>Vibrant</option><option>Monochrome</option><option>Cyberpunk</option><option>Analogous Shift</option></select></label>
+<label>Background <select id="bg"><option value="#ffffff">Light</option><option value="#0f172a">Dark</option><option value="transparent">Transparent</option></select></label>
+<label><input type="checkbox" id="wm"> watermark</label>
+<span class="note" id="count"></span></header>
+<main id="grid"></main>
+<script>var RC = (() => {
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+  // render-core.mjs
+  var render_core_exports = {};
+  __export(render_core_exports, {
+    RATIO_PRESETS: () => RATIO_PRESETS,
+    TYPES: () => TYPES,
+    TYPE_NAMES: () => TYPE_NAMES,
+    renderBar: () => renderBar,
+    renderBarGrouped: () => renderBarGrouped,
+    renderBarH: () => renderBarH,
+    renderBarStacked: () => renderBarStacked,
+    renderBarStackedH: () => renderBarStackedH,
+    renderBullet: () => renderBullet,
+    renderCalendar: () => renderCalendar,
+    renderCallout: () => renderCallout,
+    renderCards: () => renderCards,
+    renderChecklist: () => renderChecklist,
+    renderDiverging: () => renderDiverging,
+    renderFunnel: () => renderFunnel,
+    renderGantt: () => renderGantt,
+    renderGauge: () => renderGauge,
+    renderHeatmap: () => renderHeatmap,
+    renderIconArray: () => renderIconArray,
+    renderKpi: () => renderKpi,
+    renderLayers: () => renderLayers,
+    renderLeaderboard: () => renderLeaderboard,
+    renderLine: () => renderLine,
+    renderLollipop: () => renderLollipop,
+    renderMatrix: () => renderMatrix,
+    renderPie: () => renderPie,
+    renderPieOfPie: () => renderPieOfPie,
+    renderProgress: () => renderProgress,
+    renderPyramid: () => renderPyramid,
+    renderQuadrant: () => renderQuadrant,
+    renderRing: () => renderRing,
+    renderSlope: () => renderSlope,
+    renderSpec: () => renderSpec,
+    renderSteps: () => renderSteps,
+    renderSwimlane: () => renderSwimlane,
+    renderSwot: () => renderSwot,
+    renderTable: () => renderTable,
+    renderTierList: () => renderTierList,
+    renderTimeline: () => renderTimeline,
+    renderVenn: () => renderVenn,
+    renderVersus: () => renderVersus,
+    renderWaffle: () => renderWaffle,
+    renderWaterfall: () => renderWaterfall
+  });
+
+  // ../palette-core/tokens.json
+  var tokens_default = {
+    version: "1.0.0",
+    description: "Design tokens for BarGraphFast / PieChartFast / future data-viz sites and the rendering API. Language-agnostic: any consumer reads this verbatim. The color math that turns these into resolved palettes lives in palette-core (see README). Parity across consumers is enforced by golden-vectors.json.",
+    flatPalettes: [
+      { name: "Clean Corporate", colors: ["#2563eb", "#7c3aed", "#059669", "#d97706", "#dc2626", "#0891b2", "#65a30d", "#9333ea"] },
+      { name: "Pastel", colors: ["#93c5fd", "#c4b5fd", "#6ee7b7", "#fcd34d", "#fca5a5", "#67e8f9", "#bbf7d0", "#f0abfc"] },
+      { name: "Vibrant", colors: ["#f43f5e", "#f97316", "#eab308", "#22c55e", "#06b6d4", "#6366f1", "#a855f7", "#ec4899"] },
+      { name: "Monochrome", colors: ["#c8cdd4", "#a0a8b4", "#78838f", "#57606a", "#3d4752", "#6e8090", "#b0bac4", "#8a95a0"] },
+      { name: "Cyberpunk", colors: ["#ec4899", "#a855f7", "#22d3ee", "#d946ef", "#8b5cf6", "#2dd4bf", "#f472b6", "#0ea5e9"] },
+      { name: "Analogous Shift", colors: ["#6b2d5c", "#c8324b", "#f2785c", "#f2913d", "#f6b73c", "#fcd848", "#a3c940", "#2fa98c"] }
+    ],
+    nestedThemes: [
+      { name: "Modern Corporate", pie1: ["#14B8A6", "#0A2540", "#64748B"] },
+      { name: "Nordic Earth", pie1: ["#7C8A4E", "#C0683C", "#CBA14A"] },
+      { name: "Cyberpunk Glow", pie1: ["#A855F7", "#EC4899", "#22D3EE"], dark: true },
+      { name: "Sequential Rainbow", pie1: ["#F43F5E", "#2563EB", "#FACC15"], hueShift: 15, hueSpread: 25 },
+      { name: "Retro Editorial", tiers: [["#D4A017", "#C65D3B", "#2F7E8C"], ["#7A7C3F", "#C98B91", "#2C3E5C"], ["#A7B59A", "#F0C3A0", "#EDE4D0"]] },
+      { name: "Analogous Shift", tiers: [["#6B2D5C", "#C8324B", "#F2785C"], ["#F2913D", "#F6B73C", "#FCD848"], ["#A3C940", "#6FCF97", "#2FA98C"]] },
+      { name: "Classic Triadic", tiers: [["#4338CA", "#14B8A6", "#FB7185"], ["#374151", "#D4AF6A", "#6EE7B7"], ["#64748B", "#C4B5FD", "#FBCFE0"]] },
+      { name: "Sorbet Pastel", tiers: [["#C9B6E4", "#BFD8A4", "#F6C396"], ["#A9CCE3", "#F5E79E", "#F4B8D0"], ["#A8E0C8", "#D6CDEA", "#F6CBA0"]] },
+      { name: "Clean Corporate", pie1: ["#2563eb", "#7c3aed", "#059669"] },
+      { name: "Pastel", pie1: ["#93c5fd", "#c4b5fd", "#6ee7b7"] },
+      { name: "Vibrant", pie1: ["#f43f5e", "#f97316", "#eab308"] },
+      { name: "Monochrome", pie1: ["#c8cdd4", "#a0a8b4", "#78838f"] }
+    ],
+    rampConfig: {
+      comment: "Tunables for the generative color math. Mirror of the constants baked into palette-core's generators, surfaced here as design data. Changing these requires regenerating golden-vectors.json.",
+      monochromatic: { startLightness: 75, endLightness: 35 },
+      tier: {
+        depth1: { startLightnessClampMin: 46, startLightnessClampMax: 58, lightnessSpan: 24, saturationFloor: 42, saturationDrop: 4 },
+        depthN: { startLightness: 70, lightnessSpan: 16, saturationFloor: 32, saturationDrop: 20 },
+        lightnessCeiling: 92
+      },
+      fallback: { startLightnessOffset: 8, endLightnessStep: 8, lightnessCeiling: 92 }
+    }
+  };
+
+  // ../palette-core/palette-core.mjs
+  var RAMP = tokens_default.rampConfig;
+  function hexToRgb(hex) {
+    hex = String(hex).replace(/^#/, "");
+    if (hex.length === 3) hex = hex.split("").map((c) => c + c).join("");
+    const n = parseInt(hex, 16);
+    return { r: n >> 16 & 255, g: n >> 8 & 255, b: n & 255 };
+  }
+  function rgbToHsl(r2, g, b) {
+    r2 /= 255;
+    g /= 255;
+    b /= 255;
+    const mx = Math.max(r2, g, b), mn = Math.min(r2, g, b);
+    let h, s, l = (mx + mn) / 2;
+    if (mx === mn) {
+      h = s = 0;
+    } else {
+      const d = mx - mn;
+      s = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn);
+      switch (mx) {
+        case r2:
+          h = (g - b) / d + (g < b ? 6 : 0);
+          break;
+        case g:
+          h = (b - r2) / d + 2;
+          break;
+        default:
+          h = (r2 - g) / d + 4;
+      }
+      h /= 6;
+    }
+    return { h: h * 360, s: s * 100, l: l * 100 };
+  }
+  function hexToHsl(hex) {
+    const { r: r2, g, b } = hexToRgb(hex);
+    return rgbToHsl(r2, g, b);
+  }
+  function hslToHex(h, s, l) {
+    h = (h % 360 + 360) % 360;
+    s = Math.max(0, Math.min(100, s)) / 100;
+    l = Math.max(0, Math.min(100, l)) / 100;
+    const c = (1 - Math.abs(2 * l - 1)) * s, x = c * (1 - Math.abs(h / 60 % 2 - 1)), m = l - c / 2;
+    let r2, g, b;
+    if (h < 60) {
+      [r2, g, b] = [c, x, 0];
+    } else if (h < 120) {
+      [r2, g, b] = [x, c, 0];
+    } else if (h < 180) {
+      [r2, g, b] = [0, c, x];
+    } else if (h < 240) {
+      [r2, g, b] = [0, x, c];
+    } else if (h < 300) {
+      [r2, g, b] = [x, 0, c];
+    } else {
+      [r2, g, b] = [c, 0, x];
+    }
+    const to = (v) => ("0" + Math.round((v + m) * 255).toString(16)).slice(-2);
+    return "#" + to(r2) + to(g) + to(b);
+  }
+  function getLuminance(hex) {
+    const { r: r2, g, b } = hexToRgb(hex);
+    return [r2, g, b].reduce((sum, c, i) => {
+      c /= 255;
+      c = c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+      return sum + c * [0.2126, 0.7152, 0.0722][i];
+    }, 0);
+  }
+  function contrastColor(hex) {
+    return getLuminance(hex) > 0.179 ? "#1a1a1a" : "#ffffff";
+  }
+  function generateMonochromaticPalette(baseHue, baseSaturation, sliceCount, startLightness = RAMP.monochromatic.startLightness, endLightness = RAMP.monochromatic.endLightness) {
+    const colors = [];
+    const step = (startLightness - endLightness) / Math.max(sliceCount - 1, 1);
+    for (let i = 0; i < sliceCount; i++) {
+      colors.push(hslToHex(baseHue, baseSaturation, startLightness - i * step));
+    }
+    return colors;
+  }
+  function tierPalette(rootHex, depth, count, opts = {}) {
+    const { hueShift = 0, hueSpread = 0 } = opts;
+    const d1 = RAMP.tier.depth1, dN = RAMP.tier.depthN, ceil = RAMP.tier.lightnessCeiling;
+    const base = hexToHsl(rootHex);
+    const startL = depth === 1 ? Math.min(Math.max(base.l, d1.startLightnessClampMin), d1.startLightnessClampMax) : dN.startLightness;
+    const spanL = depth === 1 ? d1.lightnessSpan : dN.lightnessSpan;
+    const S = depth === 1 ? Math.max(d1.saturationFloor, base.s - d1.saturationDrop) : Math.max(dN.saturationFloor, base.s - dN.saturationDrop);
+    const out = [];
+    for (let i = 0; i < count; i++) {
+      const t = count > 1 ? i / (count - 1) : 0;
+      out.push(hslToHex(base.h + hueShift * depth + hueSpread * t, S, Math.min(ceil, startL + t * spanL)));
+    }
+    return out;
+  }
+  function generateTierPaletteWithFallback(predefinedColors, sliceCount, rootHex = null) {
+    if (sliceCount <= predefinedColors.length) return predefinedColors.slice(0, sliceCount);
+    const fb = RAMP.fallback;
+    const result = predefinedColors.slice();
+    const remaining = sliceCount - predefinedColors.length;
+    const baseHsl = hexToHsl(predefinedColors[predefinedColors.length - 1]);
+    const baseHue = rootHex ? hexToHsl(rootHex).h : baseHsl.h;
+    const startLightness = baseHsl.l + fb.startLightnessOffset;
+    const endLightness = Math.min(fb.lightnessCeiling, baseHsl.l + remaining * fb.endLightnessStep);
+    const dynamic = generateMonochromaticPalette(baseHue, baseHsl.s, remaining + 1, startLightness, endLightness);
+    result.push(...dynamic.slice(1));
+    return result.slice(0, sliceCount);
+  }
+  var FLAT_PALETTES = tokens_default.flatPalettes;
+  var NESTED_THEMES = tokens_default.nestedThemes;
+  function resolveFlatPalette(name, count) {
+    const p = FLAT_PALETTES.find((p2) => p2.name === name) || FLAT_PALETTES[0];
+    return generateTierPaletteWithFallback(p.colors, count);
+  }
+  function resolveNestedTheme(themeName, pieIndex, count, rootHexOverride = null) {
+    const theme = NESTED_THEMES.find((t) => t.name === themeName) || NESTED_THEMES[0];
+    if (theme.tiers) {
+      const predefined = theme.tiers[Math.min(pieIndex, theme.tiers.length - 1)];
+      return generateTierPaletteWithFallback(predefined, count);
+    }
+    if (pieIndex === 0) return generateTierPaletteWithFallback(theme.pie1, count);
+    const root = rootHexOverride || theme.pie1[0];
+    return tierPalette(root, pieIndex, count, theme);
+  }
+
+  // ../fonts/fonts.mjs
+  var FONTS = {
+    Inter: "Inter, system-ui, -apple-system, sans-serif",
+    System: "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
+    Serif: "Georgia, 'Times New Roman', serif",
+    Mono: "'JetBrains Mono', 'SF Mono', Menlo, monospace",
+    Rounded: "'Nunito', 'Segoe UI', system-ui, sans-serif",
+    Condensed: "'Roboto Condensed', 'Arial Narrow', sans-serif"
+  };
+  var DEFAULT_FONT = FONTS.Inter;
+  function resolveFont(spec = {}) {
+    if (spec.fontFamily) return spec.fontFamily;
+    if (spec.font && FONTS[spec.font]) return FONTS[spec.font];
+    return DEFAULT_FONT;
+  }
+
+  // render-core.mjs
+  function contrastFloor(color, bg, transparent) {
+    if (transparent || typeof color !== "string" || color[0] !== "#") return color;
+    const lc = getLuminance(color), lb = getLuminance(bg);
+    if (Math.abs(lc - lb) >= 0.22) return color;
+    const hsl = hexToHsl(color);
+    const dl = lb > 0.5 ? -30 : 30;
+    return hslToHex(hsl.h, hsl.s, Math.max(0, Math.min(100, hsl.l + dl)));
+  }
+  var esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  var r = (n) => Math.round(n * 100) / 100;
+  var fmt = (n) => (Number(n) || 0).toLocaleString("en-US");
+  function pct100(vals) {
+    const tot = vals.reduce((a, b) => a + b, 0);
+    if (tot <= 0) return vals.map(() => 0);
+    const exact = vals.map((v) => v / tot * 100);
+    const out = exact.map(Math.floor);
+    const rem = 100 - out.reduce((a, b) => a + b, 0);
+    const order = exact.map((v, i) => [i, v - Math.floor(v)]).sort((a, b) => b[1] - a[1]);
+    for (let k = 0; k < rem; k++) out[order[k % order.length][0]]++;
+    return out;
+  }
+  var txt = (spec, fallback) => spec.textColor || fallback;
+  var wAttr = (spec, base) => {
+    const w = spec.fontWeight ? esc(spec.fontWeight) : spec.bold === true ? Math.min(900, base + 100) : base;
+    return `font-weight="${w}"`;
+  };
+  var wOpt = (spec) => {
+    if (spec.fontWeight) return ` font-weight="${esc(spec.fontWeight)}"`;
+    if (spec.bold === true) return ' font-weight="700"';
+    return "";
+  };
+  function safeData(spec) {
+    const d = spec.data || {};
+    if (Array.isArray(d.series) && d.series.length) return spec;
+    return { ...spec, data: { labels: Array.isArray(d.labels) ? d.labels : [], series: [{ name: "", values: [] }, { name: "", values: [] }] } };
+  }
+  function niceNum(x, round) {
+    const v = x > 0 ? x : 1;
+    const exp = Math.floor(Math.log10(v));
+    const f = v / Math.pow(10, exp);
+    const nf = round ? f < 1.5 ? 1 : f < 3 ? 2 : f < 7 ? 5 : 10 : f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10;
+    return nf * Math.pow(10, exp);
+  }
+  function niceScale(max, ticks = 5) {
+    const m = max > 0 ? max : 1;
+    const step = niceNum(niceNum(m, false) / ticks, true);
+    return { step, niceMax: Math.ceil(m / step) * step };
+  }
+  function topRoundedBar(x, y, w, h, rad) {
+    const rr = Math.min(rad, w / 2, h);
+    return `M${r(x)},${r(y + h)} L${r(x)},${r(y + rr)} Q${r(x)},${r(y)} ${r(x + rr)},${r(y)} L${r(x + w - rr)},${r(y)} Q${r(x + w)},${r(y)} ${r(x + w)},${r(y + rr)} L${r(x + w)},${r(y + h)} Z`;
+  }
+  function rightRoundedBar(x, y, w, h, rad) {
+    const rr = Math.min(rad, h / 2, w);
+    return `M${r(x)},${r(y)} L${r(x + w - rr)},${r(y)} Q${r(x + w)},${r(y)} ${r(x + w)},${r(y + rr)} L${r(x + w)},${r(y + h - rr)} Q${r(x + w)},${r(y + h)} ${r(x + w - rr)},${r(y + h)} L${r(x)},${r(y + h)} Z`;
+  }
+  function bottomRoundedBar(x, y, w, h, rad) {
+    const rr = Math.min(rad, w / 2, h);
+    return `M${r(x)},${r(y)} L${r(x + w)},${r(y)} L${r(x + w)},${r(y + h - rr)} Q${r(x + w)},${r(y + h)} ${r(x + w - rr)},${r(y + h)} L${r(x + rr)},${r(y + h)} Q${r(x)},${r(y + h)} ${r(x)},${r(y + h - rr)} Z`;
+  }
+  function straightPath(pts) {
+    return pts.map((pt, i) => (i ? "L" : "M") + pt[0] + "," + pt[1]).join(" ");
+  }
+  function steppedPath(pts) {
+    let d = `M${pts[0][0]},${pts[0][1]}`;
+    for (let i = 1; i < pts.length; i++) d += ` L${pts[i][0]},${pts[i - 1][1]} L${pts[i][0]},${pts[i][1]}`;
+    return d;
+  }
+  function smoothPath(pts) {
+    if (pts.length < 3) return straightPath(pts);
+    let d = `M${pts[0][0]},${pts[0][1]}`;
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+      const c1x = p1[0] + (p2[0] - p0[0]) / 6, c1y = p1[1] + (p2[1] - p0[1]) / 6;
+      const c2x = p2[0] - (p3[0] - p1[0]) / 6, c2y = p2[1] - (p3[1] - p1[1]) / 6;
+      d += ` C${r(c1x)},${r(c1y)} ${r(c2x)},${r(c2y)} ${p2[0]},${p2[1]}`;
+    }
+    return d;
+  }
+  function arcPath(cx, cy, rad, a0, a1, innerR) {
+    const x0 = r(cx + rad * Math.cos(a0)), y0 = r(cy + rad * Math.sin(a0));
+    const x1 = r(cx + rad * Math.cos(a1)), y1 = r(cy + rad * Math.sin(a1));
+    const large = a1 - a0 > Math.PI ? 1 : 0;
+    if (innerR > 0) {
+      const ix0 = r(cx + innerR * Math.cos(a0)), iy0 = r(cy + innerR * Math.sin(a0));
+      const ix1 = r(cx + innerR * Math.cos(a1)), iy1 = r(cy + innerR * Math.sin(a1));
+      return `M${x0},${y0} A${rad},${rad} 0 ${large} 1 ${x1},${y1} L${ix1},${iy1} A${innerR},${innerR} 0 ${large} 0 ${ix0},${iy0} Z`;
+    }
+    return `M${r(cx)},${r(cy)} L${x0},${y0} A${rad},${rad} 0 ${large} 1 ${x1},${y1} Z`;
+  }
+  function renderBar(spec) {
+    spec = safeData(spec);
+    const W = spec.width || 800, H = spec.height || 450;
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : Math.max(13, Math.round(13 * Math.sqrt(W * H) / 600));
+    const font = resolveFont(spec);
+    const title = spec.title || "";
+    const labels = spec.data.labels;
+    const values = spec.data.series[0].values.map((v) => Number(v) || 0);
+    const u = spec.valueUnit ? " " + spec.valueUnit : "";
+    const showValues = spec.showValues !== false;
+    const showTotal = spec.showTotal !== false && spec.valueUnit !== "%";
+    const watermark = spec.watermark !== false;
+    const explicit = spec.data.series[0].colors;
+    const colors = Array.isArray(explicit) && explicit.length >= labels.length ? explicit : resolveFlatPalette(spec.palette || "Clean Corporate", labels.length);
+    const axisText = txt(spec, isDark ? "#94a3b8" : "#64748b");
+    const gridCol = isDark ? "#1e293b" : "#e2e8f0";
+    const catText = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const valText = txt(spec, isDark ? "#e2e8f0" : "#334155");
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const M = { left: 56, right: 24, top: title ? 54 : 28, bottom: 46 };
+    const plotW = W - M.left - M.right;
+    const plotH = H - M.top - M.bottom;
+    const maxV = Math.max(0, ...values);
+    const { step, niceMax } = niceScale(maxV);
+    const yPix = (v) => M.top + plotH - v / niceMax * plotH;
+    const band = plotW / labels.length;
+    const barW = Math.min(band * 0.62, 96);
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    for (let v = 0; v <= niceMax + 1e-9; v += step) {
+      const y = r(yPix(v));
+      p.push(`<line x1="${M.left}" y1="${y}" x2="${r(M.left + plotW)}" y2="${y}" stroke="${gridCol}" stroke-width="1"/>`);
+      p.push(`<text x="${M.left - 8}" y="${r(y + 4)}" text-anchor="end" font-size="${fs - 2}"${wOpt(spec)} fill="${axisText}">${fmt(v)}</text>`);
+    }
+    values.forEach((v, i) => {
+      const x = M.left + i * band + (band - barW) / 2;
+      const y = yPix(v);
+      const h = M.top + plotH - y;
+      const cx = r(x + barW / 2);
+      p.push(`<path d="${topRoundedBar(x, y, barW, h, 5)}" fill="${colors[i]}"/>`);
+      if (showValues) p.push(`<text x="${cx}" y="${r(y - 7)}" text-anchor="middle" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${valText}">${esc(fmt(v) + u)}</text>`);
+      p.push(`<text x="${cx}" y="${r(M.top + plotH + 18)}" text-anchor="middle" font-size="${fs - 1}"${wOpt(spec)} fill="${catText}">${esc(labels[i])}</text>`);
+    });
+    if (showTotal) {
+      const total = values.reduce((s, v) => s + v, 0);
+      p.push(`<text x="${r(W - M.right)}" y="${title ? 50 : 20}" text-anchor="end" font-size="${fs - 1}"${wOpt(spec)} fill="${axisText}">Total: ${esc(fmt(total) + u)}</text>`);
+    }
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderBarGrouped(spec) {
+    const W = spec.width || 800, H = spec.height || 450;
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : Math.max(13, Math.round(13 * Math.sqrt(W * H) / 600));
+    const font = resolveFont(spec);
+    const title = spec.title || "";
+    const labels = spec.data.labels;
+    const series = spec.data.series;
+    const u = spec.valueUnit ? " " + spec.valueUnit : "";
+    const showValues = spec.showValues !== false;
+    const watermark = spec.watermark !== false;
+    const cols = resolveFlatPalette(spec.palette || "Clean Corporate", 8);
+    const mid = Math.floor(cols.length / 2);
+    const seriesColor = (s, i) => s.color || (i === 0 ? cols[0] : i === 1 ? cols[mid] || cols[1] : cols[i % cols.length]);
+    const axisText = txt(spec, isDark ? "#94a3b8" : "#64748b");
+    const gridCol = isDark ? "#1e293b" : "#e2e8f0";
+    const catText = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const valText = txt(spec, isDark ? "#e2e8f0" : "#334155");
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const multi = series.length > 1;
+    const M = { left: 56, right: 24, top: title ? 54 : 28, bottom: multi ? 64 : 46 };
+    const plotW = W - M.left - M.right;
+    const plotH = H - M.top - M.bottom;
+    const maxV = Math.max(0, ...series.flatMap((s) => s.values.map((v) => Number(v) || 0)));
+    const { step, niceMax } = niceScale(maxV);
+    const yPix = (v) => M.top + plotH - v / niceMax * plotH;
+    const band = plotW / labels.length;
+    const groupW = Math.min(band * 0.72, 132);
+    const n = series.length;
+    const barW = groupW / n;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    for (let v = 0; v <= niceMax + 1e-9; v += step) {
+      const y = r(yPix(v));
+      p.push(`<line x1="${M.left}" y1="${y}" x2="${r(M.left + plotW)}" y2="${y}" stroke="${gridCol}" stroke-width="1"/>`);
+      p.push(`<text x="${M.left - 8}" y="${r(y + 4)}" text-anchor="end" font-size="${fs - 2}"${wOpt(spec)} fill="${axisText}">${fmt(v)}</text>`);
+    }
+    labels.forEach((lab, i) => {
+      const gx = M.left + i * band + (band - groupW) / 2;
+      series.forEach((s, si) => {
+        const v = Number(s.values[i]) || 0;
+        const x = gx + si * barW;
+        const y = yPix(v);
+        const h = M.top + plotH - y;
+        const cx = r(x + barW / 2);
+        p.push(`<path d="${topRoundedBar(x + 1, y, barW - 2, h, 4)}" fill="${seriesColor(s, si)}"/>`);
+        if (showValues && v > 0) p.push(`<text x="${cx}" y="${r(y - 6)}" text-anchor="middle" font-size="${fs - 3}" ${wAttr(spec, 600)} fill="${valText}">${esc(fmt(v) + u)}</text>`);
+      });
+      p.push(`<text x="${r(M.left + i * band + band / 2)}" y="${r(M.top + plotH + 18)}" text-anchor="middle" font-size="${fs - 1}"${wOpt(spec)} fill="${catText}">${esc(lab)}</text>`);
+    });
+    if (multi) {
+      const items = series.map((s, i) => ({ name: s.name || "Bar " + (i + 1), col: seriesColor(s, i) }));
+      const widths = items.map((it) => 16 + it.name.length * (fs * 0.56) + 18);
+      let lx = (W - widths.reduce((a, b) => a + b, 0)) / 2;
+      const ly = H - 16;
+      items.forEach((it, i) => {
+        p.push(`<rect x="${r(lx)}" y="${r(ly - 9)}" width="11" height="11" rx="2.5" fill="${it.col}"/>`);
+        p.push(`<text x="${r(lx + 17)}" y="${r(ly)}" font-size="${fs - 1}"${wOpt(spec)} fill="${catText}">${esc(it.name)}</text>`);
+        lx += widths[i];
+      });
+    }
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderBarStacked(spec) {
+    const W = spec.width || 800, H = spec.height || 450;
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : Math.max(13, Math.round(13 * Math.sqrt(W * H) / 600));
+    const font = resolveFont(spec);
+    const title = spec.title || "";
+    const labels = spec.data.labels;
+    const series = spec.data.series;
+    const u = spec.valueUnit ? " " + spec.valueUnit : "";
+    const showValues = spec.showValues !== false;
+    const watermark = spec.watermark !== false;
+    const is100 = spec.type === "stacked100";
+    const cols = resolveFlatPalette(spec.palette || "Clean Corporate", Math.max(series.length, 2));
+    const segColor = (s, i) => s.color || cols[i % cols.length];
+    const axisText = txt(spec, isDark ? "#94a3b8" : "#64748b");
+    const gridCol = isDark ? "#1e293b" : "#e2e8f0";
+    const catText = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const M = { left: 56, right: 24, top: title ? 54 : 28, bottom: 64 };
+    const plotW = W - M.left - M.right;
+    const plotH = H - M.top - M.bottom;
+    const raw = (si, i) => Math.max(0, Number(series[si].values[i]) || 0);
+    const colPct = is100 ? labels.map((_, i) => pct100(series.map((_s, si) => raw(si, i)))) : null;
+    const val = (si, i) => is100 ? colPct[i][si] : raw(si, i);
+    const totals = labels.map((_, i) => series.reduce((a, _s, si) => a + val(si, i), 0));
+    const maxV = is100 ? 100 : Math.max(0, ...totals);
+    const { step, niceMax } = is100 ? { step: 20, niceMax: 100 } : niceScale(maxV);
+    const yPix = (v) => M.top + plotH - v / niceMax * plotH;
+    const band = plotW / labels.length;
+    const barW = Math.min(band * 0.62, 96);
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    for (let v = 0; v <= niceMax + 1e-9; v += step) {
+      const y = r(yPix(v));
+      p.push(`<line x1="${M.left}" y1="${y}" x2="${r(M.left + plotW)}" y2="${y}" stroke="${gridCol}" stroke-width="1"/>`);
+      p.push(`<text x="${M.left - 8}" y="${r(y + 4)}" text-anchor="end" font-size="${fs - 2}"${wOpt(spec)} fill="${axisText}">${fmt(v)}</text>`);
+    }
+    labels.forEach((lab, i) => {
+      const x = M.left + i * band + (band - barW) / 2;
+      const cx = r(x + barW / 2);
+      const barTotalH = totals[i] / niceMax * plotH || 1;
+      let topSeg = -1;
+      for (let k = series.length - 1; k >= 0; k--) {
+        if ((Number(series[k].values[i]) || 0) > 0) {
+          topSeg = k;
+          break;
+        }
+      }
+      let cum = 0;
+      series.forEach((s, si) => {
+        const v = val(si, i);
+        if (v <= 0) return;
+        const yTop = yPix(cum + v), yBot = yPix(cum), h = yBot - yTop;
+        const col = segColor(s, si);
+        if (si === topSeg) p.push(`<path d="${topRoundedBar(x, yTop, barW, h, 5)}" fill="${col}"/>`);
+        else p.push(`<rect x="${r(x)}" y="${r(yTop)}" width="${r(barW)}" height="${r(h)}" fill="${col}"/>`);
+        const tc = spec.textColor || contrastColor(col);
+        if (s.name && h >= 24 && h >= 0.12 * barTotalH) p.push(`<text x="${cx}" y="${r(yTop + 14)}" text-anchor="middle" font-size="${fs - 2}" ${wAttr(spec, 700)} fill="${tc}">${esc(s.name)}</text>`);
+        if (showValues && h >= 14) p.push(`<text x="${cx}" y="${r(yBot - 7)}" text-anchor="middle" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${tc}">${esc(fmt(v) + (is100 ? "%" : u))}</text>`);
+        cum += v;
+      });
+      p.push(`<text x="${cx}" y="${r(M.top + plotH + 18)}" text-anchor="middle" font-size="${fs - 1}"${wOpt(spec)} fill="${catText}">${esc(lab)}</text>`);
+    });
+    const items = series.map((s, i) => ({ name: s.name || "Series " + (i + 1), col: segColor(s, i) }));
+    const widths = items.map((it) => 16 + it.name.length * (fs * 0.56) + 18);
+    let lx = (W - widths.reduce((a, b) => a + b, 0)) / 2;
+    const ly = H - 16;
+    items.forEach((it, i) => {
+      p.push(`<rect x="${r(lx)}" y="${r(ly - 9)}" width="11" height="11" rx="2.5" fill="${it.col}"/>`);
+      p.push(`<text x="${r(lx + 17)}" y="${r(ly)}" font-size="${fs - 1}"${wOpt(spec)} fill="${catText}">${esc(it.name)}</text>`);
+      lx += widths[i];
+    });
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderBarStackedH(spec) {
+    const W = spec.width || 800, H = spec.height || 450;
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : Math.max(13, Math.round(13 * Math.sqrt(W * H) / 600));
+    const font = resolveFont(spec);
+    const title = spec.title || "";
+    const labels = spec.data.labels;
+    const series = spec.data.series;
+    const u = spec.valueUnit ? " " + spec.valueUnit : "";
+    const showValues = spec.showValues !== false;
+    const watermark = spec.watermark !== false;
+    const cols = resolveFlatPalette(spec.palette || "Clean Corporate", Math.max(series.length, 2));
+    const segColor = (s, i) => s.color || cols[i % cols.length];
+    const axisText = txt(spec, isDark ? "#94a3b8" : "#64748b");
+    const gridCol = isDark ? "#1e293b" : "#e2e8f0";
+    const catText = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const longest = Math.max(0, ...labels.map((l) => String(l).length));
+    const M = { left: Math.min(160, 24 + longest * (fs * 0.62)), right: 28, top: title ? 54 : 28, bottom: 64 };
+    const plotW = W - M.left - M.right;
+    const plotH = H - M.top - M.bottom;
+    const raw = (si, i) => Math.max(0, Number(series[si].values[i]) || 0);
+    const totals = labels.map((_, i) => series.reduce((a, _s, si) => a + raw(si, i), 0));
+    const maxV = Math.max(0, ...totals);
+    const { step, niceMax } = niceScale(maxV);
+    const xPix = (v) => M.left + v / niceMax * plotW;
+    const band = plotH / labels.length;
+    const barH = Math.min(band * 0.62, 64);
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    for (let v = 0; v <= niceMax + 1e-9; v += step) {
+      const x = r(xPix(v));
+      p.push(`<line x1="${x}" y1="${M.top}" x2="${x}" y2="${r(M.top + plotH)}" stroke="${gridCol}" stroke-width="1"/>`);
+      p.push(`<text x="${x}" y="${r(M.top + plotH + 18)}" text-anchor="middle" font-size="${fs - 2}"${wOpt(spec)} fill="${axisText}">${fmt(v)}</text>`);
+    }
+    labels.forEach((lab, i) => {
+      const y = M.top + i * band + (band - barH) / 2;
+      const my = r(y + barH / 2 + 4);
+      let lastSeg = -1;
+      for (let k = series.length - 1; k >= 0; k--) {
+        if (raw(k, i) > 0) {
+          lastSeg = k;
+          break;
+        }
+      }
+      let cum = 0;
+      series.forEach((s, si) => {
+        const v = raw(si, i);
+        if (v <= 0) return;
+        const xL = xPix(cum), xR = xPix(cum + v), w = xR - xL;
+        const col = segColor(s, si);
+        if (si === lastSeg) p.push(`<path d="${rightRoundedBar(xL, y, w, barH, 5)}" fill="${col}"/>`);
+        else p.push(`<rect x="${r(xL)}" y="${r(y)}" width="${r(w)}" height="${r(barH)}" fill="${col}"/>`);
+        const tc = spec.textColor || contrastColor(col);
+        const cx = r(xL + w / 2);
+        if (s.name && w >= 58 && barH >= 30) {
+          p.push(`<text x="${cx}" y="${r(y + barH / 2 - 3)}" text-anchor="middle" font-size="${fs - 3}" ${wAttr(spec, 700)} fill="${tc}">${esc(s.name)}</text>`);
+          if (showValues) p.push(`<text x="${cx}" y="${r(y + barH / 2 + 13)}" text-anchor="middle" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${tc}">${esc(fmt(v) + u)}</text>`);
+        } else if (showValues && w >= 28) {
+          p.push(`<text x="${cx}" y="${my}" text-anchor="middle" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${tc}">${esc(fmt(v) + u)}</text>`);
+        }
+        cum += v;
+      });
+      p.push(`<text x="${r(M.left - 10)}" y="${my}" text-anchor="end" font-size="${fs - 1}"${wOpt(spec)} fill="${catText}">${esc(lab)}</text>`);
+    });
+    const items = series.map((s, i) => ({ name: s.name || "Series " + (i + 1), col: segColor(s, i) }));
+    const widths = items.map((it) => 16 + it.name.length * (fs * 0.56) + 18);
+    let lx = (W - widths.reduce((a, b) => a + b, 0)) / 2;
+    const ly = H - 16;
+    items.forEach((it, i) => {
+      p.push(`<rect x="${r(lx)}" y="${r(ly - 9)}" width="11" height="11" rx="2.5" fill="${it.col}"/>`);
+      p.push(`<text x="${r(lx + 17)}" y="${r(ly)}" font-size="${fs - 1}"${wOpt(spec)} fill="${catText}">${esc(it.name)}</text>`);
+      lx += widths[i];
+    });
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderBarH(spec) {
+    spec = safeData(spec);
+    const W = spec.width || 800, H = spec.height || 450;
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : Math.max(13, Math.round(13 * Math.sqrt(W * H) / 600));
+    const font = resolveFont(spec);
+    const title = spec.title || "";
+    const labels = spec.data.labels;
+    const values = spec.data.series[0].values.map((v) => Number(v) || 0);
+    const u = spec.valueUnit ? " " + spec.valueUnit : "";
+    const showValues = spec.showValues !== false;
+    const showTotal = spec.showTotal !== false && spec.valueUnit !== "%";
+    const watermark = spec.watermark !== false;
+    const explicit = spec.data.series[0].colors;
+    const colors = Array.isArray(explicit) && explicit.length >= labels.length ? explicit : resolveFlatPalette(spec.palette || "Clean Corporate", labels.length);
+    const axisText = txt(spec, isDark ? "#94a3b8" : "#64748b");
+    const gridCol = isDark ? "#1e293b" : "#e2e8f0";
+    const catText = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const valText = txt(spec, isDark ? "#e2e8f0" : "#334155");
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const longest = Math.max(0, ...labels.map((l) => String(l).length));
+    const M = { left: Math.max(56, Math.min(W * 0.42, 28 + longest * (fs * 0.62))), right: 52, top: title ? 54 : 28, bottom: 46 };
+    const plotW = W - M.left - M.right;
+    const plotH = H - M.top - M.bottom;
+    const maxV = Math.max(0, ...values);
+    const { step, niceMax } = niceScale(maxV);
+    const xPix = (v) => M.left + v / niceMax * plotW;
+    const band = plotH / labels.length;
+    const barH = Math.min(band * 0.62, 56);
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    for (let v = 0; v <= niceMax + 1e-9; v += step) {
+      const x = r(xPix(v));
+      p.push(`<line x1="${x}" y1="${M.top}" x2="${x}" y2="${r(M.top + plotH)}" stroke="${gridCol}" stroke-width="1"/>`);
+      p.push(`<text x="${x}" y="${r(M.top + plotH + 18)}" text-anchor="middle" font-size="${fs - 2}"${wOpt(spec)} fill="${axisText}">${fmt(v)}</text>`);
+    }
+    values.forEach((v, i) => {
+      const y = M.top + i * band + (band - barH) / 2;
+      const my = r(y + barH / 2 + 4);
+      const w = xPix(v) - M.left;
+      p.push(`<path d="${rightRoundedBar(M.left, y, Math.max(0, w), barH, 5)}" fill="${colors[i]}"/>`);
+      if (showValues) {
+        if (w >= 44) p.push(`<text x="${r(xPix(v) - 8)}" y="${my}" text-anchor="end" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${spec.textColor || contrastColor(colors[i])}">${esc(fmt(v) + u)}</text>`);
+        else p.push(`<text x="${r(xPix(v) + 6)}" y="${my}" text-anchor="start" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${valText}">${esc(fmt(v) + u)}</text>`);
+      }
+      p.push(`<text x="${r(M.left - 10)}" y="${my}" text-anchor="end" font-size="${fs - 1}"${wOpt(spec)} fill="${catText}">${esc(labels[i])}</text>`);
+    });
+    if (showTotal) {
+      const total = values.reduce((s, v) => s + v, 0);
+      p.push(`<text x="${r(W - M.right + 44)}" y="${title ? 50 : 20}" text-anchor="end" font-size="${fs - 1}"${wOpt(spec)} fill="${axisText}">Total: ${esc(fmt(total) + u)}</text>`);
+    }
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderDiverging(spec) {
+    spec = safeData(spec);
+    const W = spec.width || 800, H = spec.height || 450;
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : Math.max(13, Math.round(13 * Math.sqrt(W * H) / 600));
+    const font = resolveFont(spec);
+    const title = spec.title || "";
+    const labels = spec.data.labels;
+    const series = spec.data.series;
+    const u = spec.valueUnit ? " " + spec.valueUnit : "";
+    const showValues = spec.showValues !== false;
+    const watermark = spec.watermark !== false;
+    const cols = resolveFlatPalette(spec.palette || "Clean Corporate", 8);
+    const mid = Math.floor(cols.length / 2);
+    const singleSigned = series.length < 2;
+    const A = series[0], B = series[1] || { name: "", values: [] };
+    const colA = A.color || cols[0];
+    const colB = B.color || cols[mid] || cols[1];
+    const colDown = singleSigned ? colA : colB;
+    const axisText = txt(spec, isDark ? "#94a3b8" : "#64748b");
+    const gridCol = isDark ? "#1e293b" : "#e2e8f0";
+    const zeroCol = isDark ? "#64748b" : "#334155";
+    const catText = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const valText = txt(spec, isDark ? "#e2e8f0" : "#334155");
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const M = { left: 56, right: 24, top: title ? 54 : 28, bottom: 64 };
+    const plotW = W - M.left - M.right;
+    const plotH = H - M.top - M.bottom;
+    const aVals = labels.map((_, i) => {
+      const n = Number(A.values[i]) || 0;
+      return singleSigned ? Math.max(0, n) : Math.abs(n);
+    });
+    const bVals = labels.map((_, i) => {
+      const n = singleSigned ? Number(A.values[i]) || 0 : Number(B.values[i]) || 0;
+      return singleSigned ? Math.max(0, -n) : Math.abs(n);
+    });
+    const S = Math.max(1, ...aVals, ...bVals);
+    const { step, niceMax } = niceScale(S);
+    const half = plotH / 2;
+    const yZero = M.top + half;
+    const yUp = (v) => yZero - v / niceMax * half;
+    const yDn = (v) => yZero + v / niceMax * half;
+    const band = plotW / labels.length;
+    const barW = Math.min(band * 0.5, 72);
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    for (let v = step; v <= niceMax + 1e-9; v += step) {
+      [yUp(v), yDn(v)].forEach((y) => {
+        p.push(`<line x1="${M.left}" y1="${r(y)}" x2="${r(M.left + plotW)}" y2="${r(y)}" stroke="${gridCol}" stroke-width="1"/>`);
+      });
+      p.push(`<text x="${M.left - 8}" y="${r(yUp(v) + 4)}" text-anchor="end" font-size="${fs - 2}"${wOpt(spec)} fill="${axisText}">${fmt(v)}</text>`);
+      p.push(`<text x="${M.left - 8}" y="${r(yDn(v) + 4)}" text-anchor="end" font-size="${fs - 2}"${wOpt(spec)} fill="${axisText}">${fmt(v)}</text>`);
+    }
+    labels.forEach((lab, i) => {
+      const x = M.left + i * band + (band - barW) / 2;
+      const cx = r(x + barW / 2);
+      if (aVals[i] > 0) {
+        const yt = yUp(aVals[i]), h = yZero - yt;
+        p.push(`<path d="${topRoundedBar(x, yt, barW, h, 4)}" fill="${colA}"/>`);
+        if (showValues) p.push(`<text x="${cx}" y="${r(yt - 7)}" text-anchor="middle" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${valText}">${esc(fmt(aVals[i]) + u)}</text>`);
+      }
+      if (bVals[i] > 0) {
+        const h = yDn(bVals[i]) - yZero;
+        p.push(`<path d="${bottomRoundedBar(x, yZero, barW, h, 4)}" fill="${colDown}"/>`);
+        const downLabel = (singleSigned ? "-" : "") + fmt(bVals[i]) + u;
+        if (showValues) p.push(`<text x="${cx}" y="${r(yDn(bVals[i]) + 16)}" text-anchor="middle" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${valText}">${esc(downLabel)}</text>`);
+      }
+    });
+    p.push(`<line x1="${M.left}" y1="${r(yZero)}" x2="${r(M.left + plotW)}" y2="${r(yZero)}" stroke="${zeroCol}" stroke-width="1.75"/>`);
+    const pillFill = transparent ? isDark ? "#0b0f17" : "#ffffff" : bg;
+    labels.forEach((lab, i) => {
+      const cx = r(M.left + i * band + band / 2);
+      const lw = String(lab).length * (fs - 2) * 0.6 + 14;
+      p.push(`<rect x="${r(cx - lw / 2)}" y="${r(yZero - 9)}" width="${r(lw)}" height="18" rx="9" fill="${pillFill}"/>`);
+      p.push(`<text x="${cx}" y="${r(yZero + 4)}" text-anchor="middle" font-size="${fs - 2}" ${wAttr(spec, 600)} fill="${catText}">${esc(lab)}</text>`);
+    });
+    const items = singleSigned ? [{ name: A.name || "Series A", col: colA }] : [{ name: A.name || "Series A", col: colA }, { name: B.name || "Series B", col: colB }];
+    const widths = items.map((it) => 16 + it.name.length * (fs * 0.56) + 18);
+    let lx = (W - widths.reduce((a, b) => a + b, 0)) / 2;
+    const ly = H - 16;
+    items.forEach((it, i) => {
+      p.push(`<rect x="${r(lx)}" y="${r(ly - 9)}" width="11" height="11" rx="2.5" fill="${it.col}"/>`);
+      p.push(`<text x="${r(lx + 17)}" y="${r(ly)}" font-size="${fs - 1}"${wOpt(spec)} fill="${catText}">${esc(it.name)}</text>`);
+      lx += widths[i];
+    });
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderLollipop(spec) {
+    spec = safeData(spec);
+    const W = spec.width || 800, H = spec.height || 450;
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : Math.max(13, Math.round(13 * Math.sqrt(W * H) / 600));
+    const font = resolveFont(spec);
+    const title = spec.title || "";
+    const labels = spec.data.labels;
+    const values = spec.data.series[0].values.map((v) => Number(v) || 0);
+    const u = spec.valueUnit ? " " + spec.valueUnit : "";
+    const showValues = spec.showValues !== false;
+    const showTotal = spec.showTotal !== false && spec.valueUnit !== "%";
+    const watermark = spec.watermark !== false;
+    const explicit = spec.data.series[0].colors;
+    const colors = Array.isArray(explicit) && explicit.length >= labels.length ? explicit : resolveFlatPalette(spec.palette || "Clean Corporate", labels.length);
+    const axisText = txt(spec, isDark ? "#94a3b8" : "#64748b");
+    const gridCol = isDark ? "#1e293b" : "#e2e8f0";
+    const catText = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const valText = txt(spec, isDark ? "#e2e8f0" : "#334155");
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const M = { left: 56, right: 24, top: title ? 54 : 28, bottom: 46 };
+    const plotW = W - M.left - M.right;
+    const plotH = H - M.top - M.bottom;
+    const maxV = Math.max(0, ...values);
+    const { step, niceMax } = niceScale(maxV);
+    const yPix = (v) => M.top + plotH - v / niceMax * plotH;
+    const band = plotW / labels.length;
+    const baseY = M.top + plotH;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    for (let v = 0; v <= niceMax + 1e-9; v += step) {
+      const y = r(yPix(v));
+      p.push(`<line x1="${M.left}" y1="${y}" x2="${r(M.left + plotW)}" y2="${y}" stroke="${gridCol}" stroke-width="1"/>`);
+      p.push(`<text x="${M.left - 8}" y="${r(y + 4)}" text-anchor="end" font-size="${fs - 2}"${wOpt(spec)} fill="${axisText}">${fmt(v)}</text>`);
+    }
+    values.forEach((v, i) => {
+      const cx = r(M.left + i * band + band / 2);
+      const y = yPix(v);
+      const mc = contrastFloor(colors[i], bg, transparent);
+      p.push(`<line x1="${cx}" y1="${r(baseY)}" x2="${cx}" y2="${r(y)}" stroke="${mc}" stroke-width="3" stroke-linecap="round"/>`);
+      p.push(`<circle cx="${cx}" cy="${r(y)}" r="7" fill="${mc}"/>`);
+      if (showValues) p.push(`<text x="${cx}" y="${r(y - 14)}" text-anchor="middle" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${valText}">${esc(fmt(v) + u)}</text>`);
+      p.push(`<text x="${cx}" y="${r(baseY + 18)}" text-anchor="middle" font-size="${fs - 1}"${wOpt(spec)} fill="${catText}">${esc(labels[i])}</text>`);
+    });
+    if (showTotal) {
+      const total = values.reduce((s, v) => s + v, 0);
+      p.push(`<text x="${r(W - M.right)}" y="${title ? 50 : 20}" text-anchor="end" font-size="${fs - 1}"${wOpt(spec)} fill="${axisText}">Total: ${esc(fmt(total) + u)}</text>`);
+    }
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderKpi(spec) {
+    const W = spec.width || 340, H = spec.height || 180;
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : Math.max(13, Math.round(13 * Math.sqrt(W * H) / 600));
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const accent = resolveFlatPalette(spec.palette || "Clean Corporate", 1)[0];
+    const labelCol = txt(spec, isDark ? "#94a3b8" : "#64748b");
+    const valueCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const label = spec.label || "";
+    const valueStr = (spec.valuePrefix || "") + fmt(spec.value) + (spec.valueUnit ? " " + spec.valueUnit : "");
+    const hasDelta = spec.delta !== void 0 && spec.delta !== null;
+    const d = Number(spec.delta) || 0;
+    const goodDown = spec.deltaGoodWhen === "down";
+    const good = goodDown ? d < 0 : d > 0;
+    const bad = goodDown ? d > 0 : d < 0;
+    const arrow = d > 0 ? "\u25B2" : d < 0 ? "\u25BC" : "\u2013";
+    const dText = arrow + " " + fmt(Math.abs(d)) + (spec.deltaUnit || "%");
+    const pillBg = good ? isDark ? "#064e3b" : "#ecfdf5" : bad ? isDark ? "#7f1d1d" : "#fef2f2" : isDark ? "#334155" : "#f1f5f9";
+    const pillTx = good ? isDark ? "#6ee7b7" : "#059669" : bad ? isDark ? "#fca5a5" : "#dc2626" : labelCol;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" rx="14" fill="${bg}"/>`);
+    const portrait = H > W;
+    if (!portrait) {
+      const cx = 40;
+      p.push(`<rect x="18" y="28" width="5" height="${r(H - 56)}" rx="2.5" fill="${accent}"/>`);
+      if (label) p.push(`<text x="${cx}" y="48" font-size="${fs + 1}" ${wAttr(spec, 600)} fill="${labelCol}">${esc(label)}</text>`);
+      p.push(`<text x="${cx}" y="104" font-size="42" ${wAttr(spec, 800)} fill="${valueCol}">${esc(valueStr)}</text>`);
+      if (hasDelta) {
+        const pillW = Math.round(dText.length * 7.3 + 18);
+        p.push(`<rect x="${cx}" y="124" width="${pillW}" height="24" rx="12" fill="${pillBg}"/>`);
+        p.push(`<text x="${r(cx + pillW / 2)}" y="140" text-anchor="middle" font-size="12.5" ${wAttr(spec, 700)} fill="${pillTx}">${esc(dText)}</text>`);
+      }
+      const spark = spec.sparkline;
+      if (Array.isArray(spark) && spark.length >= 2) {
+        const sv = spark.map((n) => Number(n) || 0);
+        const lo = Math.min(...sv), hi = Math.max(...sv), span = hi - lo;
+        const sx0 = cx, sx1 = W - 16, syTop = H - 30, syBot = H - 16;
+        const sxOf = (i) => sx0 + i / (sv.length - 1) * (sx1 - sx0);
+        const syOf = (v) => span === 0 ? (syTop + syBot) / 2 : syBot - (v - lo) / span * (syBot - syTop);
+        const sparkCol = good ? isDark ? "#6ee7b7" : "#059669" : bad ? isDark ? "#fca5a5" : "#dc2626" : accent;
+        const pts = sv.map((v, i) => `${r(sxOf(i))},${r(syOf(v))}`).join(" ");
+        p.push(`<polyline points="${pts}" fill="none" stroke="${sparkCol}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`);
+        p.push(`<circle cx="${r(sxOf(sv.length - 1))}" cy="${r(syOf(sv[sv.length - 1]))}" r="2.6" fill="${sparkCol}"/>`);
+      }
+    } else {
+      const hasLabel = !!label;
+      const px = Math.round(W * 0.09);
+      const valFont = Math.max(48, Math.min(Math.round(W * 0.16), Math.round((W - 2 * px) / Math.max(1, valueStr.length) * 1.7)));
+      const labelFont = Math.round(valFont * 0.32);
+      const pillFont = Math.round(valFont * 0.3);
+      const pillH = Math.round(pillFont * 1.9);
+      const gap1 = Math.round(valFont * 0.3), gap2 = Math.round(valFont * 0.34);
+      const blockH = (hasLabel ? labelFont + gap1 : 0) + valFont + (hasDelta ? gap2 + pillH : 0);
+      let y = Math.round((H - blockH) / 2);
+      const accW = Math.max(5, Math.round(W * 0.012));
+      p.push(`<rect x="${Math.round(W * 0.04)}" y="${r(y)}" width="${accW}" height="${r(blockH)}" rx="${r(accW / 2)}" fill="${accent}"/>`);
+      if (hasLabel) {
+        const by = y + labelFont;
+        p.push(`<text x="${px}" y="${r(by)}" font-size="${labelFont}" ${wAttr(spec, 600)} fill="${labelCol}">${esc(label)}</text>`);
+        y = by + gap1;
+      }
+      const vy = y + valFont;
+      p.push(`<text x="${px}" y="${r(vy)}" font-size="${valFont}" ${wAttr(spec, 800)} fill="${valueCol}">${esc(valueStr)}</text>`);
+      y = vy + gap2;
+      if (hasDelta) {
+        const pillW = Math.round(dText.length * pillFont * 0.62 + pillFont * 1.4);
+        p.push(`<rect x="${px}" y="${r(y)}" width="${pillW}" height="${pillH}" rx="${r(pillH / 2)}" fill="${pillBg}"/>`);
+        p.push(`<text x="${r(px + pillW / 2)}" y="${r(y + pillH * 0.68)}" text-anchor="middle" font-size="${pillFont}" ${wAttr(spec, 700)} fill="${pillTx}">${esc(dText)}</text>`);
+      }
+    }
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderLine(spec) {
+    spec = safeData(spec);
+    const W = spec.width || 800, H = spec.height || 450;
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : Math.max(13, Math.round(13 * Math.sqrt(W * H) / 600));
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const title = spec.title || "";
+    const labels = spec.data.labels;
+    const series = spec.data.series;
+    const u = spec.valueUnit ? " " + spec.valueUnit : "";
+    const showValues = spec.showValues === true;
+    const showPoints = spec.showPoints !== false;
+    const smooth = spec.curve === "smooth" || spec.type === "smooth";
+    const stepped = spec.curve === "stepped" || spec.type === "stepped";
+    const area = spec.area === true || spec.type === "area";
+    const stackedArea = spec.stacked === true || spec.type === "stackedArea" || spec.type === "stacked-area";
+    const difference = spec.type === "difference";
+    const pal = resolveFlatPalette(spec.palette || "Clean Corporate", Math.max(series.length, 2));
+    const colorOf = (s, i) => s.color || pal[i % pal.length];
+    const axisText = txt(spec, isDark ? "#94a3b8" : "#64748b");
+    const gridCol = isDark ? "#1e293b" : "#e2e8f0";
+    const catText = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const valText = txt(spec, isDark ? "#e2e8f0" : "#334155");
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const multi = series.length > 1;
+    const M = { left: 56, right: 24, top: title ? 54 : 28, bottom: multi ? 64 : 46 };
+    const plotW = W - M.left - M.right;
+    const plotH = H - M.top - M.bottom;
+    const maxV = stackedArea ? Math.max(1, ...labels.map((_, i) => series.reduce((s, sr) => s + (Number(sr.values[i]) || 0), 0))) : Math.max(0, ...series.flatMap((s) => s.values.map((v) => Number(v) || 0)));
+    const { step, niceMax } = niceScale(maxV);
+    const yPix = (v) => M.top + plotH - v / niceMax * plotH;
+    const n = labels.length;
+    const xPix = (i) => M.left + (n > 1 ? i / (n - 1) : 0.5) * plotW;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    for (let v = 0; v <= niceMax + 1e-9; v += step) {
+      const y = r(yPix(v));
+      p.push(`<line x1="${M.left}" y1="${y}" x2="${r(M.left + plotW)}" y2="${y}" stroke="${gridCol}" stroke-width="1"/>`);
+      p.push(`<text x="${M.left - 8}" y="${r(y + 4)}" text-anchor="end" font-size="${fs - 2}"${wOpt(spec)} fill="${axisText}">${fmt(v)}</text>`);
+    }
+    labels.forEach((lab, i) => {
+      const anchor = i === 0 ? "start" : i === labels.length - 1 ? "end" : "middle";
+      p.push(`<text x="${r(xPix(i))}" y="${r(M.top + plotH + 18)}" text-anchor="${anchor}" font-size="${fs - 1}"${wOpt(spec)} fill="${catText}">${esc(lab)}</text>`);
+    });
+    const dot = (pt, col) => `<circle cx="${pt[0]}" cy="${pt[1]}" r="3.5" fill="${col}" stroke="${transparent ? col : bg}" stroke-width="1.5"/>`;
+    if (stackedArea) {
+      const cum = new Array(n).fill(0);
+      series.forEach((s, si) => {
+        const col = colorOf(s, si);
+        const top = cum.map((c, i) => c + (Number(s.values[i]) || 0));
+        const topPts = top.map((v, i) => [r(xPix(i)), r(yPix(v))]);
+        const botPts = cum.map((v, i) => [r(xPix(i)), r(yPix(v))]);
+        const topD = straightPath(topPts);
+        const botD = botPts.slice().reverse().map((pt) => "L" + pt[0] + "," + pt[1]).join(" ");
+        p.push(`<path d="${topD} ${botD} Z" fill="${col}" fill-opacity="0.8" stroke="none"/>`);
+        p.push(`<path d="${topD}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round"/>`);
+        if (showPoints) topPts.forEach((pt) => p.push(dot(pt, col)));
+        top.forEach((v, i) => {
+          cum[i] = v;
+        });
+      });
+    } else if (difference) {
+      const a = series[0], b = series[1] || series[0];
+      const colA = colorOf(a, 0), colB = colorOf(b, 1);
+      const aPts = labels.map((_, i) => [r(xPix(i)), r(yPix(Number(a.values[i]) || 0))]);
+      const bPts = labels.map((_, i) => [r(xPix(i)), r(yPix(Number(b.values[i]) || 0))]);
+      const aD = straightPath(aPts);
+      const bandBack = bPts.slice().reverse().map((pt) => "L" + pt[0] + "," + pt[1]).join(" ");
+      p.push(`<path d="${aD} ${bandBack} Z" fill="${isDark ? "#475569" : "#cbd5e1"}" fill-opacity="0.35" stroke="none"/>`);
+      p.push(`<path d="${aD}" fill="none" stroke="${colA}" stroke-width="2.5"/>`);
+      p.push(`<path d="${straightPath(bPts)}" fill="none" stroke="${colB}" stroke-width="2.5"/>`);
+      if (showPoints) {
+        aPts.forEach((pt) => p.push(dot(pt, colA)));
+        bPts.forEach((pt) => p.push(dot(pt, colB)));
+      }
+      labels.forEach((_, i) => {
+        const gap = (Number(a.values[i]) || 0) - (Number(b.values[i]) || 0);
+        const my = r((aPts[i][1] + bPts[i][1]) / 2 + 4);
+        p.push(`<text x="${r(xPix(i))}" y="${my}" text-anchor="middle" font-size="${fs - 1}" ${wAttr(spec, 700)} fill="${gap >= 0 ? "#059669" : "#dc2626"}">${(gap >= 0 ? "+" : "") + fmt(gap)}</text>`);
+      });
+    } else {
+      series.forEach((s, si) => {
+        const col = colorOf(s, si);
+        const vals = s.values.slice(0, n).map((v) => Number(v) || 0);
+        const pts = vals.map((v, i) => [r(xPix(i)), r(yPix(v))]);
+        if (!pts.length) return;
+        const d = smooth ? smoothPath(pts) : stepped ? steppedPath(pts) : straightPath(pts);
+        if (area) {
+          const baseY = r(M.top + plotH);
+          p.push(`<path d="${d} L${pts[pts.length - 1][0]},${baseY} L${pts[0][0]},${baseY} Z" fill="${col}" fill-opacity="0.16" stroke="none"/>`);
+        }
+        p.push(`<path d="${d}" fill="none" stroke="${col}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`);
+        if (showPoints) pts.forEach((pt) => p.push(dot(pt, col)));
+        if (showValues) vals.forEach((v, i) => p.push(`<text x="${r(xPix(i))}" y="${r(yPix(v) - 9)}" text-anchor="middle" font-size="${fs - 2}" ${wAttr(spec, 600)} fill="${valText}">${esc(fmt(v) + u)}</text>`));
+      });
+    }
+    if (multi) {
+      const items = series.map((s, i) => ({ name: s.name || "Series " + (i + 1), col: colorOf(s, i) }));
+      const widths = items.map((it) => 16 + it.name.length * (fs * 0.56) + 18);
+      const totalW = widths.reduce((a, b) => a + b, 0);
+      let lx = (W - totalW) / 2;
+      const ly = H - 16;
+      items.forEach((it, i) => {
+        p.push(`<circle cx="${r(lx + 5)}" cy="${r(ly - 4)}" r="5" fill="${it.col}"/>`);
+        p.push(`<text x="${r(lx + 16)}" y="${r(ly)}" font-size="${fs - 1}"${wOpt(spec)} fill="${catText}">${esc(it.name)}</text>`);
+        lx += widths[i];
+      });
+    }
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderSlope(spec) {
+    const W = spec.width || 800, H = spec.height || 450;
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : Math.max(13, Math.round(13 * Math.sqrt(W * H) / 600));
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const title = spec.title || "";
+    const labels = spec.data.labels;
+    const series = spec.data.series;
+    const u = spec.valueUnit ? " " + spec.valueUnit : "";
+    const li = labels.length - 1;
+    const pal = resolveFlatPalette(spec.palette || "Clean Corporate", Math.max(series.length, 2));
+    const colorOf = (s, i) => s.color || pal[i % pal.length];
+    const guide = isDark ? "#1e293b" : "#e2e8f0";
+    const catText = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const valText = txt(spec, isDark ? "#e2e8f0" : "#334155");
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const multi = series.length > 1;
+    const M = { left: 72, right: 132, top: title ? 54 : 28, bottom: multi ? 64 : 44 };
+    const plotH = H - M.top - M.bottom;
+    const leftX = M.left, rightX = W - M.right, baseY = M.top + plotH;
+    const firstVals = series.map((s) => Number(s.values[0]) || 0);
+    const lastVals = series.map((s) => Number(s.values[li]) || 0);
+    const { niceMax } = niceScale(Math.max(1, ...firstVals, ...lastVals));
+    const yPix = (v) => M.top + plotH - v / niceMax * plotH;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    p.push(`<line x1="${leftX}" y1="${M.top}" x2="${leftX}" y2="${r(baseY)}" stroke="${guide}" stroke-width="1"/>`);
+    p.push(`<line x1="${rightX}" y1="${M.top}" x2="${rightX}" y2="${r(baseY)}" stroke="${guide}" stroke-width="1"/>`);
+    series.forEach((s, si) => {
+      const col = colorOf(s, si);
+      const y0 = r(yPix(firstVals[si])), y1 = r(yPix(lastVals[si]));
+      p.push(`<line x1="${leftX}" y1="${y0}" x2="${rightX}" y2="${y1}" stroke="${col}" stroke-width="2.5" stroke-linecap="round"/>`);
+      p.push(`<circle cx="${leftX}" cy="${y0}" r="4" fill="${col}"/>`);
+      p.push(`<circle cx="${rightX}" cy="${y1}" r="4" fill="${col}"/>`);
+      p.push(`<text x="${leftX - 10}" y="${r(y0 + 4)}" text-anchor="end" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${valText}">${esc(fmt(firstVals[si]) + u)}</text>`);
+      const delta = lastVals[si] - firstVals[si];
+      p.push(`<text x="${rightX + 10}" y="${r(y1 + 4)}" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${valText}">${esc(fmt(lastVals[si]) + u)} <tspan fill="${delta >= 0 ? "#059669" : "#dc2626"}">(${delta >= 0 ? "+" : ""}${esc(fmt(delta))})</tspan></text>`);
+    });
+    p.push(`<text x="${leftX}" y="${r(baseY + 22)}" text-anchor="middle" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${catText}">${esc(labels[0])}</text>`);
+    p.push(`<text x="${rightX}" y="${r(baseY + 22)}" text-anchor="middle" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${catText}">${esc(labels[li])}</text>`);
+    if (multi) {
+      const items = series.map((s, i) => ({ name: s.name || "Series " + (i + 1), col: colorOf(s, i) }));
+      const widths = items.map((it) => 16 + it.name.length * (fs * 0.56) + 18);
+      let lx = (W - widths.reduce((a, b) => a + b, 0)) / 2;
+      const ly = H - 16;
+      items.forEach((it, i) => {
+        p.push(`<circle cx="${r(lx + 5)}" cy="${r(ly - 4)}" r="5" fill="${it.col}"/>`);
+        p.push(`<text x="${r(lx + 16)}" y="${r(ly)}" font-size="${fs - 1}"${wOpt(spec)} fill="${catText}">${esc(it.name)}</text>`);
+        lx += widths[i];
+      });
+    }
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderPie(spec) {
+    spec = safeData(spec);
+    const W = spec.width || 640, H = spec.height || 420;
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : Math.max(13, Math.round(13 * Math.sqrt(W * H) / 600));
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const title = spec.title || "";
+    const donut = spec.type === "donut" || spec.donut === true;
+    const labels = spec.data.labels;
+    const values = spec.data.series[0].values.map((v) => Number(v) || 0);
+    const u = spec.valueUnit ? " " + spec.valueUnit : "";
+    const pre = spec.valuePrefix || "";
+    const explicit = spec.data.series[0].colors;
+    const colors = Array.isArray(explicit) && explicit.length >= labels.length ? explicit : resolveFlatPalette(spec.palette || "Clean Corporate", labels.length);
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const legendText = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const total = values.reduce((a2, b) => a2 + b, 0) || 1;
+    const top = title ? 54 : 24;
+    const bottomPad = 24;
+    const portrait = H > W;
+    const legendRowH = 26;
+    const legendW = 184;
+    const legendH = portrait ? labels.length * legendRowH + 14 : 0;
+    const cx = portrait ? W / 2 : (W - legendW) / 2;
+    const pieAreaH = portrait ? H - top - legendH - bottomPad : H - top - 24;
+    const cy = top + pieAreaH / 2;
+    const rad = r(Math.min(portrait ? W - 48 : W - legendW, pieAreaH) / 2 - 10);
+    const innerR = r(donut ? rad * 0.58 : 0);
+    const gapColor = transparent ? null : bg;
+    const gapW = spec.sliceGap != null ? Number(spec.sliceGap) : Math.max(2, r(rad * 0.016));
+    const gapAttr = gapColor && gapW > 0 ? ` stroke="${gapColor}" stroke-width="${gapW}" stroke-linejoin="round"` : "";
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    let a = -Math.PI / 2;
+    values.forEach((v, i) => {
+      const frac = v / total;
+      if (frac <= 0) return;
+      const a1 = a + frac * Math.PI * 2;
+      const col = colors[i];
+      if (frac >= 0.9999) {
+        if (innerR > 0) p.push(`<circle cx="${r(cx)}" cy="${r(cy)}" r="${r((rad + innerR) / 2)}" fill="none" stroke="${col}" stroke-width="${r(rad - innerR)}"/>`);
+        else p.push(`<circle cx="${r(cx)}" cy="${r(cy)}" r="${rad}" fill="${col}"/>`);
+      } else {
+        p.push(`<path d="${arcPath(cx, cy, rad, a, a1, innerR)}" fill="${col}"${gapAttr}/>`);
+      }
+      if (frac >= 0.06) {
+        const mid = (a + a1) / 2;
+        const lr = innerR > 0 ? (rad + innerR) / 2 : rad * 0.62;
+        p.push(`<text x="${r(cx + lr * Math.cos(mid))}" y="${r(cy + lr * Math.sin(mid) + 4)}" text-anchor="middle" font-size="${fs}" ${wAttr(spec, 700)} fill="${spec.textColor || contrastColor(col)}">${Math.round(frac * 100)}%</text>`);
+      }
+      a = a1;
+    });
+    if (donut) {
+      p.push(`<text x="${r(cx)}" y="${r(cy - 2)}" text-anchor="middle" font-size="${fs + 10}" ${wAttr(spec, 800)} fill="${titleCol}">${esc(pre + fmt(total) + u)}</text>`);
+      p.push(`<text x="${r(cx)}" y="${r(cy + 18)}" text-anchor="middle" font-size="${fs - 1}"${wOpt(spec)} fill="${legendText}">Total</text>`);
+    }
+    if (portrait) {
+      const maxChars = Math.max(...labels.map((lab, i) => (String(lab) + " \xB7 " + pre + fmt(values[i]) + u).length));
+      const blockW = 18 + maxChars * (fs - 1) * 0.55;
+      const lx = r((W - blockW) / 2);
+      let lgy = H - legendH - bottomPad + 20;
+      labels.forEach((lab, i) => {
+        p.push(`<rect x="${lx}" y="${r(lgy - 9)}" width="11" height="11" rx="2.5" fill="${colors[i]}"/>`);
+        p.push(`<text x="${r(lx + 18)}" y="${r(lgy)}" font-size="${fs - 1}"${wOpt(spec)} fill="${legendText}">${esc(lab)} \xB7 ${esc(pre + fmt(values[i]) + u)}</text>`);
+        lgy += legendRowH;
+      });
+    } else {
+      const lgx = W - legendW + 8;
+      let lgy = top + 8;
+      labels.forEach((lab, i) => {
+        p.push(`<rect x="${lgx}" y="${r(lgy - 9)}" width="11" height="11" rx="2.5" fill="${colors[i]}"/>`);
+        p.push(`<text x="${lgx + 18}" y="${r(lgy)}" font-size="${fs - 1}"${wOpt(spec)} fill="${legendText}">${esc(lab)} \xB7 ${esc(pre + fmt(values[i]) + u)}</text>`);
+        lgy += 24;
+      });
+    }
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderPieOfPie(spec) {
+    const W = spec.width || 920, H = spec.height || 460;
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const title = spec.title || "";
+    const watermark = spec.watermark !== false;
+    const donut = spec.donut !== false;
+    const showValues = spec.showValues !== false;
+    const pre = spec.valuePrefix || "";
+    const u = spec.valueUnit ? " " + spec.valueUnit : "";
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const subCol = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const sliceBorder = isDark ? "#0b0f17" : "#ffffff";
+    const accent = isDark ? "#a78bfa" : "#8b5cf6";
+    const cascade = spec.cascade !== false;
+    const raw = Array.isArray(spec.pies) ? spec.pies : [];
+    const pies = raw.map((pp) => {
+      const labels = (pp.labels || []).map(String);
+      const vals = (pp.values || []).map((v) => Number(v) || 0);
+      const keep = vals.map((v, i) => [v, i]).filter((e) => e[0] > 0);
+      const values = keep.map((e) => e[0]);
+      const lbls = keep.map((e) => labels[e[1]] || "");
+      return {
+        title: pp.title || "",
+        labels: lbls,
+        values,
+        total: values.reduce((a, b) => a + b, 0) || 1,
+        explicit: Array.isArray(pp.colors) && pp.colors.length >= keep.length ? pp.colors : null,
+        palette: pp.palette
+      };
+    }).filter((pie) => pie.values.length);
+    const themeName = spec.palette || "Clean Corporate";
+    const isNested = NESTED_THEMES.some((t) => t.name === themeName);
+    pies.forEach((pie, i) => {
+      const count = pie.values.length;
+      if (pie.explicit) pie.colors = pie.explicit;
+      else if (isNested && cascade) pie.colors = resolveNestedTheme(themeName, i, count, i > 0 ? pies[0].colors[0] : null);
+      else if (i === 0 || !cascade) pie.colors = resolveFlatPalette(pie.palette || themeName, count);
+      else pie.colors = tierPalette(pies[0].colors[0], i, count);
+    });
+    const n = pies.length;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (n === 0) {
+      p.push(`</svg>`);
+      return p.join("\n");
+    }
+    const SHRINK = 0.75, EXPL = 0.1, innerFrac = 0.58;
+    const fac = (i) => Math.pow(SHRINK, i);
+    const sumDiam = pies.reduce((s, _, i) => s + 2 * fac(i), 0);
+    const sidePad = 28;
+    const gap = Math.max(28, W * 0.035);
+    const topMain = title ? 40 : 16;
+    const perTitleH = 30;
+    const botPad = 16 + (watermark ? 6 : 0);
+    const lgRowH = 22;
+    const maxRows = Math.max(...pies.map((pie) => pie.labels.length));
+    const legendH = maxRows * lgRowH + 14;
+    let R = Math.min((W - 2 * sidePad - (n - 1) * gap) / sumDiam, (H - topMain - perTitleH - botPad - legendH) / 2);
+    R = Math.max(20, R);
+    const cyAxis = topMain + perTitleH + R;
+    const cxs = [];
+    let cursor = sidePad;
+    pies.forEach((_, i) => {
+      const rad = R * fac(i);
+      cxs.push(cursor + rad);
+      cursor += 2 * rad + gap;
+    });
+    const rowRight = cxs[n - 1] + R * fac(n - 1);
+    const center = (W - (rowRight - sidePad)) / 2 - sidePad;
+    for (let i = 0; i < n; i++) cxs[i] += center;
+    const clamp = (x) => Math.max(-Math.PI / 2, Math.min(Math.PI / 2, x));
+    for (let i = 0; i < n - 1; i++) {
+      const rad = R * fac(i), nrad = R * fac(i + 1), cx = cxs[i], ncx = cxs[i + 1];
+      const frac0 = pies[i].values[0] / pies[i].total;
+      const exCx = cx + rad * EXPL;
+      const s0 = clamp(-frac0 * Math.PI), e0 = clamp(frac0 * Math.PI);
+      const ex1 = exCx + rad * Math.cos(s0), ey1 = cyAxis + rad * Math.sin(s0);
+      const ex2 = exCx + rad * Math.cos(e0), ey2 = cyAxis + rad * Math.sin(e0);
+      const lx = ncx - Math.cos(Math.PI / 3) * nrad;
+      const lyT = cyAxis - Math.sin(Math.PI / 3) * nrad, lyB = cyAxis + Math.sin(Math.PI / 3) * nrad;
+      const col = pies[i].colors[0] || "#94a3b8";
+      const sw = Math.max(1, r(rad * 0.012));
+      p.push(`<line x1="${r(ex1)}" y1="${r(ey1)}" x2="${r(lx)}" y2="${r(lyT)}" stroke="${col}" stroke-width="${sw}" stroke-opacity="0.4"/>`);
+      p.push(`<line x1="${r(ex2)}" y1="${r(ey2)}" x2="${r(lx)}" y2="${r(lyB)}" stroke="${col}" stroke-width="${sw}" stroke-opacity="0.4"/>`);
+    }
+    pies.forEach((pie, i) => {
+      const rad = R * fac(i), cx = cxs[i];
+      const innerR = donut ? r(rad * innerFrac) : 0;
+      const isBridge = i < n - 1;
+      const frac0 = pie.values[0] / pie.total;
+      let a = isBridge ? -frac0 * Math.PI : -Math.PI / 2;
+      pie.values.forEach((v, si) => {
+        const frac = v / pie.total;
+        const a1 = a + frac * Math.PI * 2;
+        const col = pie.colors[si];
+        const bridge = isBridge && si === 0;
+        const drawCx = bridge ? cx + rad * EXPL : cx;
+        const stroke = bridge ? ` stroke="${sliceBorder}" stroke-width="${Math.max(1.5, r(rad * 0.02))}"` : "";
+        if (frac >= 0.9999) p.push(`<circle cx="${r(drawCx)}" cy="${r(cyAxis)}" r="${r(rad)}" fill="${col}"${stroke}/>`);
+        else p.push(`<path d="${arcPath(drawCx, cyAxis, rad, a, a1, innerR)}" fill="${col}"${stroke}/>`);
+        if (showValues && frac >= 0.07) {
+          const mid = (a + a1) / 2;
+          const lr = innerR > 0 ? (rad + innerR) / 2 : rad * 0.62;
+          const lfs2 = Math.max(9, r(fs * Math.sqrt(fac(i))));
+          p.push(`<text x="${r(drawCx + lr * Math.cos(mid))}" y="${r(cyAxis + lr * Math.sin(mid) + 4)}" text-anchor="middle" font-size="${lfs2}" ${wAttr(spec, 700)} fill="${spec.textColor || contrastColor(col)}">${Math.round(frac * 100)}%</text>`);
+        }
+        a = a1;
+      });
+      if (pie.title) p.push(`<text x="${r(cx)}" y="${r(topMain + 13)}" text-anchor="middle" font-size="${fs}" ${wAttr(spec, 700)} fill="${subCol}">${esc(pie.title)}</text>`);
+      const parentLabel = i > 0 ? pies[i - 1].labels[0] : "";
+      if (parentLabel && parentLabel !== pie.title) {
+        const sy = pie.title ? topMain + 27 : topMain + 14;
+        p.push(`<text x="${r(cx)}" y="${r(sy)}" text-anchor="middle" font-size="${fs - 3}"${wOpt(spec)} fill="${accent}">\u21B3 ${esc(parentLabel)}</text>`);
+      }
+    });
+    const legendTop = cyAxis + R + 16;
+    const lfs = fs - 1;
+    pies.forEach((pie, i) => {
+      const len = (si) => (String(pie.labels[si]) + " \xB7 " + pre + fmt(pie.values[si]) + u).length;
+      const blockW = 16 + Math.max(0, ...pie.labels.map((_, si) => len(si))) * lfs * 0.55;
+      const lx = cxs[i] - blockW / 2;
+      let ly = legendTop;
+      pie.labels.forEach((lab, si) => {
+        p.push(`<rect x="${r(lx)}" y="${r(ly - 9)}" width="10" height="10" rx="2.5" fill="${pie.colors[si]}"/>`);
+        p.push(`<text x="${r(lx + 16)}" y="${r(ly)}" font-size="${lfs}"${wOpt(spec)} fill="${subCol}">${esc(lab)} \xB7 ${esc(pre + fmt(pie.values[si]) + u)}</text>`);
+        ly += lgRowH;
+      });
+    });
+    if (title) p.push(`<text x="${r(W / 2)}" y="26" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  var RATIO_PRESETS = {
+    "share card": [1200, 630],
+    "sharecard": [1200, 630],
+    "share-card": [1200, 630],
+    "1.91:1": [1200, 630],
+    "wide": [1280, 720],
+    "16:9": [1280, 720],
+    "square": [1080, 1080],
+    "1:1": [1080, 1080],
+    "portrait": [1080, 1350],
+    "4:5": [1080, 1350],
+    "tall": [1080, 1920],
+    "9:16": [1080, 1920],
+    "classic": [1200, 900],
+    "4:3": [1200, 900]
+  };
+  function applyPreset(spec) {
+    const key = String(spec.preset || spec.ratio || "").trim().toLowerCase();
+    const p = RATIO_PRESETS[key];
+    if (!p) return spec;
+    return { ...spec, width: spec.width != null ? spec.width : p[0], height: spec.height != null ? spec.height : p[1] };
+  }
+  function renderCards(spec) {
+    const cards = Array.isArray(spec.cards) ? spec.cards : [];
+    const n = Math.max(1, cards.length);
+    const title = spec.title || "";
+    const forced = spec.gridColumns != null ? Number(spec.gridColumns) : typeof spec.columns === "number" ? spec.columns : null;
+    const cols = Math.max(1, Math.min(forced || Math.min(n, 4), n));
+    const rows = Math.ceil(n / cols);
+    const PAD = 24, GAP = 18, CARD_W = 300, CARD_H = 148;
+    const titleH = title ? 44 : 0;
+    const W = spec.width || PAD * 2 + cols * CARD_W + (cols - 1) * GAP;
+    const H = spec.height || PAD * 2 + titleH + rows * CARD_H + (rows - 1) * GAP;
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const palette = resolveFlatPalette(spec.palette || "Clean Corporate", Math.max(n, 3));
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const labelCol = txt(spec, isDark ? "#94a3b8" : "#64748b");
+    const valueCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const surface = isDark ? "#1e293b" : "#ffffff";
+    const border = isDark ? "#334155" : "#e2e8f0";
+    const cellW = (W - PAD * 2 - GAP * (cols - 1)) / cols;
+    const cellH = (H - PAD * 2 - titleH - GAP * (rows - 1)) / rows;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    cards.forEach((c, i) => {
+      const col = i % cols, row = Math.floor(i / cols);
+      const x = PAD + col * (cellW + GAP);
+      const y = PAD + titleH + row * (cellH + GAP);
+      const accent = contrastFloor(c.color || palette[i % palette.length], bg, transparent);
+      p.push(`<rect x="${r(x)}" y="${r(y)}" width="${r(cellW)}" height="${r(cellH)}" rx="14" fill="${transparent ? "none" : surface}" stroke="${border}" stroke-width="1"/>`);
+      p.push(`<rect x="${r(x + cellW * 0.05)}" y="${r(y + cellH * 0.18)}" width="5" height="${r(cellH * 0.64)}" rx="2.5" fill="${accent}"/>`);
+      const contentX = r(x + cellW * 0.115);
+      const labelFs = fs + 1;
+      const valFs = Math.max(20, Math.round(cellH * 0.235));
+      const valueStr = (c.valuePrefix || "") + fmt(c.value) + (c.valueUnit ? " " + c.valueUnit : "");
+      const cLabel = c.label || "";
+      if (cLabel) p.push(`<text x="${contentX}" y="${r(y + cellH * 0.27)}" font-size="${labelFs}" ${wAttr(spec, 600)} fill="${labelCol}">${esc(cLabel)}</text>`);
+      p.push(`<text x="${contentX}" y="${r(y + cellH * 0.58)}" font-size="${valFs}" ${wAttr(spec, 800)} fill="${valueCol}">${esc(valueStr)}</text>`);
+      const hasDelta = c.delta !== void 0 && c.delta !== null;
+      if (hasDelta) {
+        const d = Number(c.delta) || 0;
+        const goodDown = c.deltaGoodWhen === "down";
+        const good = goodDown ? d < 0 : d > 0;
+        const bad = goodDown ? d > 0 : d < 0;
+        const arrow = d > 0 ? "\u25B2" : d < 0 ? "\u25BC" : "\u2013";
+        const dText = arrow + " " + fmt(Math.abs(d)) + (c.deltaUnit || "%");
+        const pillBg = good ? isDark ? "#064e3b" : "#ecfdf5" : bad ? isDark ? "#7f1d1d" : "#fef2f2" : isDark ? "#334155" : "#f1f5f9";
+        const pillTx = good ? isDark ? "#6ee7b7" : "#059669" : bad ? isDark ? "#fca5a5" : "#dc2626" : labelCol;
+        const pillFs = 12.5;
+        const pillH = 24;
+        const pillW = Math.round(dText.length * 7.3 + 18);
+        const py = r(y + cellH * 0.7);
+        p.push(`<rect x="${contentX}" y="${py}" width="${pillW}" height="${pillH}" rx="12" fill="${pillBg}"/>`);
+        p.push(`<text x="${r(Number(contentX) + pillW / 2)}" y="${r(Number(py) + 16)}" text-anchor="middle" font-size="${pillFs}" ${wAttr(spec, 700)} fill="${pillTx}">${esc(dText)}</text>`);
+      }
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderLayers(spec) {
+    const layers = Array.isArray(spec.layers) ? spec.layers : [];
+    const n = Math.max(1, layers.length);
+    const title = spec.title || "";
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const palette = resolveFlatPalette(spec.palette || "Clean Corporate", Math.max(n, 3));
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const PAD = 24, GAP = 10, BLOCK_H = 72;
+    const topY = title ? 54 : 24;
+    const W = spec.width || 600;
+    const H = spec.height || topY + n * BLOCK_H + (n - 1) * GAP + 16;
+    const blockW = W - PAD * 2;
+    const blockH = (H - topY - 16 - GAP * (n - 1)) / n;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    layers.forEach((layer, i) => {
+      const y = topY + i * (blockH + GAP);
+      const fill = layer.color || palette[i % palette.length];
+      const tc = spec.textColor || contrastColor(fill);
+      const cx = r(W / 2);
+      const lTitle = layer.title || "";
+      const lSub = layer.subtitle || "";
+      p.push(`<rect x="${PAD}" y="${r(y)}" width="${r(blockW)}" height="${r(blockH)}" rx="12" fill="${fill}"/>`);
+      if (lSub) {
+        p.push(`<text x="${cx}" y="${r(y + blockH / 2 - 2)}" text-anchor="middle" font-size="${fs + 4}" ${wAttr(spec, 700)} fill="${tc}">${esc(lTitle)}</text>`);
+        p.push(`<text x="${cx}" y="${r(y + blockH / 2 + 16)}" text-anchor="middle" font-size="${fs}"${wOpt(spec)} fill="${tc}" opacity="0.85">${esc(lSub)}</text>`);
+      } else {
+        p.push(`<text x="${cx}" y="${r(y + blockH / 2 + fs / 2)}" text-anchor="middle" font-size="${fs + 4}" ${wAttr(spec, 700)} fill="${tc}">${esc(lTitle)}</text>`);
+      }
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderProgress(spec) {
+    const bars = Array.isArray(spec.bars) ? spec.bars : [];
+    const n = Math.max(1, bars.length);
+    const title = spec.title || "";
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const palette = resolveFlatPalette(spec.palette || "Clean Corporate", Math.max(n, 3));
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const labelCol = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const valCol = txt(spec, isDark ? "#e2e8f0" : "#334155");
+    const trackCol = isDark ? "#334155" : "#e2e8f0";
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const PAD = 24, ROW_H = 46;
+    const topY = title ? 54 : 24;
+    const W = spec.width || 600;
+    const H = spec.height || topY + n * ROW_H + 8;
+    const trackW = W - PAD * 2;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    bars.forEach((b, i) => {
+      const ry = topY + i * ROW_H;
+      const val = Number(b.value) || 0;
+      const hasTarget = b.target !== void 0 && b.target !== null;
+      const target = Number(b.target) || 0;
+      const unit = b.valueUnit || "";
+      const ratio = hasTarget ? target > 0 ? val / target : 0 : val / 100;
+      const cl = Math.max(0, Math.min(1, ratio));
+      const valStr = hasTarget ? `${fmt(val)} / ${fmt(target)}${unit ? " " + unit : ""}` : `${fmt(val)}${unit || "%"}`;
+      const fill = b.color || palette[i % palette.length];
+      const labelY = ry + 13, barY = ry + 22, barH = 14;
+      p.push(`<text x="${PAD}" y="${r(labelY)}" font-size="${fs}" ${wAttr(spec, 600)} fill="${labelCol}">${esc(b.label || "")}</text>`);
+      p.push(`<text x="${W - PAD}" y="${r(labelY)}" text-anchor="end" font-size="${fs}"${wOpt(spec)} fill="${valCol}">${esc(valStr)}</text>`);
+      p.push(`<rect x="${PAD}" y="${r(barY)}" width="${r(trackW)}" height="${barH}" rx="7" fill="${trackCol}"/>`);
+      if (cl > 0) p.push(`<rect x="${PAD}" y="${r(barY)}" width="${r(Math.max(barH, cl * trackW))}" height="${barH}" rx="7" fill="${fill}"/>`);
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderWaffle(spec) {
+    const parts = Array.isArray(spec.parts) ? spec.parts : [];
+    const title = spec.title || "";
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const palette = resolveFlatPalette(spec.palette || "Clean Corporate", Math.max(parts.length, 3));
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const legendCol = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const trackCol = isDark ? "#334155" : "#e2e8f0";
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const vals = parts.map((pt) => Math.max(0, Number(pt.value) || 0));
+    const sum = vals.reduce((a, b) => a + b, 0);
+    const scale = sum > 100 ? 100 / sum : 1;
+    const exact = vals.map((v) => v * scale);
+    const cells = exact.map(Math.floor);
+    const targetFilled = Math.min(100, Math.round(sum));
+    const rem = targetFilled - cells.reduce((a, b) => a + b, 0);
+    const order = exact.map((v, i) => [i, v - Math.floor(v)]).sort((a, b) => b[1] - a[1]);
+    for (let k = 0; k < rem && order.length; k++) cells[order[k % order.length][0]]++;
+    const colors = [];
+    parts.forEach((pt, i) => {
+      const c = pt.color || palette[i % palette.length];
+      for (let k = 0; k < cells[i]; k++) colors.push(c);
+    });
+    while (colors.length < 100) colors.push(trackCol);
+    colors.length = 100;
+    const PAD = 24, CELL = 26, GAP = 4;
+    const topY = title ? 54 : 24;
+    const gridSize = 10 * CELL + 9 * GAP;
+    const gridX = PAD, gridY = topY;
+    const legendX = gridX + gridSize + 28;
+    const W = spec.width || 600;
+    const H = spec.height || topY + gridSize + 16;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    for (let k = 0; k < 100; k++) {
+      const row = Math.floor(k / 10), col = k % 10;
+      const x = gridX + col * (CELL + GAP), y = gridY + row * (CELL + GAP);
+      p.push(`<rect x="${r(x)}" y="${r(y)}" width="${CELL}" height="${CELL}" rx="4" fill="${colors[k]}"/>`);
+    }
+    parts.forEach((pt, i) => {
+      const ly = topY + 6 + i * 24;
+      const c = pt.color || palette[i % palette.length];
+      p.push(`<rect x="${legendX}" y="${r(ly)}" width="13" height="13" rx="3" fill="${c}"/>`);
+      p.push(`<text x="${legendX + 20}" y="${r(ly + 11)}" font-size="${fs}"${wOpt(spec)} fill="${legendCol}">${esc((pt.label || "") + "  " + fmt(vals[i]))}</text>`);
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderHeatmap(spec) {
+    const rows = Array.isArray(spec.rows) ? spec.rows : [];
+    const cols = Array.isArray(spec.columns) ? spec.columns : [];
+    const values = Array.isArray(spec.values) ? spec.values : [];
+    const nr = Math.max(1, rows.length), nc = Math.max(1, cols.length);
+    const title = spec.title || "";
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const showValues = spec.showValues !== false;
+    const palette = resolveFlatPalette(spec.palette || "Clean Corporate", 3);
+    const baseHsl = hexToHsl(spec.color || palette[0]);
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const labelCol = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    let min = Infinity, max = -Infinity;
+    values.forEach((rv) => (rv || []).forEach((v) => {
+      const x = Number(v) || 0;
+      if (x < min) min = x;
+      if (x > max) max = x;
+    }));
+    if (!isFinite(min)) {
+      min = 0;
+      max = 1;
+    }
+    const span = max - min || 1;
+    const cellColor = (v) => hslToHex(baseHsl.h, Math.max(35, baseHsl.s), Math.max(0, Math.min(100, 92 - (v - min) / span * 52)));
+    const PAD = 24, LEFT = 84, COLH = 24, CELL_H = 44;
+    const topY = title ? 54 : 24;
+    const W = spec.width || 640;
+    const H = spec.height || topY + COLH + nr * CELL_H + 16;
+    const plotLeft = PAD + LEFT;
+    const plotW = W - PAD - plotLeft;
+    const cellW = plotW / nc;
+    const gridTop = topY + COLH;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    cols.forEach((c, ci) => p.push(`<text x="${r(plotLeft + ci * cellW + cellW / 2)}" y="${r(gridTop - 8)}" text-anchor="middle" font-size="${fs - 1}"${wOpt(spec)} fill="${labelCol}">${esc(c)}</text>`));
+    rows.forEach((rw, ri) => {
+      const y = gridTop + ri * CELL_H;
+      p.push(`<text x="${plotLeft - 10}" y="${r(y + CELL_H / 2 + 4)}" text-anchor="end" font-size="${fs - 1}"${wOpt(spec)} fill="${labelCol}">${esc(rw)}</text>`);
+      cols.forEach((c, ci) => {
+        const v = Number((values[ri] || [])[ci]) || 0;
+        const col = cellColor(v);
+        const x = plotLeft + ci * cellW;
+        p.push(`<rect x="${r(x + 1)}" y="${r(y + 1)}" width="${r(cellW - 2)}" height="${CELL_H - 2}" rx="4" fill="${col}"/>`);
+        if (showValues) p.push(`<text x="${r(x + cellW / 2)}" y="${r(y + CELL_H / 2 + 4)}" text-anchor="middle" font-size="${fs - 1}"${wOpt(spec)} fill="${spec.textColor || contrastColor(col)}">${esc(fmt(v))}</text>`);
+      });
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function trapezoidPath(cx, yTop, topW, yBot, botW) {
+    return `M${r(cx - topW / 2)},${r(yTop)} L${r(cx + topW / 2)},${r(yTop)} L${r(cx + botW / 2)},${r(yBot)} L${r(cx - botW / 2)},${r(yBot)} Z`;
+  }
+  function renderFunnel(spec) {
+    const stages = Array.isArray(spec.stages) ? spec.stages : [];
+    const n = Math.max(1, stages.length);
+    const title = spec.title || "";
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const palette = resolveFlatPalette(spec.palette || "Clean Corporate", Math.max(n, 3));
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const u = spec.valueUnit ? " " + spec.valueUnit : "";
+    const PAD = 24, GAP = 6, BAND_H = 64;
+    const topY = title ? 54 : 24;
+    const W = spec.width || 600;
+    const H = spec.height || topY + n * BAND_H + (n - 1) * GAP + 16;
+    const plotW = W - PAD * 2;
+    const cx = W / 2;
+    const vals = stages.map((s) => Math.max(0, Number(s.value) || 0));
+    const maxV = Math.max(1, ...vals);
+    const top = vals[0] || 0;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(cx)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    stages.forEach((s, i) => {
+      const yTop = topY + i * (BAND_H + GAP), yBot = yTop + BAND_H;
+      const wTop = vals[i] / maxV * plotW;
+      const wBot = (i < n - 1 ? vals[i + 1] : vals[i]) / maxV * plotW;
+      const fill = s.color || palette[i % palette.length];
+      const tc = spec.textColor || contrastColor(fill);
+      const my = (yTop + yBot) / 2;
+      const pct = top > 0 ? Math.round(vals[i] / top * 100) : 0;
+      p.push(`<path d="${trapezoidPath(cx, yTop, wTop, yBot, wBot)}" fill="${fill}"/>`);
+      p.push(`<text x="${r(cx)}" y="${r(my - 2)}" text-anchor="middle" font-size="${fs + 1}" ${wAttr(spec, 700)} fill="${tc}">${esc(s.label || "")}</text>`);
+      p.push(`<text x="${r(cx)}" y="${r(my + 15)}" text-anchor="middle" font-size="${fs - 1}"${wOpt(spec)} fill="${tc}">${esc(fmt(vals[i]) + u + "  \xB7  " + pct + "%")}</text>`);
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderPyramid(spec) {
+    const levels = Array.isArray(spec.levels) ? spec.levels : [];
+    const n = Math.max(1, levels.length);
+    const title = spec.title || "";
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const palette = resolveFlatPalette(spec.palette || "Clean Corporate", Math.max(n, 3));
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const PAD = 24;
+    const topY = title ? 54 : 24;
+    const W = spec.width || 600;
+    const totalH = spec.height ? spec.height - topY - 16 : 300;
+    const H = spec.height || topY + totalH + 16;
+    const baseW = W - PAD * 2;
+    const apexY = topY, cx = W / 2, bandH = totalH / n;
+    const widthAt = (y) => (y - apexY) / totalH * baseW;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(cx)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    levels.forEach((lv, i) => {
+      const yTop = apexY + i * bandH, yBot = apexY + (i + 1) * bandH;
+      const fill = lv.color || palette[i % palette.length];
+      const tc = spec.textColor || contrastColor(fill);
+      const hasVal = lv.value !== void 0 && lv.value !== null;
+      const lbl = (lv.title || lv.label || "") + (hasVal ? "  \xB7  " + fmt(Number(lv.value) || 0) : "");
+      p.push(`<path d="${trapezoidPath(cx, yTop, widthAt(yTop), yBot, widthAt(yBot))}" fill="${fill}"/>`);
+      p.push(`<text x="${r(cx)}" y="${r((yTop + yBot) / 2 + 4)}" text-anchor="middle" font-size="${fs + 1}" ${wAttr(spec, 700)} fill="${tc}">${esc(lbl)}</text>`);
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderQuadrant(spec) {
+    const items = Array.isArray(spec.items) ? spec.items : [];
+    const title = spec.title || "";
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const palette = resolveFlatPalette(spec.palette || "Clean Corporate", Math.max(items.length, 3));
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const labelCol = txt(spec, isDark ? "#e2e8f0" : "#334155");
+    const axisCol = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const gridCol = isDark ? "#334155" : "#e2e8f0";
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const clamp01 = (v) => Math.max(0, Math.min(1, Number(v) || 0));
+    const PAD = 24;
+    const topY = title ? 54 : 30;
+    const W = spec.width || 560, H = spec.height || 540;
+    const plotTop = topY + 18;
+    const S = Math.min(W - PAD * 2, H - plotTop - 46);
+    const plotX = (W - S) / 2, plotBottom = plotTop + S;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    p.push(`<rect x="${r(plotX)}" y="${r(plotTop)}" width="${r(S)}" height="${r(S)}" rx="8" fill="none" stroke="${gridCol}" stroke-width="1"/>`);
+    p.push(`<line x1="${r(plotX + S / 2)}" y1="${r(plotTop)}" x2="${r(plotX + S / 2)}" y2="${r(plotBottom)}" stroke="${gridCol}" stroke-width="1"/>`);
+    p.push(`<line x1="${r(plotX)}" y1="${r(plotTop + S / 2)}" x2="${r(plotX + S)}" y2="${r(plotTop + S / 2)}" stroke="${gridCol}" stroke-width="1"/>`);
+    if (spec.yAxis) p.push(`<text x="${r(plotX)}" y="${r(plotTop - 8)}" font-size="${fs}" ${wAttr(spec, 600)} fill="${axisCol}">${esc(spec.yAxis)} \u2192</text>`);
+    if (spec.xAxis) p.push(`<text x="${r(W / 2)}" y="${r(plotBottom + 28)}" text-anchor="middle" font-size="${fs}" ${wAttr(spec, 600)} fill="${axisCol}">${esc(spec.xAxis)} \u2192</text>`);
+    items.forEach((it, i) => {
+      const x = plotX + clamp01(it.x) * S;
+      const y = plotTop + (1 - clamp01(it.y)) * S;
+      const c = it.color || palette[i % palette.length];
+      const rightHalf = clamp01(it.x) > 0.82;
+      p.push(`<circle cx="${r(x)}" cy="${r(y)}" r="6" fill="${c}"/>`);
+      p.push(`<text x="${r(rightHalf ? x - 10 : x + 10)}" y="${r(y + 4)}" text-anchor="${rightHalf ? "end" : "start"}" font-size="${fs}"${wOpt(spec)} fill="${labelCol}">${esc(it.label || "")}</text>`);
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderTimeline(spec) {
+    const events = Array.isArray(spec.events) ? spec.events : [];
+    const n = Math.max(1, events.length);
+    const title = spec.title || "";
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const palette = resolveFlatPalette(spec.palette || "Clean Corporate", Math.max(n, 3));
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const labelTextCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const dateCol = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const lineCol = isDark ? "#475569" : "#cbd5e1";
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const haloCol = transparent ? "#ffffff" : bg;
+    const PAD = 44;
+    const topY = title ? 54 : 24;
+    const W = spec.width || 720, H = spec.height || 220;
+    const lineY = topY + (H - topY) / 2;
+    const plotW = W - PAD * 2;
+    const xOf = (i) => n === 1 ? W / 2 : PAD + i * (plotW / (n - 1));
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    p.push(`<line x1="${PAD}" y1="${r(lineY)}" x2="${W - PAD}" y2="${r(lineY)}" stroke="${lineCol}" stroke-width="2"/>`);
+    events.forEach((e, i) => {
+      const x = xOf(i), c = e.color || palette[i % palette.length];
+      const above = i % 2 === 0;
+      p.push(`<circle cx="${r(x)}" cy="${r(lineY)}" r="6" fill="${c}" stroke="${haloCol}" stroke-width="3"/>`);
+      if (above) {
+        p.push(`<text x="${r(x)}" y="${r(lineY - 28)}" text-anchor="middle" font-size="${fs + 1}" ${wAttr(spec, 700)} fill="${labelTextCol}">${esc(e.label || "")}</text>`);
+        if (e.date) p.push(`<text x="${r(x)}" y="${r(lineY - 13)}" text-anchor="middle" font-size="${fs - 1}"${wOpt(spec)} fill="${dateCol}">${esc(e.date)}</text>`);
+      } else {
+        if (e.date) p.push(`<text x="${r(x)}" y="${r(lineY + 20)}" text-anchor="middle" font-size="${fs - 1}"${wOpt(spec)} fill="${dateCol}">${esc(e.date)}</text>`);
+        p.push(`<text x="${r(x)}" y="${r(lineY + 37)}" text-anchor="middle" font-size="${fs + 1}" ${wAttr(spec, 700)} fill="${labelTextCol}">${esc(e.label || "")}</text>`);
+      }
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderVenn(spec) {
+    const sets = Array.isArray(spec.sets) ? spec.sets : [];
+    const ns = sets.length;
+    const title = spec.title || "";
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const palette = resolveFlatPalette(spec.palette || "Clean Corporate", Math.max(ns, 3));
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const textCol = txt(spec, isDark ? "#f1f5f9" : "#1a1a1a");
+    const labelCol = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const topY = title ? 54 : 24;
+    const W = spec.width || 600, H = spec.height || 460;
+    const val = (i) => fmt(Number(sets[i] && sets[i].value) || 0);
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    if (ns <= 2) {
+      const R = 120, cy = topY + 40 + R;
+      const cx1 = W / 2 - (ns === 2 ? 70 : 0), cx2 = W / 2 + 70;
+      p.push(`<circle cx="${r(cx1)}" cy="${r(cy)}" r="${R}" fill="${sets[0] && sets[0].color || palette[0]}" fill-opacity="0.5"/>`);
+      p.push(`<text x="${r(cx1)}" y="${r(cy - R - 12)}" text-anchor="middle" font-size="${fs + 1}" ${wAttr(spec, 700)} fill="${labelCol}">${esc(sets[0] && sets[0].label || "")}</text>`);
+      if (ns === 2) {
+        p.push(`<circle cx="${r(cx2)}" cy="${r(cy)}" r="${R}" fill="${sets[1] && sets[1].color || palette[1]}" fill-opacity="0.5"/>`);
+        p.push(`<text x="${r(cx2)}" y="${r(cy - R - 12)}" text-anchor="middle" font-size="${fs + 1}" ${wAttr(spec, 700)} fill="${labelCol}">${esc(sets[1] && sets[1].label || "")}</text>`);
+        p.push(`<text x="${r(cx1 - R * 0.45)}" y="${r(cy + 4)}" text-anchor="middle" font-size="${fs + 2}" ${wAttr(spec, 700)} fill="${textCol}">${val(0)}</text>`);
+        p.push(`<text x="${r(cx2 + R * 0.45)}" y="${r(cy + 4)}" text-anchor="middle" font-size="${fs + 2}" ${wAttr(spec, 700)} fill="${textCol}">${val(1)}</text>`);
+        if (spec.overlap !== void 0 && spec.overlap !== null) p.push(`<text x="${r(W / 2)}" y="${r(cy + 4)}" text-anchor="middle" font-size="${fs + 2}" ${wAttr(spec, 700)} fill="${textCol}">${esc(fmt(Number(spec.overlap) || 0))}</text>`);
+      } else if (ns === 1) {
+        p.push(`<text x="${r(cx1)}" y="${r(cy + 4)}" text-anchor="middle" font-size="${fs + 2}" ${wAttr(spec, 700)} fill="${textCol}">${val(0)}</text>`);
+      }
+    } else {
+      const R = 100, cx = W / 2, cyTop = topY + 28 + R * 0.6;
+      const c = [[cx, cyTop], [cx - R * 0.78, cyTop + R * 0.98], [cx + R * 0.78, cyTop + R * 0.98]];
+      for (let i = 0; i < 3; i++) p.push(`<circle cx="${r(c[i][0])}" cy="${r(c[i][1])}" r="${R}" fill="${sets[i] && sets[i].color || palette[i]}" fill-opacity="0.45"/>`);
+      p.push(`<text x="${r(c[0][0])}" y="${r(c[0][1] - R - 8)}" text-anchor="middle" font-size="${fs + 1}" ${wAttr(spec, 700)} fill="${labelCol}">${esc((sets[0].label || "") + "  " + val(0))}</text>`);
+      p.push(`<text x="${r(c[1][0] - R * 0.4)}" y="${r(c[1][1] + R + 18)}" text-anchor="middle" font-size="${fs + 1}" ${wAttr(spec, 700)} fill="${labelCol}">${esc((sets[1].label || "") + "  " + val(1))}</text>`);
+      p.push(`<text x="${r(c[2][0] + R * 0.4)}" y="${r(c[2][1] + R + 18)}" text-anchor="middle" font-size="${fs + 1}" ${wAttr(spec, 700)} fill="${labelCol}">${esc((sets[2].label || "") + "  " + val(2))}</text>`);
+    }
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function glyphCheck(cx, cy, s, col) {
+    return `<path d="M${r(cx - s * 0.5)},${r(cy + s * 0.02)} L${r(cx - s * 0.12)},${r(cy + s * 0.42)} L${r(cx + s * 0.55)},${r(cy - s * 0.45)}" fill="none" stroke="${col}" stroke-width="${r(s * 0.26)}" stroke-linecap="round" stroke-linejoin="round"/>`;
+  }
+  function glyphCross(cx, cy, s, col) {
+    return `<path d="M${r(cx - s * 0.4)},${r(cy - s * 0.4)} L${r(cx + s * 0.4)},${r(cy + s * 0.4)} M${r(cx + s * 0.4)},${r(cy - s * 0.4)} L${r(cx - s * 0.4)},${r(cy + s * 0.4)}" fill="none" stroke="${col}" stroke-width="${r(s * 0.24)}" stroke-linecap="round"/>`;
+  }
+  function glyphDot(cx, cy, s, col) {
+    return `<circle cx="${r(cx)}" cy="${r(cy)}" r="${r(s * 0.36)}" fill="${col}"/>`;
+  }
+  function glyphRing(cx, cy, s, col) {
+    return `<circle cx="${r(cx)}" cy="${r(cy)}" r="${r(s * 0.4)}" fill="none" stroke="${col}" stroke-width="${r(s * 0.18)}"/>`;
+  }
+  function glyphDash(cx, cy, s, col) {
+    return `<line x1="${r(cx - s * 0.4)}" y1="${r(cy)}" x2="${r(cx + s * 0.4)}" y2="${r(cy)}" stroke="${col}" stroke-width="${r(s * 0.2)}" stroke-linecap="round"/>`;
+  }
+  function personGlyph(cx, topY, h, col) {
+    const headR = h * 0.22, headCy = topY + headR;
+    const bodyTop = headCy + headR * 1.2, bodyW = h * 0.64, bodyBot = topY + h;
+    return `<circle cx="${r(cx)}" cy="${r(headCy)}" r="${r(headR)}" fill="${col}"/><path d="M${r(cx - bodyW / 2)},${r(bodyBot)} Q${r(cx - bodyW / 2)},${r(bodyTop)} ${r(cx)},${r(bodyTop)} Q${r(cx + bodyW / 2)},${r(bodyTop)} ${r(cx + bodyW / 2)},${r(bodyBot)} Z" fill="${col}"/>`;
+  }
+  function statusCellSvg(val, cx, cy, s, fs, textCol) {
+    if (val === true) return glyphCheck(cx, cy, s, "#059669");
+    if (val === false) return glyphCross(cx, cy, s, "#94a3b8");
+    const t = String(val == null ? "" : val).trim().toLowerCase();
+    if (["yes", "y", "true", "\u2713", "done", "included"].includes(t)) return glyphCheck(cx, cy, s, "#059669");
+    if (["no", "n", "false", "\u2717", "x"].includes(t)) return glyphCross(cx, cy, s, "#94a3b8");
+    if (["partial", "~", "half", "some", "limited"].includes(t)) return glyphDot(cx, cy, s, "#d97706");
+    if (["", "-", "\u2013", "na", "n/a"].includes(t)) return glyphDash(cx, cy, s, "#cbd5e1");
+    return `<text x="${r(cx)}" y="${r(cy + fs * 0.35)}" text-anchor="middle" font-size="${fs}" fill="${textCol}">${esc(String(val))}</text>`;
+  }
+  function renderMatrix(spec) {
+    const columns = Array.isArray(spec.columns) ? spec.columns : [];
+    const rows = Array.isArray(spec.rows) ? spec.rows : [];
+    const nc = Math.max(1, columns.length);
+    const title = spec.title || "";
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const labelCol = txt(spec, isDark ? "#e2e8f0" : "#334155");
+    const headCol = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const lineCol = isDark ? "#334155" : "#e2e8f0";
+    const zebra = isDark ? "#1e293b" : "#f8fafc";
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const PAD = 24;
+    const topY = title ? 54 : 24;
+    const LEFTW = spec.labelWidth ? Number(spec.labelWidth) : 200;
+    const HEAD = 38, ROWH = 40;
+    const W = spec.width || 680;
+    const H = spec.height || topY + HEAD + rows.length * ROWH + 16;
+    const plotLeft = PAD + LEFTW;
+    const cellW = (W - PAD - plotLeft) / nc;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    columns.forEach((c, ci) => p.push(`<text x="${r(plotLeft + ci * cellW + cellW / 2)}" y="${r(topY + HEAD - 14)}" text-anchor="middle" font-size="${fs}" ${wAttr(spec, 700)} fill="${headCol}">${esc(c)}</text>`));
+    p.push(`<line x1="${PAD}" y1="${r(topY + HEAD)}" x2="${W - PAD}" y2="${r(topY + HEAD)}" stroke="${lineCol}" stroke-width="1"/>`);
+    rows.forEach((row, ri) => {
+      const y = topY + HEAD + ri * ROWH;
+      if (ri % 2 === 1) p.push(`<rect x="${PAD}" y="${r(y)}" width="${r(W - PAD * 2)}" height="${ROWH}" fill="${zebra}"/>`);
+      p.push(`<text x="${PAD}" y="${r(y + ROWH / 2 + 4)}" font-size="${fs}"${wOpt(spec)} fill="${labelCol}">${esc(row.label || "")}</text>`);
+      const cells = Array.isArray(row.cells) ? row.cells : [];
+      columns.forEach((c, ci) => {
+        p.push(statusCellSvg(cells[ci], plotLeft + ci * cellW + cellW / 2, y + ROWH / 2, fs * 0.85, fs, labelCol));
+      });
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderChecklist(spec) {
+    const items = Array.isArray(spec.items) ? spec.items : [];
+    const n = Math.max(1, items.length);
+    const title = spec.title || "";
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const labelCol = txt(spec, isDark ? "#e2e8f0" : "#334155");
+    const doneCol = isDark ? "#64748b" : "#94a3b8";
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const PAD = 24, ROWH = 38;
+    const topY = title ? 54 : 24;
+    const W = spec.width || 520;
+    const H = spec.height || topY + n * ROWH + 12;
+    const s = fs * 1, gx = PAD + 11;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${PAD}" y="33" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    items.forEach((it, i) => {
+      const cy = topY + i * ROWH + ROWH / 2;
+      const st = String(it.status || "").trim().toLowerCase();
+      let glyph, lc = labelCol;
+      if (["done", "complete", "completed", "yes", "true"].includes(st)) {
+        glyph = glyphCheck(gx, cy, s, "#059669");
+        lc = doneCol;
+      } else if (["blocked", "fail", "failed", "no", "cancelled"].includes(st)) {
+        glyph = glyphCross(gx, cy, s, "#dc2626");
+      } else if (["partial", "progress", "in progress", "wip", "doing"].includes(st)) {
+        glyph = glyphDot(gx, cy, s, "#d97706");
+      } else {
+        glyph = glyphRing(gx, cy, s, "#cbd5e1");
+      }
+      p.push(glyph);
+      p.push(`<text x="${r(gx + s + 14)}" y="${r(cy + fs * 0.35)}" font-size="${fs + 1}"${wOpt(spec)} fill="${lc}">${esc(it.label || "")}</text>`);
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderIconArray(spec) {
+    const total = Math.max(1, Math.round(Number(spec.total) || 10));
+    const filled = Math.max(0, Math.min(total, Math.round(Number(spec.filled) || 0)));
+    const title = spec.title || "";
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const fillCol = spec.color || resolveFlatPalette(spec.palette || "Clean Corporate", 1)[0];
+    const emptyCol = isDark ? "#334155" : "#e2e8f0";
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const PAD = 24, ICON = 30, GAP = 8;
+    const topY = title ? 54 : 24;
+    const perRow = Math.max(1, spec.perRow ? Number(spec.perRow) : Math.min(total, 10));
+    const rowsN = Math.ceil(total / perRow);
+    const W = spec.width || PAD * 2 + perRow * ICON + (perRow - 1) * GAP;
+    const H = spec.height || topY + rowsN * (ICON + GAP) + 12;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${PAD}" y="33" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    for (let k = 0; k < total; k++) {
+      const row = Math.floor(k / perRow), col = k % perRow;
+      const x = PAD + col * (ICON + GAP), y = topY + row * (ICON + GAP);
+      p.push(personGlyph(x + ICON / 2, y, ICON, k < filled ? fillCol : emptyCol));
+    }
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function connectorLine(x1, x2, y, col) {
+    const ah = 5;
+    return `<line x1="${r(x1)}" y1="${r(y)}" x2="${r(x2 - ah)}" y2="${r(y)}" stroke="${col}" stroke-width="2"/><path d="M${r(x2 - ah - 1)},${r(y - ah)} L${r(x2)},${r(y)} L${r(x2 - ah - 1)},${r(y + ah)}" fill="none" stroke="${col}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+  }
+  function renderSteps(spec) {
+    const steps = Array.isArray(spec.steps) ? spec.steps : [];
+    const n = Math.max(1, steps.length);
+    const title = spec.title || "";
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const palette = resolveFlatPalette(spec.palette || "Clean Corporate", Math.max(n, 3));
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const labelCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const descCol = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const connCol = isDark ? "#475569" : "#cbd5e1";
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const PAD = 52, R = 22;
+    const topY = title ? 54 : 24;
+    const W = spec.width || 720;
+    const H = spec.height || topY + 150;
+    const cy = topY + 36 + R;
+    const xOf = (i) => n === 1 ? W / 2 : PAD + R + i * ((W - 2 * (PAD + R)) / (n - 1));
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    for (let i = 0; i < n - 1; i++) p.push(connectorLine(xOf(i) + R + 6, xOf(i + 1) - R - 6, cy, connCol));
+    steps.forEach((st, i) => {
+      const x = xOf(i), fill = st.color || palette[i % palette.length], tc = spec.textColor || contrastColor(fill);
+      p.push(`<circle cx="${r(x)}" cy="${r(cy)}" r="${R}" fill="${fill}"/>`);
+      p.push(`<text x="${r(x)}" y="${r(cy + 5)}" text-anchor="middle" font-size="${fs + 3}" ${wAttr(spec, 800)} fill="${tc}">${i + 1}</text>`);
+      p.push(`<text x="${r(x)}" y="${r(cy + R + 24)}" text-anchor="middle" font-size="${fs + 1}" ${wAttr(spec, 700)} fill="${labelCol}">${esc(st.label || "")}</text>`);
+      if (st.description) p.push(`<text x="${r(x)}" y="${r(cy + R + 42)}" text-anchor="middle" font-size="${fs - 1}"${wOpt(spec)} fill="${descCol}">${esc(st.description)}</text>`);
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderTable(spec) {
+    const columns = Array.isArray(spec.columns) ? spec.columns : [];
+    const rows = Array.isArray(spec.rows) ? spec.rows : [];
+    const nc = Math.max(1, columns.length);
+    const title = spec.title || "";
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const headCol = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const cellCol = txt(spec, isDark ? "#e2e8f0" : "#334155");
+    const lineCol = isDark ? "#334155" : "#e2e8f0";
+    const zebra = isDark ? "#1e293b" : "#f8fafc";
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const PAD = 24, HEAD = 38, ROWH = 36;
+    const topY = title ? 54 : 24;
+    const W = spec.width || 680;
+    const H = spec.height || topY + HEAD + rows.length * ROWH + 16;
+    const colW = (W - PAD * 2) / nc;
+    const isNum = (v) => typeof v === "number" || typeof v === "string" && v.trim() !== "" && !isNaN(Number(v));
+    const cellX = (ci, right) => right ? PAD + ci * colW + colW - 10 : PAD + ci * colW + 4;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    columns.forEach((c, ci) => {
+      const right = ci > 0;
+      p.push(`<text x="${r(cellX(ci, right))}" y="${r(topY + HEAD - 14)}" ${right ? 'text-anchor="end" ' : ""}font-size="${fs}" ${wAttr(spec, 700)} fill="${headCol}">${esc(c)}</text>`);
+    });
+    p.push(`<line x1="${PAD}" y1="${r(topY + HEAD)}" x2="${W - PAD}" y2="${r(topY + HEAD)}" stroke="${lineCol}" stroke-width="1"/>`);
+    rows.forEach((row, ri) => {
+      const y = topY + HEAD + ri * ROWH;
+      if (ri % 2 === 1) p.push(`<rect x="${PAD}" y="${r(y)}" width="${r(W - PAD * 2)}" height="${ROWH}" fill="${zebra}"/>`);
+      const cells = Array.isArray(row) ? row : [];
+      for (let ci = 0; ci < nc; ci++) {
+        const v = cells[ci];
+        if (v === void 0 || v === null || v === "") continue;
+        const num = ci > 0 && isNum(v);
+        const out = num ? fmt(Number(v)) : String(v);
+        p.push(`<text x="${r(cellX(ci, num))}" y="${r(y + ROWH / 2 + 4)}" ${num ? 'text-anchor="end" ' : ""}font-size="${fs}"${wOpt(spec)} fill="${cellCol}">${esc(out)}</text>`);
+      }
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderGauge(spec) {
+    const value = Number(spec.value) || 0;
+    const min = spec.min != null ? Number(spec.min) : 0;
+    const max = spec.max != null ? Number(spec.max) : 100;
+    const t = Math.max(0, Math.min(1, (value - min) / (max - min || 1)));
+    const title = spec.title || "";
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const accent = contrastFloor(spec.color || resolveFlatPalette(spec.palette || "Clean Corporate", 1)[0], bg, transparent);
+    const track = isDark ? "#334155" : "#e2e8f0";
+    const valueCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const labelCol = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const PAD = 24;
+    const topY = title ? 50 : 20;
+    const W = spec.width || 340, H = spec.height || 230;
+    const rad = Math.min((W - PAD * 2) / 2, H - topY - 50);
+    const cx = W / 2, cy = topY + rad + 6;
+    const innerR = rad * 0.72;
+    const u = spec.valueUnit ? " " + spec.valueUnit : "";
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(cx)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${valueCol}">${esc(title)}</text>`);
+    p.push(`<path d="${arcPath(cx, cy, rad, Math.PI, 2 * Math.PI, innerR)}" fill="${track}"/>`);
+    if (t > 0) p.push(`<path d="${arcPath(cx, cy, rad, Math.PI, Math.PI + t * Math.PI, innerR)}" fill="${accent}"/>`);
+    p.push(`<text x="${r(cx)}" y="${r(cy - 6)}" text-anchor="middle" font-size="${r(rad * 0.42)}" ${wAttr(spec, 800)} fill="${valueCol}">${esc(fmt(value) + u)}</text>`);
+    if (spec.label) p.push(`<text x="${r(cx)}" y="${r(cy + 18)}" text-anchor="middle" font-size="${fs}"${wOpt(spec)} fill="${labelCol}">${esc(spec.label)}</text>`);
+    p.push(`<text x="${r(cx - (rad + innerR) / 2)}" y="${r(cy + 16)}" text-anchor="middle" font-size="${fs - 2}" fill="${faint}">${esc(fmt(min))}</text>`);
+    p.push(`<text x="${r(cx + (rad + innerR) / 2)}" y="${r(cy + 16)}" text-anchor="middle" font-size="${fs - 2}" fill="${faint}">${esc(fmt(max))}</text>`);
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderBullet(spec) {
+    const bars = Array.isArray(spec.bars) ? spec.bars : [];
+    const n = Math.max(1, bars.length);
+    const title = spec.title || "";
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const measureCol = contrastFloor(resolveFlatPalette(spec.palette || "Clean Corporate", 1)[0], bg, transparent);
+    const labelCol = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const valCol = txt(spec, isDark ? "#e2e8f0" : "#334155");
+    const tickCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const bandCols = isDark ? ["#1e293b", "#334155", "#475569"] : ["#eef2f6", "#dbe2ea", "#c3cedb"];
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const PAD = 24, ROW_H = 50;
+    const topY = title ? 54 : 24;
+    const W = spec.width || 600;
+    const H = spec.height || topY + n * ROW_H + 8;
+    const trackW = W - PAD * 2;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${tickCol}">${esc(title)}</text>`);
+    bars.forEach((b, i) => {
+      const ry = topY + i * ROW_H;
+      const val = Number(b.value) || 0, target = b.target != null ? Number(b.target) : null;
+      const bands = Array.isArray(b.bands) ? b.bands.map(Number) : [];
+      const max = b.max != null ? Number(b.max) : Math.max(val, target || 0, ...bands) * 1.1 || 1;
+      const sx = (v) => PAD + Math.max(0, Math.min(1, v / max)) * trackW;
+      const barY = ry + 22, barH = 16;
+      p.push(`<text x="${PAD}" y="${r(ry + 13)}" font-size="${fs}" ${wAttr(spec, 600)} fill="${labelCol}">${esc(b.label || "")}</text>`);
+      p.push(`<text x="${W - PAD}" y="${r(ry + 13)}" text-anchor="end" font-size="${fs}"${wOpt(spec)} fill="${valCol}">${esc(fmt(val))}${target != null ? " / " + esc(fmt(target)) : ""}</text>`);
+      const edges = [0, ...bands, max];
+      for (let k = 0; k < edges.length - 1; k++) {
+        const x0 = sx(edges[k]), x1 = sx(edges[k + 1]);
+        p.push(`<rect x="${r(x0)}" y="${r(barY)}" width="${r(Math.max(0, x1 - x0))}" height="${barH}" fill="${bandCols[Math.min(k, bandCols.length - 1)]}"/>`);
+      }
+      p.push(`<rect x="${PAD}" y="${r(barY + barH / 2 - 4)}" width="${r(sx(val) - PAD)}" height="8" rx="2" fill="${b.color || measureCol}"/>`);
+      if (target != null) p.push(`<line x1="${r(sx(target))}" y1="${r(barY - 4)}" x2="${r(sx(target))}" y2="${r(barY + barH + 4)}" stroke="${tickCol}" stroke-width="2.5"/>`);
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderCalendar(spec) {
+    const days = spec.days && typeof spec.days === "object" && !Array.isArray(spec.days) ? spec.days : {};
+    const year = spec.year != null ? Number(spec.year) : 2025;
+    const title = spec.title || "";
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const labelCol = txt(spec, isDark ? "#cbd5e1" : "#64748b");
+    const empty = isDark ? "#1e293b" : "#ebedf0";
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const baseHsl = hexToHsl(spec.color || resolveFlatPalette(spec.palette || "Clean Corporate", 1)[0]);
+    const isLeap = year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
+    const mdays = [31, isLeap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    const totalDays = isLeap ? 366 : 365;
+    const Y = year - 1, K = Y % 100, J = Math.floor(Y / 100);
+    const h = (1 + Math.floor(13 * 14 / 5) + K + Math.floor(K / 4) + Math.floor(J / 4) + 5 * J) % 7;
+    const startDow = (h + 6) % 7;
+    const doyOfMonth = (mo) => {
+      let d = 0;
+      for (let i = 0; i < mo; i++) d += mdays[i];
+      return d;
+    };
+    const valByDoy = {};
+    let maxV = 0;
+    for (const key in days) {
+      const parts = String(key).split("-").map(Number);
+      const mo = parts.length >= 3 ? parts[1] : parts[0];
+      const da = parts.length >= 3 ? parts[2] : parts[1];
+      if (!mo || !da) continue;
+      const doy = doyOfMonth(mo - 1) + (da - 1);
+      const v = Number(days[key]) || 0;
+      valByDoy[doy] = v;
+      if (v > maxV) maxV = v;
+    }
+    const cellColor = (v) => v <= 0 ? empty : hslToHex(baseHsl.h, Math.max(35, baseHsl.s), Math.max(0, Math.min(100, 86 - (maxV > 0 ? v / maxV : 0) * 50)));
+    const PAD = 24, CELL = 11, GAP = 3, LEFTW = 30, TOPH = 18;
+    const topY = title ? 50 : 20;
+    const gridX = PAD + LEFTW, gridY = topY + TOPH;
+    const weeks = Math.ceil((startDow + totalDays) / 7);
+    const W = spec.width || gridX + weeks * (CELL + GAP) + PAD;
+    const H = spec.height || gridY + 7 * (CELL + GAP) + 16;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${PAD}" y="33" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    for (let mo = 0; mo < 12; mo++) {
+      const col = Math.floor((startDow + doyOfMonth(mo)) / 7);
+      p.push(`<text x="${r(gridX + col * (CELL + GAP))}" y="${r(topY + TOPH - 6)}" font-size="${fs - 3}" fill="${labelCol}">${MON[mo]}</text>`);
+    }
+    [["Mon", 1], ["Wed", 3], ["Fri", 5]].forEach(([lbl, row]) => p.push(`<text x="${r(PAD)}" y="${r(gridY + row * (CELL + GAP) + CELL)}" font-size="${fs - 3}" fill="${labelCol}">${lbl}</text>`));
+    for (let doy = 0; doy < totalDays; doy++) {
+      const idx = startDow + doy, col = Math.floor(idx / 7), row = idx % 7;
+      const x = gridX + col * (CELL + GAP), y = gridY + row * (CELL + GAP);
+      p.push(`<rect x="${r(x)}" y="${r(y)}" width="${CELL}" height="${CELL}" rx="2" fill="${cellColor(valByDoy[doy] || 0)}"/>`);
+    }
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderLeaderboard(spec) {
+    const raw = Array.isArray(spec.items) ? spec.items : [];
+    const items = raw.map((it) => ({ label: it.label || "", value: Number(it.value) || 0, color: it.color })).sort((a, b) => b.value - a.value);
+    const n = Math.max(1, items.length);
+    const title = spec.title || "";
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const palette = resolveFlatPalette(spec.palette || "Clean Corporate", Math.max(n, 3));
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const labelCol = txt(spec, isDark ? "#e2e8f0" : "#334155");
+    const rankCol = isDark ? "#64748b" : "#94a3b8";
+    const track = isDark ? "#1e293b" : "#f1f5f9";
+    const valCol = txt(spec, isDark ? "#e2e8f0" : "#334155");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const u = spec.valueUnit ? " " + spec.valueUnit : "";
+    const PAD = 24, ROW_H = 40, RANKW = 30, LABELW = 140, VALW = 70;
+    const topY = title ? 54 : 24;
+    const W = spec.width || 560;
+    const H = spec.height || topY + n * ROW_H + 8;
+    const barLeft = PAD + RANKW + LABELW, barRight = W - PAD - VALW;
+    const maxV = Math.max(1, ...items.map((s) => s.value));
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    items.forEach((it, i) => {
+      const cy = topY + i * ROW_H + ROW_H / 2;
+      const fill = it.color || palette[0];
+      const bw = it.value / maxV * (barRight - barLeft);
+      p.push(`<text x="${PAD}" y="${r(cy + 5)}" font-size="${fs + 1}" ${wAttr(spec, 800)} fill="${rankCol}">${i + 1}</text>`);
+      p.push(`<text x="${r(PAD + RANKW)}" y="${r(cy + 5)}" font-size="${fs}" ${wAttr(spec, 600)} fill="${labelCol}">${esc(it.label)}</text>`);
+      p.push(`<rect x="${r(barLeft)}" y="${r(cy - 8)}" width="${r(barRight - barLeft)}" height="16" rx="8" fill="${track}"/>`);
+      if (bw > 0) p.push(`<rect x="${r(barLeft)}" y="${r(cy - 8)}" width="${r(Math.max(16, bw))}" height="16" rx="8" fill="${fill}"/>`);
+      p.push(`<text x="${W - PAD}" y="${r(cy + 5)}" text-anchor="end" font-size="${fs}" ${wAttr(spec, 700)} fill="${valCol}">${esc(fmt(it.value) + u)}</text>`);
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderCallout(spec) {
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const title = spec.title || "";
+    const accent = contrastFloor(spec.color || resolveFlatPalette(spec.palette || "Clean Corporate", 1)[0], bg, transparent);
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const capCol = txt(spec, isDark ? "#cbd5e1" : "#5b6270");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const PAD = 28, W = spec.width || 620, H = spec.height || 220;
+    const topY = title ? 50 : 20;
+    const valueStr = (spec.valuePrefix || "") + (spec.value != null ? fmt(spec.value) : "") + (spec.valueUnit || "");
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${PAD}" y="33" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    const by = topY + (H - topY) * 0.5;
+    p.push(`<text x="${PAD}" y="${r(by)}" font-size="${r((H - topY) * 0.42)}" ${wAttr(spec, 800)} fill="${accent}">${esc(valueStr)}</text>`);
+    if (spec.caption) p.push(`<text x="${PAD}" y="${r(by + (H - topY) * 0.22)}" font-size="${fs + 2}"${wOpt(spec)} fill="${capCol}">${esc(spec.caption)}</text>`);
+    if (spec.note) {
+      const nw = Math.round(String(spec.note).length * (fs * 0.62) + 22);
+      const nx = W - PAD - nw, ny = topY + 12;
+      p.push(`<line x1="${r(nx - 14)}" y1="${r(topY + 6)}" x2="${r(nx - 14)}" y2="${H - 20}" stroke="${faint}" stroke-opacity="0.5"/>`);
+      p.push(`<rect x="${r(nx)}" y="${r(ny)}" width="${nw}" height="26" rx="8" fill="${accent}" fill-opacity="0.14"/>`);
+      p.push(`<text x="${r(nx + nw / 2)}" y="${r(ny + 17)}" text-anchor="middle" font-size="${fs}" ${wAttr(spec, 600)} fill="${accent}">${esc(spec.note)}</text>`);
+    }
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderRing(spec) {
+    const value = Number(spec.value) || 0;
+    const target = spec.target != null ? Number(spec.target) : 100;
+    const frac = Math.max(0, Math.min(1, target > 0 ? value / target : 0));
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const title = spec.title || "";
+    const accent = contrastFloor(spec.color || resolveFlatPalette(spec.palette || "Clean Corporate", 1)[0], bg, transparent);
+    const track = isDark ? "#334155" : "#e2e8f0";
+    const valueCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const labelCol = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const W = spec.width || 260, H = spec.height || 240;
+    const topY = title ? 50 : 20;
+    const cx = W / 2, cy = topY + (H - topY - 16) / 2;
+    const R = Math.min(W - 40, H - topY - 40) / 2;
+    const sw = Math.max(8, R * 0.26);
+    const circ = 2 * Math.PI * R;
+    const dash = frac * circ;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(cx)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${valueCol}">${esc(title)}</text>`);
+    p.push(`<circle cx="${r(cx)}" cy="${r(cy)}" r="${r(R)}" fill="none" stroke="${track}" stroke-width="${r(sw)}"/>`);
+    if (dash > 0) p.push(`<circle cx="${r(cx)}" cy="${r(cy)}" r="${r(R)}" fill="none" stroke="${accent}" stroke-width="${r(sw)}" stroke-linecap="round" stroke-dasharray="${r(dash)} ${r(circ - dash)}" transform="rotate(-90 ${r(cx)} ${r(cy)})"/>`);
+    p.push(`<text x="${r(cx)}" y="${r(cy + R * 0.18)}" text-anchor="middle" font-size="${r(R * 0.5)}" ${wAttr(spec, 800)} fill="${valueCol}">${Math.round(frac * 100)}%</text>`);
+    if (spec.label) p.push(`<text x="${r(cx)}" y="${r(cy + R + sw / 2 + 16)}" text-anchor="middle" font-size="${fs}"${wOpt(spec)} fill="${labelCol}">${esc(spec.label)}</text>`);
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderVersus(spec) {
+    const sides = Array.isArray(spec.sides) ? spec.sides.slice(0, 2) : [];
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const title = spec.title || "";
+    const palette = resolveFlatPalette(spec.palette || "Clean Corporate", 3);
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const labelCol = txt(spec, isDark ? "#e2e8f0" : "#334155");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const PAD = 24, GAP = 44, W = spec.width || 620, H = spec.height || 320;
+    const topY = title ? 54 : 24;
+    const colW = (W - PAD * 2 - GAP) / 2;
+    const cols = [PAD, PAD + colW + GAP];
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    [0, 1].forEach((si) => {
+      const side = sides[si] || {};
+      const col = side.color || palette[si === 0 ? 0 : palette.length - 1];
+      const x = cols[si];
+      p.push(`<rect x="${r(x)}" y="${r(topY)}" width="${r(colW)}" height="${r(H - topY - 16)}" rx="12" fill="${col}" fill-opacity="0.10"/>`);
+      p.push(`<text x="${r(x + colW / 2)}" y="${r(topY + 26)}" text-anchor="middle" font-size="${fs + 2}" ${wAttr(spec, 700)} fill="${col}">${esc(side.title || "")}</text>`);
+      const items = Array.isArray(side.items) ? side.items : [];
+      items.forEach((it, i) => {
+        const iy = topY + 52 + i * 28;
+        p.push(`<text x="${r(x + 16)}" y="${r(iy)}" font-size="${fs}"${wOpt(spec)} fill="${labelCol}">${esc(it.label || "")}</text>`);
+        if (it.value != null) p.push(`<text x="${r(x + colW - 14)}" y="${r(iy)}" text-anchor="end" font-size="${fs}" ${wAttr(spec, 700)} fill="${col}">${esc(fmt(it.value))}</text>`);
+      });
+    });
+    const mx = PAD + colW + GAP / 2, my = topY + (H - topY) / 2;
+    p.push(`<circle cx="${r(mx)}" cy="${r(my)}" r="20" fill="${transparent ? "#ffffff" : bg}" stroke="${faint}" stroke-opacity="0.5"/>`);
+    p.push(`<text x="${r(mx)}" y="${r(my + 5)}" text-anchor="middle" font-size="${fs}" ${wAttr(spec, 800)} fill="${faint}">VS</text>`);
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderGantt(spec) {
+    const tasks = Array.isArray(spec.tasks) ? spec.tasks : [];
+    const n = Math.max(1, tasks.length);
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const title = spec.title || "";
+    const palette = resolveFlatPalette(spec.palette || "Clean Corporate", Math.max(n, 3));
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const labelCol = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const gridCol = isDark ? "#1e293b" : "#eceef3";
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const starts = tasks.map((t) => Number(t.start) || 0);
+    const ends = tasks.map((t) => Number(t.end) || 0);
+    const lo = Math.min(0, ...starts), hi = Math.max(1, ...ends);
+    const PAD = 24, LABELW = spec.labelWidth ? Number(spec.labelWidth) : 110, HEAD = 18, ROWH = 32;
+    const topY = title ? 54 : 22;
+    const W = spec.width || 660, H = spec.height || topY + HEAD + n * ROWH + 16;
+    const plotLeft = PAD + LABELW, plotW = W - PAD - plotLeft, gridTop = topY + HEAD;
+    const xOf = (v) => plotLeft + (v - lo) / (hi - lo || 1) * plotW;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    for (let k = 0; k <= 4; k++) {
+      const gx = plotLeft + k / 4 * plotW;
+      p.push(`<line x1="${r(gx)}" y1="${r(gridTop)}" x2="${r(gx)}" y2="${r(gridTop + n * ROWH)}" stroke="${gridCol}" stroke-width="1"/>`);
+    }
+    tasks.forEach((t, i) => {
+      const y = gridTop + i * ROWH;
+      const fill = t.color || palette[i % palette.length];
+      p.push(`<text x="${PAD}" y="${r(y + ROWH / 2 + 4)}" font-size="${fs}"${wOpt(spec)} fill="${labelCol}">${esc(t.label || "")}</text>`);
+      p.push(`<rect x="${r(xOf(Number(t.start) || 0))}" y="${r(y + 6)}" width="${r(Math.max(3, xOf(Number(t.end) || 0) - xOf(Number(t.start) || 0)))}" height="${ROWH - 12}" rx="5" fill="${fill}"/>`);
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderWaterfall(spec) {
+    const steps = Array.isArray(spec.steps) ? spec.steps : [];
+    const start = Number(spec.start) || 0;
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const title = spec.title || "";
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const catText = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const totalCol = isDark ? "#94a3b8" : "#1c2230";
+    const faint = isDark ? "#475569" : "#94a3b8";
+    let run = start;
+    const segs = steps.map((s) => {
+      const d = Number(s.value) || 0;
+      const from = run;
+      run += d;
+      return { label: s.label || "", from, to: run, delta: d, color: s.color };
+    });
+    segs.push({ label: spec.totalLabel || "Total", from: 0, to: run, delta: run, isTotal: true });
+    const N = Math.max(1, segs.length);
+    const vals = segs.flatMap((s) => [s.from, s.to]).concat(0);
+    const lo = Math.min(...vals), hi = Math.max(...vals, 1);
+    const PAD = 24, GAP = 14, HEAD = title ? 54 : 24;
+    const W = spec.width || 640, H = spec.height || 360;
+    const plotW = W - PAD * 2, plotBottom = H - 44, plotTop = HEAD;
+    const bandW = (plotW - GAP * (N - 1)) / N;
+    const yOf = (v) => plotBottom - (v - lo) / (hi - lo || 1) * (plotBottom - plotTop);
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    segs.forEach((s, i) => {
+      const x = PAD + i * (bandW + GAP);
+      const yTop = yOf(Math.max(s.from, s.to)), yBot = yOf(Math.min(s.from, s.to));
+      const fill = s.isTotal ? totalCol : s.color || (s.delta >= 0 ? "#059669" : "#dc2626");
+      p.push(`<rect x="${r(x)}" y="${r(yTop)}" width="${r(bandW)}" height="${r(Math.max(2, yBot - yTop))}" rx="3" fill="${fill}"/>`);
+      if (i < segs.length - 1) {
+        const yc = r(yOf(s.to));
+        p.push(`<line x1="${r(x + bandW)}" y1="${yc}" x2="${r(x + bandW + GAP)}" y2="${yc}" stroke="${faint}" stroke-dasharray="3 3"/>`);
+      }
+      p.push(`<text x="${r(x + bandW / 2)}" y="${H - 26}" text-anchor="middle" font-size="${fs - 2}"${wOpt(spec)} fill="${catText}">${esc(s.label)}</text>`);
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderSwimlane(spec) {
+    const lanes = Array.isArray(spec.lanes) ? spec.lanes : [];
+    const phases = Array.isArray(spec.phases) ? spec.phases : [];
+    const nl = Math.max(1, lanes.length), np = Math.max(1, phases.length);
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const title = spec.title || "";
+    const palette = resolveFlatPalette(spec.palette || "Clean Corporate", Math.max(nl, 3));
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const labelCol = txt(spec, isDark ? "#cbd5e1" : "#475569");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const PAD = 24, LABELW = 100, HEAD = 22, LANEH = 50;
+    const topY = title ? 54 : 22;
+    const W = spec.width || 680, H = spec.height || topY + HEAD + nl * LANEH + 16;
+    const plotLeft = PAD + LABELW, colW = (W - PAD - plotLeft) / np, gridTop = topY + HEAD;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    phases.forEach((ph, ci) => p.push(`<text x="${r(plotLeft + ci * colW + colW / 2)}" y="${r(topY + HEAD - 7)}" text-anchor="middle" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${labelCol}">${esc(ph)}</text>`));
+    lanes.forEach((lane, li) => {
+      const y = gridTop + li * LANEH;
+      const col = lane.color || palette[li % palette.length];
+      p.push(`<rect x="${PAD}" y="${r(y + 4)}" width="${r(W - PAD * 2)}" height="${LANEH - 8}" rx="6" fill="${col}" fill-opacity="0.07"/>`);
+      p.push(`<text x="${PAD + 8}" y="${r(y + LANEH / 2 + 4)}" font-size="${fs}" ${wAttr(spec, 600)} fill="${labelCol}">${esc(lane.label || "")}</text>`);
+      (Array.isArray(lane.items) ? lane.items : []).forEach((it) => {
+        const ci = Math.max(0, Math.min(np - 1, Number(it.phase) || 0));
+        const bx = plotLeft + ci * colW;
+        p.push(`<rect x="${r(bx + 6)}" y="${r(y + 12)}" width="${r(colW - 12)}" height="${LANEH - 24}" rx="5" fill="${it.color || col}"/>`);
+        p.push(`<text x="${r(bx + colW / 2)}" y="${r(y + LANEH / 2 + 4)}" text-anchor="middle" font-size="${fs - 2}" fill="${contrastColor(it.color || col)}">${esc(it.label || "")}</text>`);
+      });
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderTierList(spec) {
+    const tiers = Array.isArray(spec.tiers) ? spec.tiers : [];
+    const n = Math.max(1, tiers.length);
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const title = spec.title || "";
+    const palette = resolveFlatPalette(spec.palette || "Clean Corporate", Math.max(n, 3));
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const chipBg = isDark ? "#334155" : "#e2e8f0";
+    const chipTx = isDark ? "#e2e8f0" : "#334155";
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const PAD = 16, LABELW = 56, ROWH = 48, GAP = 6;
+    const topY = title ? 50 : 14;
+    const W = spec.width || 560, H = spec.height || topY + n * (ROWH + GAP) + 12;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${PAD}" y="31" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    tiers.forEach((t, i) => {
+      const y = topY + i * (ROWH + GAP);
+      const col = t.color || palette[i % palette.length];
+      p.push(`<rect x="${PAD}" y="${r(y)}" width="${LABELW}" height="${ROWH}" rx="6" fill="${col}"/>`);
+      p.push(`<text x="${r(PAD + LABELW / 2)}" y="${r(y + ROWH / 2 + 6)}" text-anchor="middle" font-size="${fs + 4}" ${wAttr(spec, 800)} fill="${contrastColor(col)}">${esc(t.label || "")}</text>`);
+      let cx = PAD + LABELW + 10;
+      (Array.isArray(t.items) ? t.items : []).forEach((it) => {
+        const label = typeof it === "string" ? it : it && it.label || "";
+        const cw = Math.round(label.length * (fs * 0.6) + 18);
+        if (cx + cw > W - PAD) return;
+        p.push(`<rect x="${r(cx)}" y="${r(y + ROWH / 2 - 13)}" width="${cw}" height="26" rx="6" fill="${chipBg}"/>`);
+        p.push(`<text x="${r(cx + cw / 2)}" y="${r(y + ROWH / 2 + 5)}" text-anchor="middle" font-size="${fs}"${wOpt(spec)} fill="${chipTx}">${esc(label)}</text>`);
+        cx += cw + 8;
+      });
+    });
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  function renderSwot(spec) {
+    const cells = Array.isArray(spec.cells) ? spec.cells.slice(0, 4) : [];
+    const bg = spec.background || "#ffffff";
+    const transparent = bg === "transparent" || bg === "none";
+    const isDark = !transparent && getLuminance(bg) < 0.35;
+    const fs = spec.fontSize ? Number(spec.fontSize) : 13;
+    const font = resolveFont(spec);
+    const watermark = spec.watermark !== false;
+    const title = spec.title || "";
+    const titleCol = txt(spec, isDark ? "#f1f5f9" : "#0f172a");
+    const bodyCol = txt(spec, isDark ? "#cbd5e1" : "#5b6270");
+    const faint = isDark ? "#475569" : "#94a3b8";
+    const tints = ["#2e9e6b", "#d6543a", "#2563eb", "#C17817"];
+    const PAD = 22, GAP = 14;
+    const topY = title ? 52 : 20;
+    const W = spec.width || 640, H = spec.height || 440;
+    const cellW = (W - PAD * 2 - GAP) / 2, cellH = (H - topY - PAD - GAP) / 2;
+    const p = [];
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+    if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
+    if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+    for (let i = 0; i < 4; i++) {
+      const cell = cells[i] || {};
+      const col = i % 2, row = Math.floor(i / 2);
+      const x = PAD + col * (cellW + GAP), y = topY + row * (cellH + GAP);
+      const tint = cell.color || tints[i];
+      p.push(`<rect x="${r(x)}" y="${r(y)}" width="${r(cellW)}" height="${r(cellH)}" rx="10" fill="${tint}" fill-opacity="0.12"/>`);
+      p.push(`<text x="${r(x + 16)}" y="${r(y + 26)}" font-size="${fs + 1}" ${wAttr(spec, 700)} fill="${tint}">${esc(cell.title || "")}</text>`);
+      (Array.isArray(cell.items) ? cell.items : []).forEach((it, k) => {
+        const ly = y + 50 + k * 22;
+        if (ly > y + cellH - 8) return;
+        p.push(`<circle cx="${r(x + 20)}" cy="${r(ly - 4)}" r="2.5" fill="${tint}"/>`);
+        p.push(`<text x="${r(x + 30)}" y="${r(ly)}" font-size="${fs}"${wOpt(spec)} fill="${bodyCol}">${esc(typeof it === "string" ? it : it && it.label || "")}</text>`);
+      });
+    }
+    if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+    p.push(`</svg>`);
+    return p.join("\n");
+  }
+  var TYPES = [
+    { type: "bar", family: "comparison", needsData: true, summary: "vertical bar chart" },
+    { type: "grouped", family: "comparison", needsData: true, summary: "clustered bars (one per series per category)" },
+    { type: "stacked", family: "composition", needsData: true, summary: "stacked bars (segments within each bar)" },
+    { type: "stacked100", family: "composition", needsData: true, summary: "100% stacked bars (each bar = 100%)" },
+    { type: "stackedh", family: "composition", needsData: true, summary: "horizontal stacked bars" },
+    { type: "horizontal", family: "comparison", needsData: true, summary: "horizontal bars (single series)" },
+    { type: "lollipop", family: "comparison", needsData: true, summary: "lollipop chart" },
+    { type: "diverging", family: "deviation", needsData: true, summary: "diverging bars around a zero line" },
+    { type: "line", family: "trend", needsData: true, summary: "line chart" },
+    { type: "smooth", family: "trend", needsData: true, summary: "smooth (curved) line" },
+    { type: "area", family: "trend", needsData: true, summary: "area chart (filled line)" },
+    { type: "stepped", family: "trend", needsData: true, summary: "stepped line" },
+    { type: "stackedArea", family: "trend", needsData: true, summary: "stacked area bands" },
+    { type: "difference", family: "deviation", needsData: true, summary: "two lines with the gap shaded" },
+    { type: "slope", family: "change", needsData: true, summary: "slopegraph (first vs last value)" },
+    { type: "pie", family: "composition", needsData: true, summary: "pie chart" },
+    { type: "donut", family: "composition", needsData: true, summary: "donut (pie with a center hole + total)" },
+    { type: "pieofpie", family: "composition", needsData: false, dataKey: "pies", summary: "nested drill-down pies (pie-of-pie)" },
+    { type: "kpi", family: "single-value", needsData: false, summary: "single metric tile (label + value + delta)" },
+    { type: "cards", family: "layout", needsData: false, dataKey: "cards", summary: "a row/grid of stat cards (multi-KPI strip)" },
+    { type: "layers", family: "layout", needsData: false, dataKey: "layers", summary: "labeled box-stack / layer diagram (e.g. a tech stack)" },
+    { type: "progress", family: "layout", needsData: false, dataKey: "bars", summary: "labeled progress / bullet bars toward a target" },
+    { type: "waffle", family: "layout", needsData: false, dataKey: "parts", summary: "waffle / dot grid (10\xD710, part-of-whole)" },
+    { type: "heatmap", family: "layout", needsData: false, summary: "heatmap grid (rows \xD7 columns, value \u2192 color)" },
+    { type: "funnel", family: "layout", needsData: false, dataKey: "stages", summary: "funnel \u2014 stages narrowing top\u2192bottom" },
+    { type: "pyramid", family: "layout", needsData: false, dataKey: "levels", summary: "pyramid \u2014 hierarchy levels" },
+    { type: "quadrant", family: "layout", needsData: false, dataKey: "items", summary: "2\xD72 matrix \u2014 items placed by two axes" },
+    { type: "timeline", family: "layout", needsData: false, dataKey: "events", summary: "linear timeline \u2014 events along one line" },
+    { type: "venn", family: "layout", needsData: false, dataKey: "sets", summary: "venn \u2014 2\u20133 overlapping sets with counts" },
+    { type: "matrix", family: "layout", needsData: false, dataKey: "rows", summary: "comparison / feature matrix (\u2713/\u2717/dot cells)" },
+    { type: "checklist", family: "layout", needsData: false, dataKey: "items", summary: "checklist / status list (done/pending/blocked)" },
+    { type: "iconarray", family: "layout", needsData: false, summary: "icon array / pictogram (N icons, M filled)" },
+    { type: "steps", family: "layout", needsData: false, dataKey: "steps", summary: "step / process row (numbered linear flow)" },
+    { type: "table", family: "layout", needsData: false, dataKey: "rows", summary: "data table (rows \xD7 columns of text / values)" },
+    { type: "gauge", family: "layout", needsData: false, summary: "radial gauge / dial (single value on a scale)" },
+    { type: "bullet", family: "layout", needsData: false, dataKey: "bars", summary: "bullet graph (measure vs target on banded scale)" },
+    { type: "calendar", family: "layout", needsData: false, dataKey: "days", summary: "calendar heatmap (year contribution grid)" },
+    { type: "leaderboard", family: "layout", needsData: false, dataKey: "items", summary: "leaderboard (ranked rows: rank + bar + value)" },
+    { type: "callout", family: "layout", needsData: false, summary: "stat callout \u2014 hero number + caption + annotation" },
+    { type: "ring", family: "layout", needsData: false, summary: "progress ring \u2014 radial % toward a target" },
+    { type: "versus", family: "layout", needsData: false, dataKey: "sides", summary: "versus \u2014 two options compared side by side" },
+    { type: "gantt", family: "layout", needsData: false, dataKey: "tasks", summary: "gantt \u2014 tasks across a time row" },
+    { type: "waterfall", family: "layout", needsData: false, dataKey: "steps", summary: "waterfall \u2014 running total, step by step" },
+    { type: "swimlane", family: "layout", needsData: false, dataKey: "lanes", summary: "swimlane roadmap \u2014 lanes \xD7 phases grid" },
+    { type: "tierlist", family: "layout", needsData: false, dataKey: "tiers", summary: "tier list \u2014 ranked buckets (S/A/B) of chips" },
+    { type: "swot", family: "layout", needsData: false, dataKey: "cells", summary: "swot \u2014 four labeled 2\xD72 cells with bullet lists" }
+  ];
+  var TYPE_NAMES = TYPES.map((t) => t.type);
+  function renderSpec(spec) {
+    spec = applyPreset(spec);
+    switch (spec.type) {
+      case "bar":
+        return renderBar(spec);
+      case "grouped":
+        return renderBarGrouped(spec);
+      case "stacked":
+      case "stacked100":
+        return renderBarStacked(spec);
+      case "stackedh":
+        return renderBarStackedH(spec);
+      case "horizontal":
+        return renderBarH(spec);
+      case "diverging":
+        return renderDiverging(spec);
+      case "lollipop":
+        return renderLollipop(spec);
+      case "line":
+      case "smooth":
+      case "area":
+      case "stepped":
+      case "stackedArea":
+      case "stacked-area":
+      case "difference":
+        return renderLine(spec);
+      case "slope":
+        return renderSlope(spec);
+      case "pie":
+      case "donut":
+        return renderPie(spec);
+      case "pieofpie":
+      case "piepie":
+        return renderPieOfPie(spec);
+      case "kpi":
+        return renderKpi(spec);
+      case "cards":
+        return renderCards(spec);
+      case "layers":
+        return renderLayers(spec);
+      case "progress":
+        return renderProgress(spec);
+      case "waffle":
+        return renderWaffle(spec);
+      case "heatmap":
+        return renderHeatmap(spec);
+      case "funnel":
+        return renderFunnel(spec);
+      case "pyramid":
+        return renderPyramid(spec);
+      case "quadrant":
+        return renderQuadrant(spec);
+      case "timeline":
+        return renderTimeline(spec);
+      case "venn":
+        return renderVenn(spec);
+      case "matrix":
+        return renderMatrix(spec);
+      case "checklist":
+        return renderChecklist(spec);
+      case "iconarray":
+        return renderIconArray(spec);
+      case "steps":
+        return renderSteps(spec);
+      case "table":
+        return renderTable(spec);
+      case "gauge":
+        return renderGauge(spec);
+      case "bullet":
+        return renderBullet(spec);
+      case "calendar":
+        return renderCalendar(spec);
+      case "leaderboard":
+        return renderLeaderboard(spec);
+      case "callout":
+        return renderCallout(spec);
+      case "ring":
+        return renderRing(spec);
+      case "versus":
+        return renderVersus(spec);
+      case "gantt":
+        return renderGantt(spec);
+      case "waterfall":
+        return renderWaterfall(spec);
+      case "swimlane":
+        return renderSwimlane(spec);
+      case "tierlist":
+        return renderTierList(spec);
+      case "swot":
+        return renderSwot(spec);
+      default:
+        throw new Error('render-core: unknown chart type "' + spec.type + '"');
+    }
+  }
+  return __toCommonJS(render_core_exports);
+})();
+
+
+var SPECS = [{"type":"cards","title":"This month","cards":[{"label":"MRR","value":128400,"valuePrefix":"$","delta":12.4},{"label":"Active users","value":8210,"delta":3.1},{"label":"Churn","value":2.4,"valueUnit":"%","delta":0.6,"deltaGoodWhen":"down"},{"label":"NPS","value":61,"delta":-2}]},{"type":"layers","title":"Our stack","layers":[{"title":"Application","subtitle":"React + TypeScript"},{"title":"API","subtitle":"Node + Hono"},{"title":"Engine","subtitle":"render-core (pure SVG)"},{"title":"Infra","subtitle":"Railway + Docker"}]},{"type":"progress","title":"Quarter to date","bars":[{"label":"Q1 revenue","value":82,"target":100},{"label":"Signups","value":1240,"target":2000},{"label":"Uptime","value":99.2,"valueUnit":"%"},{"label":"Onboarding","value":47,"target":60}]},{"type":"waffle","title":"Revenue by segment","parts":[{"label":"Enterprise","value":45},{"label":"SMB","value":30},{"label":"Other","value":15}]},{"type":"heatmap","title":"Active users by day & time","rows":["Mon","Tue","Wed","Thu","Fri"],"columns":["9a","12p","3p","6p","9p"],"values":[[2,5,8,3,1],[1,4,9,6,2],[0,3,7,8,4],[2,6,9,7,3],[3,7,6,4,5]]},{"type":"funnel","title":"Signup funnel","stages":[{"label":"Visitors","value":12000},{"label":"Signups","value":4200},{"label":"Trials","value":1800},{"label":"Paid","value":640}]},{"type":"pyramid","title":"Operating model","levels":[{"title":"Vision"},{"title":"Strategy"},{"title":"Execution"},{"title":"Operations"}]},{"type":"quadrant","title":"Roadmap prioritization","xAxis":"Effort","yAxis":"Impact","items":[{"label":"Quick win","x":0.2,"y":0.82},{"label":"Big bet","x":0.78,"y":0.9},{"label":"Fill-in","x":0.25,"y":0.25},{"label":"Time sink","x":0.8,"y":0.2}]},{"type":"timeline","title":"Company milestones","events":[{"date":"Q1","label":"Launch"},{"date":"Q2","label":"Series A"},{"date":"Q3","label":"100k users"},{"date":"Q4","label":"Profitable"}]},{"type":"venn","title":"Team overlap","sets":[{"label":"Design","value":120},{"label":"Engineering","value":160}],"overlap":40},{"type":"matrix","title":"Plans","columns":["Free","Pro","Enterprise"],"rows":[{"label":"SSO / SAML","cells":[false,false,true]},{"label":"API access","cells":[false,true,true]},{"label":"Priority support","cells":[false,"partial",true]},{"label":"Audit log","cells":[false,false,true]},{"label":"Seats","cells":["1","10","Unlimited"]}]},{"type":"checklist","title":"Launch checklist","items":[{"label":"Domain transferred","status":"done"},{"label":"API deployed","status":"done"},{"label":"Load testing","status":"partial"},{"label":"Billing live","status":"pending"},{"label":"SOC 2 audit","status":"blocked"}]},{"type":"iconarray","title":"Teams onboarded (7 / 10)","total":10,"filled":7},{"type":"steps","title":"How it works","steps":[{"label":"Sign up","description":"free, no card"},{"label":"Connect data","description":"paste or upload"},{"label":"Build chart","description":"pick a type"},{"label":"Share","description":"link or embed"}]},{"type":"venn","title":"venn — 3 sets","sets":[{"label":"SEO","value":90},{"label":"Ads","value":70},{"label":"Referral","value":50}]},{"type":"waffle","title":"waffle — single % gauge","parts":[{"label":"Complete","value":64}]},{"type":"iconarray","title":"iconarray — wrap (24)","total":24,"filled":17,"perRow":12},{"type":"quadrant","title":"quadrant — edge labels","xAxis":"Reach","yAxis":"Ease","items":[{"label":"Far right item","x":0.95,"y":0.6},{"label":"Low corner","x":0.05,"y":0.05}]},{"type":"table","title":"Revenue by region","columns":["Region","Q1","Q2","Q3"],"rows":[["North",420,510,480],["South",310,290,350],["East",530,560,600],["West",280,340,390]]},{"type":"gauge","title":"Capacity used","label":"of 500 GB","value":372,"min":0,"max":500,"valueUnit":"GB"},{"type":"bullet","title":"Performance vs target","bars":[{"label":"Revenue","value":275,"target":250,"max":300,"bands":[150,225]},{"label":"Profit","value":82,"target":100,"max":120,"bands":[60,90]},{"label":"New customers","value":134,"target":120,"max":160,"bands":[80,120]}]},{"type":"calendar","title":"Commits in 2025","year":2025,"days":{"2025-01-06":2,"2025-01-21":5,"2025-02-03":8,"2025-02-18":3,"2025-03-11":6,"2025-04-02":9,"2025-04-22":4,"2025-05-15":7,"2025-06-09":2,"2025-07-21":10,"2025-08-04":5,"2025-09-17":6,"2025-10-08":3,"2025-11-19":8,"2025-12-02":4,"2025-12-23":9}},{"type":"leaderboard","title":"Top regions by revenue","valueUnit":"k","items":[{"label":"North","value":530},{"label":"South","value":480},{"label":"East","value":610},{"label":"West","value":390},{"label":"Central","value":450}]},{"type":"callout","title":"Performance","value":3.4,"valueUnit":"×","caption":"faster than last quarter","note":"vs Q1"},{"type":"ring","title":"Quarter goal","value":70,"target":100,"label":"of $1M target"},{"type":"versus","title":"Plan A vs Plan B","sides":[{"title":"Starter","items":[{"label":"Price /mo","value":9},{"label":"Seats","value":3},{"label":"API calls","value":1000}]},{"title":"Pro","items":[{"label":"Price /mo","value":29},{"label":"Seats","value":10},{"label":"API calls","value":50000}]}]},{"type":"gantt","title":"Launch plan","tasks":[{"label":"Design","start":0,"end":3},{"label":"Build","start":2,"end":7},{"label":"QA","start":6,"end":9},{"label":"Launch","start":9,"end":10}]},{"type":"waterfall","title":"Revenue bridge","start":0,"steps":[{"label":"New","value":120},{"label":"Expansion","value":60},{"label":"Churn","value":-40},{"label":"Contraction","value":-15}]},{"type":"swimlane","title":"Roadmap","phases":["Q1","Q2","Q3"],"lanes":[{"label":"Engine","items":[{"phase":0,"label":"Types"},{"phase":2,"label":"Tiling"}]},{"label":"Surfaces","items":[{"phase":1,"label":"RapidAPI"}]},{"label":"Sites","items":[{"phase":2,"label":"Relaunch"}]}]},{"type":"tierlist","title":"Chart tiers","tiers":[{"label":"S","items":["Bar","Line","KPI"]},{"label":"A","items":["Pie","Area","Funnel"]},{"label":"B","items":["Radar"]}]},{"type":"swot","title":"SlickFast SWOT","cells":[{"title":"Strengths","items":["Deterministic engine","$0 local MCP","46 types"]},{"title":"Weaknesses","items":["New brand","Docs young"]},{"title":"Opportunities","items":["AI chart demand","RapidAPI funnel"]},{"title":"Threats","items":["Incumbent libraries"]}]}];
+var grid=document.getElementById('grid'),P=document.getElementById('palette'),B=document.getElementById('bg'),W=document.getElementById('wm');
+document.getElementById('count').textContent = RC.TYPES.length+' engine types · '+SPECS.length+' samples';
+function card(s){
+  var m=Object.assign({},s,{palette:P.value,background:B.value,watermark:W.checked});
+  var el=document.createElement('div');el.className='card';
+  var h=document.createElement('h3');h.innerHTML=(s.title?s.title+' — ':'')+'<code>'+s.type+'</code>';el.appendChild(h);
+  var f=document.createElement('div');f.className='frame';f.style.background=(B.value==='transparent'?'#ffffff':B.value);
+  try{f.innerHTML=RC.renderSpec(m);}catch(e){f.innerHTML='<div class="err">'+(e&&e.message||e)+'</div>';}
+  el.appendChild(f);return el;
+}
+function all(){grid.innerHTML='';SPECS.forEach(function(s){grid.appendChild(card(s));});}
+[P,B,W].forEach(function(c){c.addEventListener('change',all);});all();
+</script></body></html>

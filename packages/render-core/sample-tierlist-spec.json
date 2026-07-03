@@ -1,0 +1,1 @@
+{ "type": "tierlist", "title": "Chart tiers", "tiers": [ { "label": "S", "items": ["Bar", "Line", "KPI"] }, { "label": "A", "items": ["Pie", "Area", "Funnel"] }, { "label": "B", "items": ["Radar"] } ] }

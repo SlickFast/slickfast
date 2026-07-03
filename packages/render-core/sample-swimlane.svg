@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 242" width="680" height="242" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="680" height="242" fill="#ffffff"/>
+<text x="340" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Roadmap</text>
+<text x="212.67" y="69" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">Q1</text>
+<text x="390" y="69" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">Q2</text>
+<text x="567.33" y="69" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">Q3</text>
+<rect x="24" y="80" width="632" height="42" rx="6" fill="#2563eb" fill-opacity="0.07"/>
+<text x="32" y="105" font-size="13" font-weight="600" fill="#475569">Engine</text>
+<rect x="130" y="88" width="165.33" height="26" rx="5" fill="#2563eb"/>
+<text x="212.67" y="105" text-anchor="middle" font-size="11" fill="#ffffff">Types</text>
+<rect x="484.67" y="88" width="165.33" height="26" rx="5" fill="#2563eb"/>
+<text x="567.33" y="105" text-anchor="middle" font-size="11" fill="#ffffff">Tiling</text>
+<rect x="24" y="130" width="632" height="42" rx="6" fill="#7c3aed" fill-opacity="0.07"/>
+<text x="32" y="155" font-size="13" font-weight="600" fill="#475569">Surfaces</text>
+<rect x="307.33" y="138" width="165.33" height="26" rx="5" fill="#7c3aed"/>
+<text x="390" y="155" text-anchor="middle" font-size="11" fill="#ffffff">RapidAPI</text>
+<rect x="24" y="180" width="632" height="42" rx="6" fill="#059669" fill-opacity="0.07"/>
+<text x="32" y="205" font-size="13" font-weight="600" fill="#475569">Sites</text>
+<rect x="484.67" y="188" width="165.33" height="26" rx="5" fill="#059669"/>
+<text x="567.33" y="205" text-anchor="middle" font-size="11" fill="#1a1a1a">Relaunch</text>
+<text x="670" y="233" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

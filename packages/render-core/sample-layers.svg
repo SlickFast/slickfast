@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 388" width="600" height="388" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="600" height="388" fill="#ffffff"/>
+<text x="300" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Our stack</text>
+<rect x="24" y="54" width="552" height="72" rx="12" fill="#2563eb"/>
+<text x="300" y="88" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">Application</text>
+<text x="300" y="106" text-anchor="middle" font-size="13" fill="#ffffff" opacity="0.85">React + TypeScript</text>
+<rect x="24" y="136" width="552" height="72" rx="12" fill="#7c3aed"/>
+<text x="300" y="170" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">API</text>
+<text x="300" y="188" text-anchor="middle" font-size="13" fill="#ffffff" opacity="0.85">Node + Hono</text>
+<rect x="24" y="218" width="552" height="72" rx="12" fill="#059669"/>
+<text x="300" y="252" text-anchor="middle" font-size="17" font-weight="700" fill="#1a1a1a">Engine</text>
+<text x="300" y="270" text-anchor="middle" font-size="13" fill="#1a1a1a" opacity="0.85">render-core (pure SVG)</text>
+<rect x="24" y="300" width="552" height="72" rx="12" fill="#d97706"/>
+<text x="300" y="334" text-anchor="middle" font-size="17" font-weight="700" fill="#1a1a1a">Infra</text>
+<text x="300" y="352" text-anchor="middle" font-size="13" fill="#1a1a1a" opacity="0.85">Railway + Docker</text>
+<text x="590" y="379" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

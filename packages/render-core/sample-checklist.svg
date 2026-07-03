@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 256" width="520" height="256" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="520" height="256" fill="#ffffff"/>
+<text x="24" y="33" font-size="18" font-weight="700" fill="#0f172a">Launch checklist</text>
+<path d="M28.5,73.26 L33.44,78.46 L42.15,67.15" fill="none" stroke="#059669" stroke-width="3.38" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="62" y="77.55" font-size="14" fill="#94a3b8">Domain transferred</text>
+<path d="M28.5,111.26 L33.44,116.46 L42.15,105.15" fill="none" stroke="#059669" stroke-width="3.38" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="62" y="115.55" font-size="14" fill="#94a3b8">API deployed to Railway</text>
+<circle cx="35" cy="149" r="4.68" fill="#d97706"/>
+<text x="62" y="153.55" font-size="14" fill="#334155">Load testing</text>
+<circle cx="35" cy="187" r="5.2" fill="none" stroke="#cbd5e1" stroke-width="2.34"/>
+<text x="62" y="191.55" font-size="14" fill="#334155">Billing live</text>
+<path d="M29.8,219.8 L40.2,230.2 M40.2,219.8 L29.8,230.2" fill="none" stroke="#dc2626" stroke-width="3.12" stroke-linecap="round"/>
+<text x="62" y="229.55" font-size="14" fill="#334155">SOC 2 audit</text>
+<text x="510" y="247" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

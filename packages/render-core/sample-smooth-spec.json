@@ -1,0 +1,12 @@
+{
+  "type": "smooth",
+  "title": "Smoothed Signal",
+  "data": {
+    "labels": ["A", "B", "C", "D", "E", "F"],
+    "series": [{ "name": "Signal", "values": [40, 120, 80, 160, 110, 200] }]
+  },
+  "palette": "Cyberpunk",
+  "background": "#0b0f17",
+  "width": 800,
+  "height": 450
+}

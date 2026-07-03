@@ -1,0 +1,10 @@
+{
+  "type": "pie",
+  "title": "Traffic by Source",
+  "data": {
+    "labels": ["Organic", "Direct", "Social", "Referral", "Email"],
+    "series": [{ "values": [45, 25, 15, 10, 5] }]
+  },
+  "palette": "Clean Corporate",
+  "width": 640, "height": 420
+}

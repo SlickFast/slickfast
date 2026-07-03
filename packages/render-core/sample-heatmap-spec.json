@@ -1,0 +1,13 @@
+{
+  "type": "heatmap",
+  "title": "Active users by day & time",
+  "rows": ["Mon", "Tue", "Wed", "Thu", "Fri"],
+  "columns": ["9a", "12p", "3p", "6p", "9p"],
+  "values": [
+    [2, 5, 8, 3, 1],
+    [1, 4, 9, 6, 2],
+    [0, 3, 7, 8, 4],
+    [2, 6, 9, 7, 3],
+    [3, 7, 6, 4, 5]
+  ]
+}

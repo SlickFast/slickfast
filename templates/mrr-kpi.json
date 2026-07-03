@@ -1,0 +1,8 @@
+{
+  "type": "kpi",
+  "label": "Monthly Recurring Revenue",
+  "value": 142800,
+  "valuePrefix": "$",
+  "delta": 9.2,
+  "palette": "Clean Corporate"
+}

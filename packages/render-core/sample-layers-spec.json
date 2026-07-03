@@ -1,0 +1,10 @@
+{
+  "type": "layers",
+  "title": "Our stack",
+  "layers": [
+    { "title": "Application", "subtitle": "React + TypeScript" },
+    { "title": "API", "subtitle": "Node + Hono" },
+    { "title": "Engine", "subtitle": "render-core (pure SVG)" },
+    { "title": "Infra", "subtitle": "Railway + Docker" }
+  ]
+}

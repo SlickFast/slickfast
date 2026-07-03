@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 1000" width="600" height="1000" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="600" height="1000" fill="#ffffff"/>
+<path d="M300,177 A266,266 0 0 1 456.35,658.2 L390.68,567.82 A154.28,154.28 0 0 0 300,288.72 Z" fill="#f43f5e" stroke="#ffffff" stroke-width="4.26" stroke-linejoin="round"/>
+<text x="499.86" y="382.06" text-anchor="middle" font-size="17" font-weight="700" fill="#1a1a1a">40%</text>
+<path d="M456.35,658.2 A266,266 0 0 1 69.64,576 L166.39,520.14 A154.28,154.28 0 0 0 390.68,567.82 Z" fill="#f97316" stroke="#ffffff" stroke-width="4.26" stroke-linejoin="round"/>
+<text x="256.31" y="652.55" text-anchor="middle" font-size="17" font-weight="700" fill="#1a1a1a">27%</text>
+<path d="M69.64,576 A266,266 0 0 1 52.39,345.82 L156.38,386.64 A154.28,154.28 0 0 0 166.39,520.14 Z" fill="#eab308" stroke="#ffffff" stroke-width="4.26" stroke-linejoin="round"/>
+<text x="90.45" y="462.7" text-anchor="middle" font-size="17" font-weight="700" fill="#1a1a1a">14%</text>
+<path d="M52.39,345.82 A266,266 0 0 1 163.57,214.65 L220.87,310.56 A154.28,154.28 0 0 0 156.38,386.64 Z" fill="#22c55e" stroke="#ffffff" stroke-width="4.26" stroke-linejoin="round"/>
+<text x="139.7" y="311.12" text-anchor="middle" font-size="17" font-weight="700" fill="#1a1a1a">10%</text>
+<path d="M163.57,214.65 A266,266 0 0 1 300,177 L300,288.72 A154.28,154.28 0 0 0 220.87,310.56 Z" fill="#06b6d4" stroke="#ffffff" stroke-width="4.26" stroke-linejoin="round"/>
+<text x="244.1" y="244.43" text-anchor="middle" font-size="17" font-weight="700" fill="#1a1a1a">9%</text>
+<text x="300" y="441" text-anchor="middle" font-size="27" font-weight="800" fill="#0f172a">10,500</text>
+<text x="300" y="461" text-anchor="middle" font-size="16" fill="#475569">Total</text>
+<rect x="220.6" y="843" width="11" height="11" rx="2.5" fill="#f43f5e"/>
+<text x="238.6" y="852" font-size="16" fill="#475569">Organic · 4,200</text>
+<rect x="220.6" y="869" width="11" height="11" rx="2.5" fill="#f97316"/>
+<text x="238.6" y="878" font-size="16" fill="#475569">Direct · 2,800</text>
+<rect x="220.6" y="895" width="11" height="11" rx="2.5" fill="#eab308"/>
+<text x="238.6" y="904" font-size="16" fill="#475569">Referral · 1,500</text>
+<rect x="220.6" y="921" width="11" height="11" rx="2.5" fill="#22c55e"/>
+<text x="238.6" y="930" font-size="16" fill="#475569">Paid · 1,100</text>
+<rect x="220.6" y="947" width="11" height="11" rx="2.5" fill="#06b6d4"/>
+<text x="238.6" y="956" font-size="16" fill="#475569">Social · 900</text>
+<text x="300" y="33" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Traffic by Source</text>
+<text x="592" y="992" text-anchor="end" font-size="10" fill="#94a3b8" opacity="0.7">slickfast.com</text>
+</svg>

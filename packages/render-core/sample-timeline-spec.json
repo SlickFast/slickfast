@@ -1,0 +1,10 @@
+{
+  "type": "timeline",
+  "title": "Company milestones",
+  "events": [
+    { "date": "Q1", "label": "Launch" },
+    { "date": "Q2", "label": "Series A" },
+    { "date": "Q3", "label": "100k users" },
+    { "date": "Q4", "label": "Profitable" }
+  ]
+}

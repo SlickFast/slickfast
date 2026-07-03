@@ -1,0 +1,14 @@
+{
+  "type": "stackedArea",
+  "title": "Traffic by Channel",
+  "data": {
+    "labels": ["Mon", "Tue", "Wed", "Thu", "Fri"],
+    "series": [
+      { "name": "Organic",  "values": [40, 55, 50, 70, 65] },
+      { "name": "Paid",     "values": [30, 35, 45, 40, 55] },
+      { "name": "Referral", "values": [20, 25, 20, 30, 28] }
+    ]
+  },
+  "palette": "Clean Corporate",
+  "width": 800, "height": 450
+}

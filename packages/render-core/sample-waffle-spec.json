@@ -1,0 +1,9 @@
+{
+  "type": "waffle",
+  "title": "Revenue by segment",
+  "parts": [
+    { "label": "Enterprise", "value": 45 },
+    { "label": "SMB", "value": 30 },
+    { "label": "Other", "value": 15 }
+  ]
+}

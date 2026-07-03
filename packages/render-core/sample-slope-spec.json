@@ -1,0 +1,14 @@
+{
+  "type": "slope",
+  "title": "Market Share: 2023 → 2024",
+  "data": {
+    "labels": ["2023", "2024"],
+    "series": [
+      { "name": "Product A", "values": [120, 310] },
+      { "name": "Product B", "values": [200, 180] },
+      { "name": "Product C", "values": [90, 160] }
+    ]
+  },
+  "palette": "Clean Corporate",
+  "width": 800, "height": 450
+}

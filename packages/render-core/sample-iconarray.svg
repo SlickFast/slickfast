@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 104" width="420" height="104" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="420" height="104" fill="#ffffff"/>
+<text x="24" y="33" font-size="18" font-weight="700" fill="#0f172a">Teams onboarded (7 / 10)</text>
+<circle cx="39" cy="60.6" r="6.6" fill="#2563eb"/><path d="M29.4,84 Q29.4,68.52 39,68.52 Q48.6,68.52 48.6,84 Z" fill="#2563eb"/>
+<circle cx="77" cy="60.6" r="6.6" fill="#2563eb"/><path d="M67.4,84 Q67.4,68.52 77,68.52 Q86.6,68.52 86.6,84 Z" fill="#2563eb"/>
+<circle cx="115" cy="60.6" r="6.6" fill="#2563eb"/><path d="M105.4,84 Q105.4,68.52 115,68.52 Q124.6,68.52 124.6,84 Z" fill="#2563eb"/>
+<circle cx="153" cy="60.6" r="6.6" fill="#2563eb"/><path d="M143.4,84 Q143.4,68.52 153,68.52 Q162.6,68.52 162.6,84 Z" fill="#2563eb"/>
+<circle cx="191" cy="60.6" r="6.6" fill="#2563eb"/><path d="M181.4,84 Q181.4,68.52 191,68.52 Q200.6,68.52 200.6,84 Z" fill="#2563eb"/>
+<circle cx="229" cy="60.6" r="6.6" fill="#2563eb"/><path d="M219.4,84 Q219.4,68.52 229,68.52 Q238.6,68.52 238.6,84 Z" fill="#2563eb"/>
+<circle cx="267" cy="60.6" r="6.6" fill="#2563eb"/><path d="M257.4,84 Q257.4,68.52 267,68.52 Q276.6,68.52 276.6,84 Z" fill="#2563eb"/>
+<circle cx="305" cy="60.6" r="6.6" fill="#e2e8f0"/><path d="M295.4,84 Q295.4,68.52 305,68.52 Q314.6,68.52 314.6,84 Z" fill="#e2e8f0"/>
+<circle cx="343" cy="60.6" r="6.6" fill="#e2e8f0"/><path d="M333.4,84 Q333.4,68.52 343,68.52 Q352.6,68.52 352.6,84 Z" fill="#e2e8f0"/>
+<circle cx="381" cy="60.6" r="6.6" fill="#e2e8f0"/><path d="M371.4,84 Q371.4,68.52 381,68.52 Q390.6,68.52 390.6,84 Z" fill="#e2e8f0"/>
+<text x="410" y="95" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

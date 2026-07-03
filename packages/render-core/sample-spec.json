@@ -1,0 +1,14 @@
+{
+  "type": "bar",
+  "title": "Q3 Revenue by Region",
+  "data": {
+    "labels": ["North", "South", "East", "West", "Central"],
+    "series": [{ "name": "Revenue", "values": [420, 310, 530, 290, 640] }]
+  },
+  "palette": "Clean Corporate",
+  "background": "#ffffff",
+  "width": 800,
+  "height": 450,
+  "valueUnit": "",
+  "showValues": true
+}

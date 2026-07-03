@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 240" width="260" height="240" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="260" height="240" fill="#ffffff"/>
+<text x="130" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Quarter goal</text>
+<circle cx="130" cy="137" r="75" fill="none" stroke="#e2e8f0" stroke-width="19.5"/>
+<circle cx="130" cy="137" r="75" fill="none" stroke="#2563eb" stroke-width="19.5" stroke-linecap="round" stroke-dasharray="329.87 141.37" transform="rotate(-90 130 137)"/>
+<text x="130" y="150.5" text-anchor="middle" font-size="37.5" font-weight="800" fill="#0f172a">70%</text>
+<text x="130" y="237.75" text-anchor="middle" font-size="13" fill="#475569">of $1M target</text>
+<text x="250" y="231" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

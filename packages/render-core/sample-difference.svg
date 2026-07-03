@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="800" height="450" fill="#ffffff"/>
+<line x1="56" y1="386" x2="776" y2="386" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="390" text-anchor="end" font-size="11" fill="#64748b">0</text>
+<line x1="56" y1="275.33" x2="776" y2="275.33" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="279.33" text-anchor="end" font-size="11" fill="#64748b">100</text>
+<line x1="56" y1="164.67" x2="776" y2="164.67" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="168.67" text-anchor="end" font-size="11" fill="#64748b">200</text>
+<line x1="56" y1="54" x2="776" y2="54" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="58" text-anchor="end" font-size="11" fill="#64748b">300</text>
+<text x="56" y="404" text-anchor="start" font-size="12" fill="#475569">Jan</text>
+<text x="236" y="404" text-anchor="middle" font-size="12" fill="#475569">Feb</text>
+<text x="416" y="404" text-anchor="middle" font-size="12" fill="#475569">Mar</text>
+<text x="596" y="404" text-anchor="middle" font-size="12" fill="#475569">Apr</text>
+<text x="776" y="404" text-anchor="end" font-size="12" fill="#475569">May</text>
+<path d="M56,253.2 L236,208.93 L416,220 L596,153.6 L776,98.27 L776,186.8 L596,242.13 L416,231.07 L236,264.27 L56,286.4 Z" fill="#cbd5e1" fill-opacity="0.35" stroke="none"/>
+<path d="M56,253.2 L236,208.93 L416,220 L596,153.6 L776,98.27" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<path d="M56,286.4 L236,264.27 L416,231.07 L596,242.13 L776,186.8" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+<circle cx="56" cy="253.2" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="236" cy="208.93" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="416" cy="220" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="596" cy="153.6" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="776" cy="98.27" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="56" cy="286.4" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="236" cy="264.27" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="416" cy="231.07" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="596" cy="242.13" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="776" cy="186.8" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
+<text x="56" y="273.8" text-anchor="middle" font-size="12" font-weight="700" fill="#059669">+30</text>
+<text x="236" y="240.6" text-anchor="middle" font-size="12" font-weight="700" fill="#059669">+50</text>
+<text x="416" y="229.54" text-anchor="middle" font-size="12" font-weight="700" fill="#059669">+10</text>
+<text x="596" y="201.87" text-anchor="middle" font-size="12" font-weight="700" fill="#059669">+80</text>
+<text x="776" y="146.54" text-anchor="middle" font-size="12" font-weight="700" fill="#059669">+80</text>
+<circle cx="330.96" cy="430" r="5" fill="#2563eb"/>
+<text x="341.96" y="434" font-size="12" fill="#475569">Revenue</text>
+<circle cx="415.92" cy="430" r="5" fill="#7c3aed"/>
+<text x="426.92" y="434" font-size="12" fill="#475569">Cost</text>
+<text x="400" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Revenue vs Cost</text>
+<text x="792" y="442" text-anchor="end" font-size="10" fill="#94a3b8" opacity="0.7">slickfast.com</text>
+</svg>

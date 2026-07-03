@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 344" width="600" height="344" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="600" height="344" fill="#ffffff"/>
+<text x="300" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Signup funnel</text>
+<path d="M24,54 L576,54 L396.6,118 L203.4,118 Z" fill="#2563eb"/>
+<text x="300" y="84" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Visitors</text>
+<text x="300" y="101" text-anchor="middle" font-size="12" fill="#ffffff">12,000  ·  100%</text>
+<path d="M203.4,124 L396.6,124 L341.4,188 L258.6,188 Z" fill="#7c3aed"/>
+<text x="300" y="154" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Signups</text>
+<text x="300" y="171" text-anchor="middle" font-size="12" fill="#ffffff">4,200  ·  35%</text>
+<path d="M258.6,194 L341.4,194 L314.72,258 L285.28,258 Z" fill="#059669"/>
+<text x="300" y="224" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a">Trials</text>
+<text x="300" y="241" text-anchor="middle" font-size="12" fill="#1a1a1a">1,800  ·  15%</text>
+<path d="M285.28,264 L314.72,264 L314.72,328 L285.28,328 Z" fill="#d97706"/>
+<text x="300" y="294" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a">Paid</text>
+<text x="300" y="311" text-anchor="middle" font-size="12" fill="#1a1a1a">640  ·  5%</text>
+<text x="590" y="335" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

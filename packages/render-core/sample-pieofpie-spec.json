@@ -1,0 +1,10 @@
+{
+  "type": "pieofpie",
+  "title": "Revenue breakdown",
+  "palette": "Analogous Shift",
+  "valuePrefix": "$",
+  "pies": [
+    { "title": "By segment", "labels": ["Enterprise", "SMB", "Consumer"], "values": [60, 30, 10] },
+    { "title": "Enterprise", "labels": ["US", "EU", "APAC"], "values": [35, 15, 10] }
+  ]
+}

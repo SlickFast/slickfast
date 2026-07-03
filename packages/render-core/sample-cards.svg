@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1302 240" width="1302" height="240" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="1302" height="240" fill="#ffffff"/>
+<text x="651" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">This month at a glance</text>
+<rect x="24" y="68" width="300" height="148" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="39" y="94.64" width="5" height="94.72" rx="2.5" fill="#2563eb"/>
+<text x="58.5" y="107.96" font-size="14" font-weight="600" fill="#64748b">MRR</text>
+<text x="58.5" y="153.84" font-size="35" font-weight="800" fill="#0f172a">$128,400</text>
+<rect x="58.5" y="171.6" width="69" height="24" rx="12" fill="#ecfdf5"/>
+<text x="93" y="187.6" text-anchor="middle" font-size="12.5" font-weight="700" fill="#059669">▲ 12.4%</text>
+<rect x="342" y="68" width="300" height="148" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="357" y="94.64" width="5" height="94.72" rx="2.5" fill="#7c3aed"/>
+<text x="376.5" y="107.96" font-size="14" font-weight="600" fill="#64748b">Active users</text>
+<text x="376.5" y="153.84" font-size="35" font-weight="800" fill="#0f172a">8,210</text>
+<rect x="376.5" y="171.6" width="62" height="24" rx="12" fill="#ecfdf5"/>
+<text x="407.5" y="187.6" text-anchor="middle" font-size="12.5" font-weight="700" fill="#059669">▲ 3.1%</text>
+<rect x="660" y="68" width="300" height="148" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="675" y="94.64" width="5" height="94.72" rx="2.5" fill="#059669"/>
+<text x="694.5" y="107.96" font-size="14" font-weight="600" fill="#64748b">Churn</text>
+<text x="694.5" y="153.84" font-size="35" font-weight="800" fill="#0f172a">2.4 %</text>
+<rect x="694.5" y="171.6" width="62" height="24" rx="12" fill="#fef2f2"/>
+<text x="725.5" y="187.6" text-anchor="middle" font-size="12.5" font-weight="700" fill="#dc2626">▲ 0.6%</text>
+<rect x="978" y="68" width="300" height="148" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="993" y="94.64" width="5" height="94.72" rx="2.5" fill="#d97706"/>
+<text x="1012.5" y="107.96" font-size="14" font-weight="600" fill="#64748b">NPS</text>
+<text x="1012.5" y="153.84" font-size="35" font-weight="800" fill="#0f172a">61</text>
+<rect x="1012.5" y="171.6" width="47" height="24" rx="12" fill="#fef2f2"/>
+<text x="1036" y="187.6" text-anchor="middle" font-size="12.5" font-weight="700" fill="#dc2626">▼ 2%</text>
+<text x="1292" y="231" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

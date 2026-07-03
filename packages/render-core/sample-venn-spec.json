@@ -1,0 +1,9 @@
+{
+  "type": "venn",
+  "title": "Team overlap",
+  "sets": [
+    { "label": "Design", "value": 120 },
+    { "label": "Engineering", "value": 160 }
+  ],
+  "overlap": 40
+}

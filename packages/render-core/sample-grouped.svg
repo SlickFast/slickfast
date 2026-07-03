@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="800" height="450" fill="#ffffff"/>
+<line x1="56" y1="386" x2="776" y2="386" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="390" text-anchor="end" font-size="11" fill="#64748b">0</text>
+<line x1="56" y1="303" x2="776" y2="303" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="307" text-anchor="end" font-size="11" fill="#64748b">20</text>
+<line x1="56" y1="220" x2="776" y2="220" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="224" text-anchor="end" font-size="11" fill="#64748b">40</text>
+<line x1="56" y1="137" x2="776" y2="137" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="141" text-anchor="end" font-size="11" fill="#64748b">60</text>
+<line x1="56" y1="54" x2="776" y2="54" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="58" text-anchor="end" font-size="11" fill="#64748b">80</text>
+<path d="M82.2,386 L82.2,215.7 Q82.2,211.7 86.2,211.7 L141,211.7 Q145,211.7 145,215.7 L145,386 Z" fill="#2563eb"/>
+<text x="113.6" y="205.7" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">42</text>
+<path d="M147,386 L147,174.2 Q147,170.2 151,170.2 L205.8,170.2 Q209.8,170.2 209.8,174.2 L209.8,386 Z" fill="#dc2626"/>
+<text x="178.4" y="164.2" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">52</text>
+<text x="146" y="404" text-anchor="middle" font-size="12" fill="#475569">Q1</text>
+<path d="M262.2,386 L262.2,161.75 Q262.2,157.75 266.2,157.75 L321,157.75 Q325,157.75 325,161.75 L325,386 Z" fill="#2563eb"/>
+<text x="293.6" y="151.75" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">55</text>
+<path d="M327,386 L327,190.8 Q327,186.8 331,186.8 L385.8,186.8 Q389.8,186.8 389.8,190.8 L389.8,386 Z" fill="#dc2626"/>
+<text x="358.4" y="180.8" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">48</text>
+<text x="326" y="404" text-anchor="middle" font-size="12" fill="#475569">Q2</text>
+<path d="M442.2,386 L442.2,178.35 Q442.2,174.35 446.2,174.35 L501,174.35 Q505,174.35 505,178.35 L505,386 Z" fill="#2563eb"/>
+<text x="473.6" y="168.35" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">51</text>
+<path d="M507,386 L507,95.35 Q507,91.35 511,91.35 L565.8,91.35 Q569.8,91.35 569.8,95.35 L569.8,386 Z" fill="#dc2626"/>
+<text x="538.4" y="85.35" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">71</text>
+<text x="506" y="404" text-anchor="middle" font-size="12" fill="#475569">Q3</text>
+<path d="M622.2,386 L622.2,141 Q622.2,137 626.2,137 L681,137 Q685,137 685,141 L685,386 Z" fill="#2563eb"/>
+<text x="653.6" y="131" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">60</text>
+<path d="M687,386 L687,87.05 Q687,83.05 691,83.05 L745.8,83.05 Q749.8,83.05 749.8,87.05 L749.8,386 Z" fill="#dc2626"/>
+<text x="718.4" y="77.05" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">73</text>
+<text x="686" y="404" text-anchor="middle" font-size="12" fill="#475569">Q4</text>
+<rect x="336.88" y="425" width="11" height="11" rx="2.5" fill="#2563eb"/>
+<text x="353.88" y="434" font-size="12" fill="#475569">2023</text>
+<rect x="400" y="425" width="11" height="11" rx="2.5" fill="#dc2626"/>
+<text x="417" y="434" font-size="12" fill="#475569">2024</text>
+<text x="400" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Revenue by Region</text>
+<text x="792" y="442" text-anchor="end" font-size="10" fill="#94a3b8" opacity="0.7">slickfast.com</text>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="800" height="450" fill="#ffffff"/>
+<line x1="56" y1="404" x2="776" y2="404" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="408" text-anchor="end" font-size="11" fill="#64748b">0</text>
+<line x1="56" y1="316.5" x2="776" y2="316.5" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="320.5" text-anchor="end" font-size="11" fill="#64748b">200</text>
+<line x1="56" y1="229" x2="776" y2="229" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="233" text-anchor="end" font-size="11" fill="#64748b">400</text>
+<line x1="56" y1="141.5" x2="776" y2="141.5" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="145.5" text-anchor="end" font-size="11" fill="#64748b">600</text>
+<line x1="56" y1="54" x2="776" y2="54" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="58" text-anchor="end" font-size="11" fill="#64748b">800</text>
+<path d="M83.36,404 L83.36,225.25 Q83.36,220.25 88.36,220.25 L167.64,220.25 Q172.64,220.25 172.64,225.25 L172.64,404 Z" fill="#2563eb"/>
+<text x="128" y="213.25" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">420</text>
+<text x="128" y="422" text-anchor="middle" font-size="12" fill="#475569">North</text>
+<path d="M227.36,404 L227.36,273.38 Q227.36,268.38 232.36,268.38 L311.64,268.38 Q316.64,268.38 316.64,273.38 L316.64,404 Z" fill="#7c3aed"/>
+<text x="272" y="261.38" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">310</text>
+<text x="272" y="422" text-anchor="middle" font-size="12" fill="#475569">South</text>
+<path d="M371.36,404 L371.36,177.13 Q371.36,172.13 376.36,172.13 L455.64,172.13 Q460.64,172.13 460.64,177.13 L460.64,404 Z" fill="#059669"/>
+<text x="416" y="165.13" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">530</text>
+<text x="416" y="422" text-anchor="middle" font-size="12" fill="#475569">East</text>
+<path d="M515.36,404 L515.36,282.13 Q515.36,277.13 520.36,277.13 L599.64,277.13 Q604.64,277.13 604.64,282.13 L604.64,404 Z" fill="#d97706"/>
+<text x="560" y="270.13" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">290</text>
+<text x="560" y="422" text-anchor="middle" font-size="12" fill="#475569">West</text>
+<path d="M659.36,404 L659.36,129 Q659.36,124 664.36,124 L743.64,124 Q748.64,124 748.64,129 L748.64,404 Z" fill="#dc2626"/>
+<text x="704" y="117" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">640</text>
+<text x="704" y="422" text-anchor="middle" font-size="12" fill="#475569">Central</text>
+<text x="776" y="50" text-anchor="end" font-size="12" fill="#64748b">Total: 2,190</text>
+<text x="400" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Q3 Revenue by Region</text>
+<text x="792" y="442" text-anchor="end" font-size="10" fill="#94a3b8" opacity="0.7">slickfast.com</text>
+</svg>

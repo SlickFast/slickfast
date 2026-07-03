@@ -1,0 +1,1 @@
+{ "type": "swimlane", "title": "Roadmap", "phases": ["Q1", "Q2", "Q3"], "lanes": [ { "label": "Engine", "items": [ { "phase": 0, "label": "Types" }, { "phase": 2, "label": "Tiling" } ] }, { "label": "Surfaces", "items": [ { "phase": 1, "label": "RapidAPI" } ] }, { "label": "Sites", "items": [ { "phase": 2, "label": "Relaunch" } ] } ] }

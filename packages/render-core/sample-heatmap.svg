@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 314" width="640" height="314" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="640" height="314" fill="#ffffff"/>
+<text x="320" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Active users by day &amp; time</text>
+<text x="158.8" y="70" text-anchor="middle" font-size="12" fill="#475569">9a</text>
+<text x="260.4" y="70" text-anchor="middle" font-size="12" fill="#475569">12p</text>
+<text x="362" y="70" text-anchor="middle" font-size="12" fill="#475569">3p</text>
+<text x="463.6" y="70" text-anchor="middle" font-size="12" fill="#475569">6p</text>
+<text x="565.2" y="70" text-anchor="middle" font-size="12" fill="#475569">9p</text>
+<text x="98" y="104" text-anchor="end" font-size="12" fill="#475569">Mon</text>
+<rect x="109" y="79" width="99.6" height="42" rx="4" fill="#a4bef7"/>
+<text x="158.8" y="104" text-anchor="middle" font-size="12" fill="#1a1a1a">2</text>
+<rect x="210.6" y="79" width="99.6" height="42" rx="4" fill="#5384ef"/>
+<text x="260.4" y="104" text-anchor="middle" font-size="12" fill="#1a1a1a">5</text>
+<rect x="312.2" y="79" width="99.6" height="42" rx="4" fill="#1450d6"/>
+<text x="362" y="104" text-anchor="middle" font-size="12" fill="#ffffff">8</text>
+<rect x="413.8" y="79" width="99.6" height="42" rx="4" fill="#89aaf4"/>
+<text x="463.6" y="104" text-anchor="middle" font-size="12" fill="#1a1a1a">3</text>
+<rect x="515.4" y="79" width="99.6" height="42" rx="4" fill="#bfd1f9"/>
+<text x="565.2" y="104" text-anchor="middle" font-size="12" fill="#1a1a1a">1</text>
+<text x="98" y="148" text-anchor="end" font-size="12" fill="#475569">Tue</text>
+<rect x="109" y="123" width="99.6" height="42" rx="4" fill="#bfd1f9"/>
+<text x="158.8" y="148" text-anchor="middle" font-size="12" fill="#1a1a1a">1</text>
+<rect x="210.6" y="123" width="99.6" height="42" rx="4" fill="#6e97f2"/>
+<text x="260.4" y="148" text-anchor="middle" font-size="12" fill="#1a1a1a">4</text>
+<rect x="312.2" y="123" width="99.6" height="42" rx="4" fill="#1146bb"/>
+<text x="362" y="148" text-anchor="middle" font-size="12" fill="#ffffff">9</text>
+<rect x="413.8" y="123" width="99.6" height="42" rx="4" fill="#3870ed"/>
+<text x="463.6" y="148" text-anchor="middle" font-size="12" fill="#1a1a1a">6</text>
+<rect x="515.4" y="123" width="99.6" height="42" rx="4" fill="#a4bef7"/>
+<text x="565.2" y="148" text-anchor="middle" font-size="12" fill="#1a1a1a">2</text>
+<text x="98" y="192" text-anchor="end" font-size="12" fill="#475569">Wed</text>
+<rect x="109" y="167" width="99.6" height="42" rx="4" fill="#dae4fc"/>
+<text x="158.8" y="192" text-anchor="middle" font-size="12" fill="#1a1a1a">0</text>
+<rect x="210.6" y="167" width="99.6" height="42" rx="4" fill="#89aaf4"/>
+<text x="260.4" y="192" text-anchor="middle" font-size="12" fill="#1a1a1a">3</text>
+<rect x="312.2" y="167" width="99.6" height="42" rx="4" fill="#1d5dea"/>
+<text x="362" y="192" text-anchor="middle" font-size="12" fill="#ffffff">7</text>
+<rect x="413.8" y="167" width="99.6" height="42" rx="4" fill="#1450d6"/>
+<text x="463.6" y="192" text-anchor="middle" font-size="12" fill="#ffffff">8</text>
+<rect x="515.4" y="167" width="99.6" height="42" rx="4" fill="#6e97f2"/>
+<text x="565.2" y="192" text-anchor="middle" font-size="12" fill="#1a1a1a">4</text>
+<text x="98" y="236" text-anchor="end" font-size="12" fill="#475569">Thu</text>
+<rect x="109" y="211" width="99.6" height="42" rx="4" fill="#a4bef7"/>
+<text x="158.8" y="236" text-anchor="middle" font-size="12" fill="#1a1a1a">2</text>
+<rect x="210.6" y="211" width="99.6" height="42" rx="4" fill="#3870ed"/>
+<text x="260.4" y="236" text-anchor="middle" font-size="12" fill="#1a1a1a">6</text>
+<rect x="312.2" y="211" width="99.6" height="42" rx="4" fill="#1146bb"/>
+<text x="362" y="236" text-anchor="middle" font-size="12" fill="#ffffff">9</text>
+<rect x="413.8" y="211" width="99.6" height="42" rx="4" fill="#1d5dea"/>
+<text x="463.6" y="236" text-anchor="middle" font-size="12" fill="#ffffff">7</text>
+<rect x="515.4" y="211" width="99.6" height="42" rx="4" fill="#89aaf4"/>
+<text x="565.2" y="236" text-anchor="middle" font-size="12" fill="#1a1a1a">3</text>
+<text x="98" y="280" text-anchor="end" font-size="12" fill="#475569">Fri</text>
+<rect x="109" y="255" width="99.6" height="42" rx="4" fill="#89aaf4"/>
+<text x="158.8" y="280" text-anchor="middle" font-size="12" fill="#1a1a1a">3</text>
+<rect x="210.6" y="255" width="99.6" height="42" rx="4" fill="#1d5dea"/>
+<text x="260.4" y="280" text-anchor="middle" font-size="12" fill="#ffffff">7</text>
+<rect x="312.2" y="255" width="99.6" height="42" rx="4" fill="#3870ed"/>
+<text x="362" y="280" text-anchor="middle" font-size="12" fill="#1a1a1a">6</text>
+<rect x="413.8" y="255" width="99.6" height="42" rx="4" fill="#6e97f2"/>
+<text x="463.6" y="280" text-anchor="middle" font-size="12" fill="#1a1a1a">4</text>
+<rect x="515.4" y="255" width="99.6" height="42" rx="4" fill="#5384ef"/>
+<text x="565.2" y="280" text-anchor="middle" font-size="12" fill="#1a1a1a">5</text>
+<text x="630" y="305" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

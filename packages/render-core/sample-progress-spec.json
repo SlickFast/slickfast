@@ -1,0 +1,10 @@
+{
+  "type": "progress",
+  "title": "Quarter to date",
+  "bars": [
+    { "label": "Q1 revenue", "value": 82, "target": 100 },
+    { "label": "Signups", "value": 1240, "target": 2000 },
+    { "label": "Uptime", "value": 99.2, "valueUnit": "%" },
+    { "label": "Onboarding", "value": 47, "target": 60 }
+  ]
+}

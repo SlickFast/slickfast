@@ -1,0 +1,12 @@
+{
+  "type": "horizontal",
+  "title": "Top Countries by Users",
+  "data": {
+    "labels": ["United States", "India", "Brazil", "Germany", "Japan"],
+    "series": [
+      { "values": [820, 610, 430, 295, 240] }
+    ]
+  },
+  "palette": "Clean Corporate",
+  "width": 800, "height": 450
+}

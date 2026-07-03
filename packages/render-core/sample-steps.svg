@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 204" width="720" height="204" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="720" height="204" fill="#ffffff"/>
+<text x="360" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">How it works</text>
+<line x1="102" y1="112" x2="231.67" y2="112" stroke="#cbd5e1" stroke-width="2"/><path d="M230.67,107 L236.67,112 L230.67,117" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="292.67" y1="112" x2="422.33" y2="112" stroke="#cbd5e1" stroke-width="2"/><path d="M421.33,107 L427.33,112 L421.33,117" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="483.33" y1="112" x2="613" y2="112" stroke="#cbd5e1" stroke-width="2"/><path d="M612,107 L618,112 L612,117" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="74" cy="112" r="22" fill="#2563eb"/>
+<text x="74" y="117" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">1</text>
+<text x="74" y="158" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">Sign up</text>
+<text x="74" y="176" text-anchor="middle" font-size="12" fill="#475569">free, no card</text>
+<circle cx="264.67" cy="112" r="22" fill="#7c3aed"/>
+<text x="264.67" y="117" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">2</text>
+<text x="264.67" y="158" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">Connect data</text>
+<text x="264.67" y="176" text-anchor="middle" font-size="12" fill="#475569">paste or upload</text>
+<circle cx="455.33" cy="112" r="22" fill="#059669"/>
+<text x="455.33" y="117" text-anchor="middle" font-size="16" font-weight="800" fill="#1a1a1a">3</text>
+<text x="455.33" y="158" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">Build chart</text>
+<text x="455.33" y="176" text-anchor="middle" font-size="12" fill="#475569">pick a type</text>
+<circle cx="646" cy="112" r="22" fill="#d97706"/>
+<text x="646" y="117" text-anchor="middle" font-size="16" font-weight="800" fill="#1a1a1a">4</text>
+<text x="646" y="158" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">Share</text>
+<text x="646" y="176" text-anchor="middle" font-size="12" fill="#475569">link or embed</text>
+<text x="710" y="195" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

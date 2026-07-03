@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="600" height="800" rx="14" fill="#ffffff"/>
+<rect x="24" y="278" width="7" height="244" rx="3.5" fill="#2563eb"/>
+<text x="54" y="309" font-size="31" font-weight="600" fill="#64748b">Monthly Recurring Revenue</text>
+<text x="54" y="434" font-size="96" font-weight="800" fill="#0f172a">$142,800</text>
+<rect x="54" y="467" width="148" height="55" rx="27.5" fill="#ecfdf5"/>
+<text x="128" y="504.4" text-anchor="middle" font-size="29" font-weight="700" fill="#059669">▲ 9.2%</text>
+<text x="590" y="791" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

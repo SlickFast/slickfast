@@ -1,0 +1,22 @@
+{
+  "name": "@slickfast/mcp",
+  "version": "0.7.5",
+  "description": "SlickFast — render 47 chart & info-design types (bar, line, pie, KPI, cards, funnel, matrix, gauge, calendar…) plus multi-chart dashboards tiled into one image, as SVG/PNG via MCP. Local and deterministic; nothing leaves your machine.",
+  "keywords": ["mcp", "model-context-protocol", "chart", "charts", "dashboard", "data-visualization", "svg", "png", "ai", "agent", "claude", "llm", "deterministic"],
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "bin": { "slickfast-mcp": "dist/index.js" },
+  "files": ["dist"],
+  "scripts": {
+    "build": "node build.mjs",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.18.0",
+    "@resvg/resvg-js": "^2.6.2",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.23.0"
+  }
+}

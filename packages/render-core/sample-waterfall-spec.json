@@ -1,0 +1,1 @@
+{ "type": "waterfall", "title": "Revenue bridge", "start": 0, "steps": [ { "label": "New", "value": 120 }, { "label": "Expansion", "value": 60 }, { "label": "Churn", "value": -40 }, { "label": "Contraction", "value": -15 } ] }

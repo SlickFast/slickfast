@@ -1,0 +1,17 @@
+{
+  "type": "dashboard",
+  "title": "Q2 Growth Dashboard",
+  "palette": "Clean Corporate",
+  "background": "#f1f5f9",
+  "layout": { "cols": 3, "gap": 20, "pad": 24, "tileHeight": 260 },
+  "tiles": [
+    { "chart": { "type": "kpi", "label": "Monthly Recurring Revenue", "value": 128400, "valuePrefix": "$", "delta": 12.4, "deltaUnit": "%" } },
+    { "chart": { "type": "kpi", "label": "Active Users", "value": 8640, "delta": 8.1, "deltaUnit": "%" } },
+    { "chart": { "type": "kpi", "label": "Churn", "value": 2.3, "valueUnit": "%", "delta": -0.4, "deltaUnit": "pt", "deltaGoodWhen": "down" } },
+    { "span": [2, 1], "chart": { "type": "line", "title": "Monthly Active Users", "data": { "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"], "series": [ { "name": "Product A", "values": [120, 190, 170, 250, 230, 310] }, { "name": "Product B", "values": [80, 110, 160, 140, 210, 260] } ] } } },
+    { "chart": { "type": "gauge", "title": "Capacity used", "label": "of 500 GB", "value": 372, "min": 0, "max": 500, "valueUnit": "GB" } },
+    { "chart": { "type": "funnel", "title": "Signup funnel", "stages": [ { "label": "Visitors", "value": 12000 }, { "label": "Signups", "value": 4200 }, { "label": "Trials", "value": 1800 }, { "label": "Paid", "value": 640 } ] } },
+    { "chart": { "type": "waffle", "title": "Revenue by segment", "parts": [ { "label": "Enterprise", "value": 45 }, { "label": "SMB", "value": 30 }, { "label": "Other", "value": 15 } ] } },
+    { "chart": { "type": "bar", "title": "Deals by stage", "data": { "labels": ["Lead", "Demo", "Won"], "series": [ { "name": "Deals", "values": [42, 24, 11] } ] } } }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "type": "steps",
+  "title": "How it works",
+  "steps": [
+    { "label": "Sign up", "description": "free, no card" },
+    { "label": "Connect data", "description": "paste or upload" },
+    { "label": "Build chart", "description": "pick a type" },
+    { "label": "Share", "description": "link or embed" }
+  ]
+}

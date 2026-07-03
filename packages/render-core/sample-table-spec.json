@@ -1,0 +1,11 @@
+{
+  "type": "table",
+  "title": "Revenue by region",
+  "columns": ["Region", "Q1", "Q2", "Q3"],
+  "rows": [
+    ["North", 420, 510, 480],
+    ["South", 310, 290, 350],
+    ["East", 530, 560, 600],
+    ["West", 280, 340, 390]
+  ]
+}

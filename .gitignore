@@ -1,0 +1,4 @@
+node_modules/
+apps/mcp/dist/
+packages/render-core/gallery-assets/
+.DS_Store

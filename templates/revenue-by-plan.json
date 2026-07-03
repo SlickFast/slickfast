@@ -1,0 +1,14 @@
+{
+  "type": "stacked",
+  "title": "Revenue by Plan",
+  "palette": "Clean Corporate",
+  "valueUnit": "k",
+  "data": {
+    "labels": ["Q1", "Q2", "Q3", "Q4"],
+    "series": [
+      { "name": "Enterprise", "values": [120, 140, 165, 190] },
+      { "name": "Pro",        "values": [80, 90, 98, 110] },
+      { "name": "Starter",    "values": [40, 44, 48, 52] }
+    ]
+  }
+}

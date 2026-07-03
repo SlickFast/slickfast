@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" width="640" height="420" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="640" height="420" fill="#ffffff"/>
+<path d="M228,64 A161,161 0 0 1 228,386 L228,318.38 A93.38,93.38 0 0 0 228,131.62 Z" fill="#f43f5e" stroke="#ffffff" stroke-width="2.58" stroke-linejoin="round"/>
+<text x="355.19" y="229" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a1a">50%</text>
+<path d="M228,386 A161,161 0 0 1 88.57,305.5 L147.13,271.69 A93.38,93.38 0 0 0 228,318.38 Z" fill="#f97316" stroke="#ffffff" stroke-width="2.58" stroke-linejoin="round"/>
+<text x="164.41" y="339.15" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a1a">17%</text>
+<path d="M88.57,305.5 A161,161 0 0 1 67,225 L134.62,225 A93.38,93.38 0 0 0 147.13,271.69 Z" fill="#eab308" stroke="#ffffff" stroke-width="2.58" stroke-linejoin="round"/>
+<text x="105.14" y="261.92" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a1a">8%</text>
+<path d="M67,225 A161,161 0 0 1 228,64 L228,131.62 A93.38,93.38 0 0 0 134.62,225 Z" fill="#22c55e" stroke="#ffffff" stroke-width="2.58" stroke-linejoin="round"/>
+<text x="138.06" y="139.06" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a1a">25%</text>
+<text x="228" y="223" text-anchor="middle" font-size="23" font-weight="800" fill="#0f172a">$3,600</text>
+<text x="228" y="243" text-anchor="middle" font-size="12" fill="#475569">Total</text>
+<rect x="464" y="53" width="11" height="11" rx="2.5" fill="#f43f5e"/>
+<text x="482" y="62" font-size="12" fill="#475569">Rent · $1,800</text>
+<rect x="464" y="77" width="11" height="11" rx="2.5" fill="#f97316"/>
+<text x="482" y="86" font-size="12" fill="#475569">Food · $600</text>
+<rect x="464" y="101" width="11" height="11" rx="2.5" fill="#eab308"/>
+<text x="482" y="110" font-size="12" fill="#475569">Transport · $300</text>
+<rect x="464" y="125" width="11" height="11" rx="2.5" fill="#22c55e"/>
+<text x="482" y="134" font-size="12" fill="#475569">Savings · $900</text>
+<text x="320" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Monthly Budget</text>
+<text x="632" y="412" text-anchor="end" font-size="10" fill="#94a3b8" opacity="0.7">slickfast.com</text>
+</svg>

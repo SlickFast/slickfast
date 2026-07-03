@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="800" height="450" fill="#ffffff"/>
+<line x1="56" y1="178.5" x2="776" y2="178.5" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="56" y1="261.5" x2="776" y2="261.5" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="182.5" text-anchor="end" font-size="11" fill="#64748b">2</text>
+<text x="48" y="265.5" text-anchor="end" font-size="11" fill="#64748b">2</text>
+<line x1="56" y1="137" x2="776" y2="137" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="56" y1="303" x2="776" y2="303" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="141" text-anchor="end" font-size="11" fill="#64748b">4</text>
+<text x="48" y="307" text-anchor="end" font-size="11" fill="#64748b">4</text>
+<line x1="56" y1="95.5" x2="776" y2="95.5" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="56" y1="344.5" x2="776" y2="344.5" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="99.5" text-anchor="end" font-size="11" fill="#64748b">6</text>
+<text x="48" y="348.5" text-anchor="end" font-size="11" fill="#64748b">6</text>
+<line x1="56" y1="54" x2="776" y2="54" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="56" y1="386" x2="776" y2="386" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="58" text-anchor="end" font-size="11" fill="#64748b">8</text>
+<text x="48" y="390" text-anchor="end" font-size="11" fill="#64748b">8</text>
+<path d="M110,220 L110,120.25 Q110,116.25 114,116.25 L178,116.25 Q182,116.25 182,120.25 L182,220 Z" fill="#2563eb"/>
+<text x="146" y="109.25" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">5</text>
+<path d="M290,220 L362,220 L362,278.25 Q362,282.25 358,282.25 L294,282.25 Q290,282.25 290,278.25 Z" fill="#2563eb"/>
+<text x="326" y="298.25" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">-3</text>
+<path d="M470,220 L470,58 Q470,54 474,54 L538,54 Q542,54 542,58 L542,220 Z" fill="#2563eb"/>
+<text x="506" y="47" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">8</text>
+<path d="M650,220 L722,220 L722,257.5 Q722,261.5 718,261.5 L654,261.5 Q650,261.5 650,257.5 Z" fill="#2563eb"/>
+<text x="686" y="277.5" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">-2</text>
+<line x1="56" y1="220" x2="776" y2="220" stroke="#334155" stroke-width="1.75"/>
+<rect x="132.4" y="211" width="27.2" height="18" rx="9" fill="#ffffff"/>
+<text x="146" y="224" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">Q1</text>
+<rect x="312.4" y="211" width="27.2" height="18" rx="9" fill="#ffffff"/>
+<text x="326" y="224" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">Q2</text>
+<rect x="492.4" y="211" width="27.2" height="18" rx="9" fill="#ffffff"/>
+<text x="506" y="224" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">Q3</text>
+<rect x="672.4" y="211" width="27.2" height="18" rx="9" fill="#ffffff"/>
+<text x="686" y="224" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">Q4</text>
+<rect x="353.88" y="425" width="11" height="11" rx="2.5" fill="#2563eb"/>
+<text x="370.88" y="434" font-size="12" fill="#475569">Net flow</text>
+<text x="400" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Net flow by quarter (single signed series)</text>
+<text x="792" y="442" text-anchor="end" font-size="10" fill="#94a3b8" opacity="0.7">slickfast.com</text>
+</svg>

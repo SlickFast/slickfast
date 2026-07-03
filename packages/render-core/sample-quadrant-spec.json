@@ -1,0 +1,12 @@
+{
+  "type": "quadrant",
+  "title": "Roadmap prioritization",
+  "xAxis": "Effort",
+  "yAxis": "Impact",
+  "items": [
+    { "label": "Quick win", "x": 0.2, "y": 0.82 },
+    { "label": "Big bet", "x": 0.78, "y": 0.9 },
+    { "label": "Fill-in", "x": 0.25, "y": 0.25 },
+    { "label": "Time sink", "x": 0.8, "y": 0.2 }
+  ]
+}

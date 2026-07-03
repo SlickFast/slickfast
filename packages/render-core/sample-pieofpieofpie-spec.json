@@ -1,0 +1,12 @@
+{
+  "type": "pieofpie",
+  "title": "Revenue drill-down",
+  "palette": "Analogous Shift",
+  "valuePrefix": "$",
+  "valueUnit": "k",
+  "pies": [
+    { "title": "By segment", "labels": ["Enterprise", "SMB", "Other"], "values": [60, 30, 10] },
+    { "title": "Enterprise", "labels": ["US", "EU", "APAC"], "values": [35, 15, 10] },
+    { "title": "US", "labels": ["West", "East", "South"], "values": [18, 12, 5] }
+  ]
+}

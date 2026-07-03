@@ -1,0 +1,12 @@
+{
+  "type": "matrix",
+  "title": "Plans",
+  "columns": ["Free", "Pro", "Enterprise"],
+  "rows": [
+    { "label": "SSO / SAML", "cells": [false, false, true] },
+    { "label": "API access", "cells": [false, true, true] },
+    { "label": "Priority support", "cells": [false, "partial", true] },
+    { "label": "Audit log", "cells": [false, false, true] },
+    { "label": "Seats", "cells": ["1", "10", "Unlimited"] }
+  ]
+}

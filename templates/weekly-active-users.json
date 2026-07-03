@@ -1,0 +1,11 @@
+{
+  "type": "area",
+  "title": "Weekly Active Users",
+  "palette": "Clean Corporate",
+  "data": {
+    "labels": ["W1", "W2", "W3", "W4", "W5", "W6", "W7", "W8"],
+    "series": [
+      { "name": "WAU", "values": [12400, 13100, 12800, 14500, 15200, 16800, 17500, 19200] }
+    ]
+  }
+}

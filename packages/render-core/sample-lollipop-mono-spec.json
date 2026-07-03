@@ -1,0 +1,12 @@
+{
+  "type": "lollipop",
+  "title": "Monochrome Contrast Floor",
+  "data": {
+    "labels": ["A", "B", "C", "D", "E"],
+    "series": [
+      { "values": [22, 34, 46, 58, 70] }
+    ]
+  },
+  "palette": "Monochrome",
+  "width": 800, "height": 450
+}

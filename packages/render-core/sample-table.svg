@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 252" width="680" height="252" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="680" height="252" fill="#ffffff"/>
+<text x="340" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Revenue by region</text>
+<text x="28" y="78" font-size="13" font-weight="700" fill="#475569">Region</text>
+<text x="330" y="78" text-anchor="end" font-size="13" font-weight="700" fill="#475569">Q1</text>
+<text x="488" y="78" text-anchor="end" font-size="13" font-weight="700" fill="#475569">Q2</text>
+<text x="646" y="78" text-anchor="end" font-size="13" font-weight="700" fill="#475569">Q3</text>
+<line x1="24" y1="92" x2="656" y2="92" stroke="#e2e8f0" stroke-width="1"/>
+<text x="28" y="114" font-size="13" fill="#334155">North</text>
+<text x="330" y="114" text-anchor="end" font-size="13" fill="#334155">420</text>
+<text x="488" y="114" text-anchor="end" font-size="13" fill="#334155">510</text>
+<text x="646" y="114" text-anchor="end" font-size="13" fill="#334155">480</text>
+<rect x="24" y="128" width="632" height="36" fill="#f8fafc"/>
+<text x="28" y="150" font-size="13" fill="#334155">South</text>
+<text x="330" y="150" text-anchor="end" font-size="13" fill="#334155">310</text>
+<text x="488" y="150" text-anchor="end" font-size="13" fill="#334155">290</text>
+<text x="646" y="150" text-anchor="end" font-size="13" fill="#334155">350</text>
+<text x="28" y="186" font-size="13" fill="#334155">East</text>
+<text x="330" y="186" text-anchor="end" font-size="13" fill="#334155">530</text>
+<text x="488" y="186" text-anchor="end" font-size="13" fill="#334155">560</text>
+<text x="646" y="186" text-anchor="end" font-size="13" fill="#334155">600</text>
+<rect x="24" y="200" width="632" height="36" fill="#f8fafc"/>
+<text x="28" y="222" font-size="13" fill="#334155">West</text>
+<text x="330" y="222" text-anchor="end" font-size="13" fill="#334155">280</text>
+<text x="488" y="222" text-anchor="end" font-size="13" fill="#334155">340</text>
+<text x="646" y="222" text-anchor="end" font-size="13" fill="#334155">390</text>
+<text x="670" y="243" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

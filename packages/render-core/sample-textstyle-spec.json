@@ -1,0 +1,11 @@
+{
+  "type": "bar",
+  "title": "Text Levers — gold labels, bold",
+  "background": "#0f172a",
+  "textColor": "#fbbf24",
+  "bold": true,
+  "data": {
+    "labels": ["Q1", "Q2", "Q3", "Q4"],
+    "series": [{ "values": [320, 410, 380, 520] }]
+  }
+}

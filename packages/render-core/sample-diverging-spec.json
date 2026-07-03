@@ -1,0 +1,13 @@
+{
+  "type": "diverging",
+  "title": "Survey: Agree vs Disagree",
+  "data": {
+    "labels": ["Feature A", "Feature B", "Feature C", "Feature D"],
+    "series": [
+      { "name": "Agree",    "values": [62, 48, 71, 55] },
+      { "name": "Disagree", "values": [38, 52, 29, 45] }
+    ]
+  },
+  "palette": "Clean Corporate",
+  "width": 800, "height": 450
+}

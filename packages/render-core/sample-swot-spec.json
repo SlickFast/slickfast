@@ -1,0 +1,1 @@
+{ "type": "swot", "title": "SlickFast SWOT", "cells": [ { "title": "Strengths", "items": ["Deterministic engine", "$0 local MCP", "38+ types"] }, { "title": "Weaknesses", "items": ["New brand", "Docs young"] }, { "title": "Opportunities", "items": ["AI chart demand", "RapidAPI funnel"] }, { "title": "Threats", "items": ["Incumbent libraries"] } ] }

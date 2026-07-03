@@ -1,0 +1,49 @@
+name: Bug report
+description: Something rendered wrong, errored, or didn't behave as documented
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report! Tip: the MCP has a built-in `report_issue` tool — ask your
+        agent to "report this as a SlickFast issue" and it will draft most of this for you.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Output of `npm ls @slickfast/mcp`, or the version from your MCP client.
+      placeholder: "@slickfast/mcp@0.7.6"
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Where did it happen?
+      options:
+        - MCP server (@slickfast/mcp)
+        - Hosted API
+        - Engine (building from source)
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: spec
+    attributes:
+      label: The chart spec
+      description: Paste the smallest JSON spec that reproduces the problem.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected vs. what happened
+      description: A screenshot of the rendered output helps a lot — drag & drop it here.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Environment (optional)
+      description: OS, Node version, MCP client (Claude Code / Claude Desktop / Cursor / …).

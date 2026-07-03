@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Email us
+    url: mailto:feedback@slickfast.com
+    about: Prefer email? Reach us at feedback@slickfast.com.
+  - name: Website
+    url: https://slickfast.com
+    about: Docs, gallery, and the hosted API.

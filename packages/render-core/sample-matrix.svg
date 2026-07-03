@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 308" width="680" height="308" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="680" height="308" fill="#ffffff"/>
+<text x="340" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Plans</text>
+<text x="296" y="78" text-anchor="middle" font-size="13" font-weight="700" fill="#475569">Free</text>
+<text x="440" y="78" text-anchor="middle" font-size="13" font-weight="700" fill="#475569">Pro</text>
+<text x="584" y="78" text-anchor="middle" font-size="13" font-weight="700" fill="#475569">Enterprise</text>
+<line x1="24" y1="92" x2="656" y2="92" stroke="#e2e8f0" stroke-width="1"/>
+<text x="24" y="116" font-size="13" fill="#334155">SSO / SAML</text>
+<path d="M291.58,107.58 L300.42,116.42 M300.42,107.58 L291.58,116.42" fill="none" stroke="#94a3b8" stroke-width="2.65" stroke-linecap="round"/>
+<path d="M435.58,107.58 L444.42,116.42 M444.42,107.58 L435.58,116.42" fill="none" stroke="#94a3b8" stroke-width="2.65" stroke-linecap="round"/>
+<path d="M578.48,112.22 L582.67,116.64 L590.08,107.03" fill="none" stroke="#059669" stroke-width="2.87" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="24" y="132" width="632" height="40" fill="#f8fafc"/>
+<text x="24" y="156" font-size="13" fill="#334155">API access</text>
+<path d="M291.58,147.58 L300.42,156.42 M300.42,147.58 L291.58,156.42" fill="none" stroke="#94a3b8" stroke-width="2.65" stroke-linecap="round"/>
+<path d="M434.48,152.22 L438.67,156.64 L446.08,147.03" fill="none" stroke="#059669" stroke-width="2.87" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M578.48,152.22 L582.67,156.64 L590.08,147.03" fill="none" stroke="#059669" stroke-width="2.87" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="24" y="196" font-size="13" fill="#334155">Priority support</text>
+<path d="M291.58,187.58 L300.42,196.42 M300.42,187.58 L291.58,196.42" fill="none" stroke="#94a3b8" stroke-width="2.65" stroke-linecap="round"/>
+<circle cx="440" cy="192" r="3.98" fill="#d97706"/>
+<path d="M578.48,192.22 L582.67,196.64 L590.08,187.03" fill="none" stroke="#059669" stroke-width="2.87" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="24" y="212" width="632" height="40" fill="#f8fafc"/>
+<text x="24" y="236" font-size="13" fill="#334155">Audit log</text>
+<path d="M291.58,227.58 L300.42,236.42 M300.42,227.58 L291.58,236.42" fill="none" stroke="#94a3b8" stroke-width="2.65" stroke-linecap="round"/>
+<path d="M435.58,227.58 L444.42,236.42 M444.42,227.58 L435.58,236.42" fill="none" stroke="#94a3b8" stroke-width="2.65" stroke-linecap="round"/>
+<path d="M578.48,232.22 L582.67,236.64 L590.08,227.03" fill="none" stroke="#059669" stroke-width="2.87" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="24" y="276" font-size="13" fill="#334155">Seats</text>
+<text x="296" y="276.55" text-anchor="middle" font-size="13" fill="#334155">1</text>
+<text x="440" y="276.55" text-anchor="middle" font-size="13" fill="#334155">10</text>
+<text x="584" y="276.55" text-anchor="middle" font-size="13" fill="#334155">Unlimited</text>
+<text x="670" y="299" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

@@ -1,0 +1,10 @@
+{
+  "type": "funnel",
+  "title": "Signup funnel",
+  "stages": [
+    { "label": "Visitors", "value": 12000 },
+    { "label": "Signups", "value": 4200 },
+    { "label": "Trials", "value": 1800 },
+    { "label": "Paid", "value": 640 }
+  ]
+}

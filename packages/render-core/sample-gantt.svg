@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 216" width="660" height="216" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="660" height="216" fill="#ffffff"/>
+<text x="330" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Launch plan (project weeks)</text>
+<line x1="134" y1="72" x2="134" y2="200" stroke="#eceef3" stroke-width="1"/>
+<line x1="259.5" y1="72" x2="259.5" y2="200" stroke="#eceef3" stroke-width="1"/>
+<line x1="385" y1="72" x2="385" y2="200" stroke="#eceef3" stroke-width="1"/>
+<line x1="510.5" y1="72" x2="510.5" y2="200" stroke="#eceef3" stroke-width="1"/>
+<line x1="636" y1="72" x2="636" y2="200" stroke="#eceef3" stroke-width="1"/>
+<text x="24" y="92" font-size="13" fill="#475569">Design</text>
+<rect x="134" y="78" width="133.87" height="20" rx="5" fill="#2563eb"/>
+<text x="24" y="124" font-size="13" fill="#475569">Build</text>
+<rect x="234.4" y="110" width="234.27" height="20" rx="5" fill="#7c3aed"/>
+<text x="24" y="156" font-size="13" fill="#475569">QA</text>
+<rect x="435.2" y="142" width="133.87" height="20" rx="5" fill="#059669"/>
+<text x="24" y="188" font-size="13" fill="#475569">Launch</text>
+<rect x="569.07" y="174" width="66.93" height="20" rx="5" fill="#d97706"/>
+<text x="650" y="207" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

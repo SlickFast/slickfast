@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 320" width="620" height="320" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="620" height="320" fill="#ffffff"/>
+<text x="310" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Plan A vs Plan B</text>
+<rect x="24" y="54" width="264" height="250" rx="12" fill="#2563eb" fill-opacity="0.10"/>
+<text x="156" y="80" text-anchor="middle" font-size="15" font-weight="700" fill="#2563eb">Starter</text>
+<text x="40" y="106" font-size="13" fill="#334155">Price /mo</text>
+<text x="274" y="106" text-anchor="end" font-size="13" font-weight="700" fill="#2563eb">9</text>
+<text x="40" y="134" font-size="13" fill="#334155">Seats</text>
+<text x="274" y="134" text-anchor="end" font-size="13" font-weight="700" fill="#2563eb">3</text>
+<text x="40" y="162" font-size="13" fill="#334155">API calls</text>
+<text x="274" y="162" text-anchor="end" font-size="13" font-weight="700" fill="#2563eb">1,000</text>
+<rect x="332" y="54" width="264" height="250" rx="12" fill="#059669" fill-opacity="0.10"/>
+<text x="464" y="80" text-anchor="middle" font-size="15" font-weight="700" fill="#059669">Pro</text>
+<text x="348" y="106" font-size="13" fill="#334155">Price /mo</text>
+<text x="582" y="106" text-anchor="end" font-size="13" font-weight="700" fill="#059669">29</text>
+<text x="348" y="134" font-size="13" fill="#334155">Seats</text>
+<text x="582" y="134" text-anchor="end" font-size="13" font-weight="700" fill="#059669">10</text>
+<text x="348" y="162" font-size="13" fill="#334155">API calls</text>
+<text x="582" y="162" text-anchor="end" font-size="13" font-weight="700" fill="#059669">50,000</text>
+<circle cx="310" cy="187" r="20" fill="#ffffff" stroke="#94a3b8" stroke-opacity="0.5"/>
+<text x="310" y="192" text-anchor="middle" font-size="13" font-weight="800" fill="#94a3b8">VS</text>
+<text x="610" y="311" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+</svg>

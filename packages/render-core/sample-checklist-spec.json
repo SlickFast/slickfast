@@ -1,0 +1,11 @@
+{
+  "type": "checklist",
+  "title": "Launch checklist",
+  "items": [
+    { "label": "Domain transferred", "status": "done" },
+    { "label": "API deployed to Railway", "status": "done" },
+    { "label": "Load testing", "status": "partial" },
+    { "label": "Billing live", "status": "pending" },
+    { "label": "SOC 2 audit", "status": "blocked" }
+  ]
+}

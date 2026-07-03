@@ -1,0 +1,13 @@
+{
+  "type": "donut",
+  "title": "Traffic by Source",
+  "palette": "Vibrant",
+  "width": 600,
+  "height": 1000,
+  "data": {
+    "labels": ["Organic", "Direct", "Referral", "Paid", "Social"],
+    "series": [
+      { "values": [4200, 2800, 1500, 1100, 900] }
+    ]
+  }
+}

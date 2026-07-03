@@ -1,0 +1,11 @@
+{
+  "type": "donut",
+  "title": "Budget Allocation",
+  "data": {
+    "labels": ["Engineering", "Sales", "Marketing", "Ops"],
+    "series": [{ "values": [40, 30, 20, 10] }]
+  },
+  "palette": "Vibrant",
+  "valueUnit": "%",
+  "width": 640, "height": 420
+}

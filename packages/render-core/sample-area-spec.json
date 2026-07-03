@@ -1,0 +1,12 @@
+{
+  "type": "area",
+  "title": "Revenue Trend",
+  "data": {
+    "labels": ["Q1", "Q2", "Q3", "Q4"],
+    "series": [{ "name": "Revenue", "values": [120, 180, 150, 240] }]
+  },
+  "palette": "Vibrant",
+  "background": "#ffffff",
+  "width": 800,
+  "height": 450
+}

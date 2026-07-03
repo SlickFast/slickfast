@@ -1,0 +1,11 @@
+{
+  "type": "horizontal",
+  "title": "Top Sales Reps — Deals Closed",
+  "palette": "Clean Corporate",
+  "data": {
+    "labels": ["Avery", "Jordan", "Sam", "Riley", "Casey"],
+    "series": [
+      { "values": [48, 42, 37, 31, 24] }
+    ]
+  }
+}
