@@ -7,8 +7,8 @@ info:
     required; a spec of just {type, data} renders a complete chart. The full field contract
     is in render-core/SPEC.md. Deterministic: the same spec always renders the same chart (responses cached immutable).
 servers:
-  - url: https://slickfast-platform-production.up.railway.app
-    description: soft-launch (public base becomes api.slickfast.com)
+  - url: https://api.slickfast.com
+    description: production
 paths:
   /render:
     post:

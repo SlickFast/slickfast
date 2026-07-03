@@ -63,7 +63,7 @@ tool renders a curated showcase). Full tool documentation is in
 | `packages/raster/` | SVG → PNG rasterization (resvg). |
 | `packages/fonts/` | The swappable font layer. |
 | `apps/mcp/` | The MCP server published as `@slickfast/mcp` — a thin surface over the engine. |
-| `apps/api/openapi.yaml` | The hosted HTTP API contract. |
+| `apps/api/` | The hosted HTTP API — [`API.md`](apps/api/API.md) is the how-to-call-it guide (no MCP needed: `curl`, `<img src>`, any language), [`openapi.yaml`](apps/api/openapi.yaml) the machine-readable contract. Live at `api.slickfast.com`; free tier at [slickfast.com](https://slickfast.com). |
 | `scripts/` | The safety net: golden checks, registry-drift check, 323-case torture suite, palette hex check. |
 | `templates/` | Ready-made spec presets. |
 
