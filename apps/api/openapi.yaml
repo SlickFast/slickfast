@@ -8,7 +8,7 @@ info:
     is in render-core/SPEC.md. Deterministic: the same spec always renders the same chart (responses cached immutable).
 servers:
   - url: https://slickfast-platform-production.up.railway.app
-    description: soft-launch (public base becomes the RapidAPI host once listed)
+    description: soft-launch (public base becomes api.slickfast.com)
 paths:
   /render:
     post:
@@ -78,10 +78,13 @@ paths:
             text/plain: { schema: { type: string } }
 components:
   securitySchemes:
-    rapidApiKey:
-      type: apiKey
-      in: header
-      name: X-RapidAPI-Key
+    apiKey:
+      type: http
+      scheme: bearer
+      description: >
+        SlickFast API key from slickfast.com. Send as `Authorization: Bearer <key>`
+        (also accepted: `X-API-Key` header, or `?key=` on GET for embed URLs).
+        Open during soft-launch — no key required until checkout goes live.
   responses:
     BadSpec:
       description: Invalid spec — not JSON, not an object, missing type, render error, or too large
@@ -149,4 +152,4 @@ components:
         showValues: { type: boolean }
         watermark: { type: boolean }
 security:
-  - rapidApiKey: []
+  - apiKey: []
