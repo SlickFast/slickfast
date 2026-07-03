@@ -47,7 +47,7 @@ tool renders a curated showcase). Full tool documentation is in
   in-memory, milliseconds per chart.
 - **Native SVG, vector-first.** Output is a few KB of crisp-at-any-scale SVG (or retina PNG
   on demand) — small enough to cache, embed, or ship anywhere.
-- **Deterministic — same spec, same bytes, forever.** No randomness, no timestamps, no
+- **Deterministic — same spec, same chart, every time.** No randomness, no timestamps, no
   browser drift. Cacheable, testable, reproducible; zero flaky pixel diffs.
 - **Graceful on empty data, loud on real mistakes.** Bad input gets a clear, listed-options
   error the agent can self-correct from; missing data gets a clean frame — never a stack

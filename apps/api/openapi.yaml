@@ -5,7 +5,7 @@ info:
   description: >
     Turn a chart spec (one JSON object) into a PNG or SVG image. Only `type` is always
     required; a spec of just {type, data} renders a complete chart. The full field contract
-    is in render-core/SPEC.md. Same spec → same bytes, forever (responses cached immutable).
+    is in render-core/SPEC.md. Deterministic: the same spec always renders the same chart (responses cached immutable).
 servers:
   - url: https://slickfast-platform-production.up.railway.app
     description: soft-launch (public base becomes the RapidAPI host once listed)

@@ -1,6 +1,6 @@
 {
   "name": "@slickfast/mcp",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "mcpName": "com.slickfast/mcp",
   "homepage": "https://slickfast.com",
   "repository": { "type": "git", "url": "git+https://github.com/SlickFast/slickfast.git", "directory": "apps/mcp" },

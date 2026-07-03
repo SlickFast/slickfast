@@ -181,7 +181,7 @@ const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta n
 <header>
   <h1>SlickFast — chart &amp; dashboard gallery</h1>
   <p class="tag">Arbitrary multi-type composition in one deterministic render. Every image below is a single <code>render_chart</code> call — the spec is under each one, paste-ready for the MCP.</p>
-  <div class="pills"><span class="pill">47 chart types</span><span class="pill">${totalPalettes} palettes</span><span class="pill">Dashboards: many charts → one image, one render</span><span class="pill">Deterministic — same spec, same bytes</span><span class="pill">Local · nothing leaves the machine</span></div>
+  <div class="pills"><span class="pill">47 chart types</span><span class="pill">${totalPalettes} palettes</span><span class="pill">Dashboards: many charts → one image, one render</span><span class="pill">Deterministic — same spec, same chart</span><span class="pill">Local · nothing leaves the machine</span></div>
 </header>
 <h2>Dashboards</h2>
 <p class="sub">One call tiles many charts into a single PNG — no per-chart loop, no stitching. Each tile is a full spec of any type; <code>span</code> makes a tile wider or taller.</p>

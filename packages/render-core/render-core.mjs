@@ -24,6 +24,12 @@ import { resolveFont } from '../fonts/fonts.mjs';
 
 // ── tiny pure helpers ─────────────────────────────────────────────────────────
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+// THE one root-<svg> opener — every top-level renderer opens through here (dashboard tile
+// re-rooting strips this tag, so tiles are unaffected). Change the root tag ONLY here.
+// width/height attrs stay FIXED — resvg reads them for PNG output size. The style attr is
+// browser-only (resvg ignores it): it makes the SVG shrink-to-fit narrow containers
+// (chat panels, artifacts) instead of clipping, scaling proportionally via the viewBox.
+const svgOpen = (W, H, font) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="max-width:100%;height:auto" font-family="${esc(font)}">`;
 const r = (n) => Math.round(n * 100) / 100;                 // 2dp — keeps SVG clean & snapshots stable
 const fmt = (n) => (Number(n) || 0).toLocaleString('en-US'); // deterministic thousands separators
 
@@ -187,7 +193,7 @@ export function renderBar(spec) {
   const barW = Math.min(band * 0.62, 96);
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
 
   // gridlines + y-axis numbers
@@ -264,7 +270,7 @@ export function renderBarGrouped(spec) {
   const barW = groupW / n;                            // each series' bar
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
 
   // gridlines + y-axis numbers
@@ -356,7 +362,7 @@ export function renderBarStacked(spec) {
   const barW = Math.min(band * 0.62, 96);
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
 
   // gridlines + y-axis numbers
@@ -448,7 +454,7 @@ export function renderBarStackedH(spec) {
   const barH = Math.min(band * 0.62, 64);
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
 
   // vertical gridlines + x-axis numbers along the bottom
@@ -545,7 +551,7 @@ export function renderBarH(spec) {
   const barH = Math.min(band * 0.62, 56);
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
 
   // vertical gridlines + x-axis numbers
@@ -642,7 +648,7 @@ export function renderDiverging(spec) {
   const barW = Math.min(band * 0.5, 72);
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
 
   // gridlines (both sides) + symmetric axis numbers; zero line drawn emphasized
@@ -742,7 +748,7 @@ export function renderLollipop(spec) {
   const baseY = M.top + plotH;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
 
   // gridlines + y-axis numbers
@@ -805,7 +811,7 @@ export function renderKpi(spec) {
   const pillTx = good ? (isDark ? '#6ee7b7' : '#059669') : bad ? (isDark ? '#fca5a5' : '#dc2626') : labelCol;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" rx="14" fill="${bg}"/>`);
 
   // Portrait/large frames center a scaled content block; the compact landscape tile
@@ -905,7 +911,7 @@ export function renderLine(spec) {
   const xPix = (i) => M.left + (n > 1 ? i / (n - 1) : 0.5) * plotW;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
 
   for (let v = 0; v <= niceMax + 1e-9; v += step) {
@@ -1024,7 +1030,7 @@ export function renderSlope(spec) {
   const yPix = (v) => M.top + plotH - (v / niceMax) * plotH;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   p.push(`<line x1="${leftX}" y1="${M.top}" x2="${leftX}" y2="${r(baseY)}" stroke="${guide}" stroke-width="1"/>`);
   p.push(`<line x1="${rightX}" y1="${M.top}" x2="${rightX}" y2="${r(baseY)}" stroke="${guide}" stroke-width="1"/>`);
@@ -1107,7 +1113,7 @@ export function renderPie(spec) {
   const gapAttr = (gapColor && gapW > 0) ? ` stroke="${gapColor}" stroke-width="${gapW}" stroke-linejoin="round"` : '';
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
 
   let a = -Math.PI / 2;
@@ -1220,7 +1226,7 @@ export function renderPieOfPie(spec) {
 
   const n = pies.length;
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (n === 0) { p.push(`</svg>`); return p.join('\n'); }
 
@@ -1382,7 +1388,7 @@ export function renderCards(spec) {
   const cellH = (H - PAD * 2 - titleH - GAP * (rows - 1)) / rows;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -1462,7 +1468,7 @@ export function renderLayers(spec) {
   const blockH = (H - topY - 16 - GAP * (n - 1)) / n;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -1516,7 +1522,7 @@ export function renderProgress(spec) {
   const trackW = W - PAD * 2;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -1586,7 +1592,7 @@ export function renderWaffle(spec) {
   const H = spec.height || topY + gridSize + 16;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -1646,7 +1652,7 @@ export function renderHeatmap(spec) {
   const gridTop = topY + COLH;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -1703,7 +1709,7 @@ export function renderFunnel(spec) {
   const top = vals[0] || 0;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(cx)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -1752,7 +1758,7 @@ export function renderPyramid(spec) {
   const widthAt = (y) => ((y - apexY) / totalH) * baseW;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(cx)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -1799,7 +1805,7 @@ export function renderQuadrant(spec) {
   const plotX = (W - S) / 2, plotBottom = plotTop + S;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -1852,7 +1858,7 @@ export function renderTimeline(spec) {
   const xOf = (i) => n === 1 ? W / 2 : PAD + i * (plotW / (n - 1));
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -1900,7 +1906,7 @@ export function renderVenn(spec) {
   const val = (i) => fmt(Number(sets[i] && sets[i].value) || 0);
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -1994,7 +2000,7 @@ export function renderMatrix(spec) {
   const cellW = (W - PAD - plotLeft) / nc;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -2041,7 +2047,7 @@ export function renderChecklist(spec) {
   const s = fs * 1.0, gx = PAD + 11;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${PAD}" y="33" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -2088,7 +2094,7 @@ export function renderIconArray(spec) {
   const H = spec.height || topY + rowsN * (ICON + GAP) + 12;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${PAD}" y="33" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -2141,7 +2147,7 @@ export function renderSteps(spec) {
   const xOf = (i) => n === 1 ? W / 2 : (PAD + R) + i * ((W - 2 * (PAD + R)) / (n - 1));
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -2191,7 +2197,7 @@ export function renderTable(spec) {
   const cellX = (ci, right) => right ? PAD + ci * colW + colW - 10 : PAD + ci * colW + 4;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -2252,7 +2258,7 @@ export function renderGauge(spec) {
   const u = spec.valueUnit ? ' ' + spec.valueUnit : '';
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(cx)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${valueCol}">${esc(title)}</text>`);
 
@@ -2295,7 +2301,7 @@ export function renderBullet(spec) {
   const trackW = W - PAD * 2;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${tickCol}">${esc(title)}</text>`);
 
@@ -2374,7 +2380,7 @@ export function renderCalendar(spec) {
   const H = spec.height || gridY + 7 * (CELL + GAP) + 16;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${PAD}" y="33" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -2427,7 +2433,7 @@ export function renderLeaderboard(spec) {
   const maxV = Math.max(1, ...items.map((s) => s.value));
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -2469,7 +2475,7 @@ export function renderCallout(spec) {
   const valueStr = (spec.valuePrefix || '') + (spec.value != null ? fmt(spec.value) : '') + (spec.valueUnit || '');
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${PAD}" y="33" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -2515,7 +2521,7 @@ export function renderRing(spec) {
   const dash = frac * circ;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(cx)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${valueCol}">${esc(title)}</text>`);
   p.push(`<circle cx="${r(cx)}" cy="${r(cy)}" r="${r(R)}" fill="none" stroke="${track}" stroke-width="${r(sw)}"/>`);
@@ -2548,7 +2554,7 @@ export function renderVersus(spec) {
   const cols = [PAD, PAD + colW + GAP];
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
@@ -2603,7 +2609,7 @@ export function renderGantt(spec) {
   const xOf = (v) => plotLeft + ((v - lo) / ((hi - lo) || 1)) * plotW;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
   for (let k = 0; k <= 4; k++) { const gx = plotLeft + (k / 4) * plotW; p.push(`<line x1="${r(gx)}" y1="${r(gridTop)}" x2="${r(gx)}" y2="${r(gridTop + n * ROWH)}" stroke="${gridCol}" stroke-width="1"/>`); }
@@ -2650,7 +2656,7 @@ export function renderWaterfall(spec) {
   const yOf = (v) => plotBottom - ((v - lo) / ((hi - lo) || 1)) * (plotBottom - plotTop);
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
   segs.forEach((s, i) => {
@@ -2696,7 +2702,7 @@ export function renderSwimlane(spec) {
   const plotLeft = PAD + LABELW, colW = (W - PAD - plotLeft) / np, gridTop = topY + HEAD;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
   phases.forEach((ph, ci) => p.push(`<text x="${r(plotLeft + ci * colW + colW / 2)}" y="${r(topY + HEAD - 7)}" text-anchor="middle" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${labelCol}">${esc(ph)}</text>`));
@@ -2739,7 +2745,7 @@ export function renderTierList(spec) {
   const W = spec.width || 560, H = spec.height || topY + n * (ROWH + GAP) + 12;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${PAD}" y="31" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
   tiers.forEach((t, i) => {
@@ -2783,7 +2789,7 @@ export function renderSwot(spec) {
   const cellW = (W - PAD * 2 - GAP) / 2, cellH = (H - topY - PAD - GAP) / 2;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
   for (let i = 0; i < 4; i++) {
@@ -2869,7 +2875,7 @@ export function renderDashboard(spec) {
   const cellH = (H - PAD * 2 - titleH - gap * (totalRows - 1)) / totalRows;
 
   const p = [];
-  p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${esc(font)}">`);
+  p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 7}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 

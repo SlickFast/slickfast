@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1302 240" width="1302" height="240" font-family="Inter, system-ui, -apple-system, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1302 240" width="1302" height="240" style="max-width:100%;height:auto" font-family="Inter, system-ui, -apple-system, sans-serif">
 <rect x="0" y="0" width="1302" height="240" fill="#ffffff"/>
 <text x="651" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">This month at a glance</text>
 <rect x="24" y="68" width="300" height="148" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>

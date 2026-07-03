@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 366" width="600" height="366" font-family="Inter, system-ui, -apple-system, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 366" width="600" height="366" style="max-width:100%;height:auto" font-family="Inter, system-ui, -apple-system, sans-serif">
 <rect x="0" y="0" width="600" height="366" fill="#ffffff"/>
 <text x="300" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Revenue by segment</text>
 <rect x="24" y="54" width="26" height="26" rx="4" fill="#2563eb"/>

@@ -31,7 +31,7 @@ render_chart({ type: "bar", data: { labels: ["Q1","Q2","Q3"], series: [{ values:
   in-memory, milliseconds per chart.
 - **Native SVG, vector-first.** Output is a few KB of crisp-at-any-scale SVG (or retina PNG
   on demand) — small enough to cache, embed, or ship anywhere.
-- **Deterministic — same spec, same bytes, forever.** No randomness, no timestamps, no
+- **Deterministic — same spec, same chart, every time.** No randomness, no timestamps, no
   browser drift. Cacheable, testable, reproducible; zero flaky pixel diffs. Almost no
   charting tool can promise this — and it's exactly what a tool-calling agent needs.
 - **Never throws garbage at the model.** Empty data, a bad tile, a filtered-to-nothing
