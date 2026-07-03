@@ -1,6 +1,10 @@
 {
   "name": "@slickfast/mcp",
-  "version": "0.7.5",
+  "version": "0.7.6",
+  "mcpName": "com.slickfast/mcp",
+  "homepage": "https://slickfast.com",
+  "repository": { "type": "git", "url": "git+https://github.com/SlickFast/slickfast.git", "directory": "apps/mcp" },
+  "bugs": { "url": "https://github.com/SlickFast/slickfast/issues", "email": "feedback@slickfast.com" },
   "description": "SlickFast — render 47 chart & info-design types (bar, line, pie, KPI, cards, funnel, matrix, gauge, calendar…) plus multi-chart dashboards tiled into one image, as SVG/PNG via MCP. Local and deterministic; nothing leaves your machine.",
   "keywords": ["mcp", "model-context-protocol", "chart", "charts", "dashboard", "data-visualization", "svg", "png", "ai", "agent", "claude", "llm", "deterministic"],
   "license": "AGPL-3.0-only",

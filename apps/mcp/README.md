@@ -41,7 +41,7 @@ render_chart({ type: "bar", data: { labels: ["Q1","Q2","Q3"], series: [{ values:
 - **`list_palettes()`** → every valid `palette` name, grouped into flat palettes and nested
   themes, with their colors. Ask *"what palettes are available?"*.
 - **`report_issue(summary, spec?)`** → *"report this bug."* Formats a bug report and returns a
-  prefilled email link you click to send — SlickFast sends nothing itself.
+  prefilled GitHub-issue link and email link you click to send — SlickFast sends nothing itself.
 
 ## Install
 
@@ -95,11 +95,19 @@ or post** — it never auto-inserts links. (The endpoint stays unadvertised duri
 **AGPL-3.0-only.** Free to use, self-host, and embed under the AGPL's terms (your friends
 running it locally are completely unaffected). Building it into a **closed-source product
 or a hosted service**? That needs the AGPL'd source opened — or a **commercial license**
-from us instead. Reach out for commercial terms.
+from us instead. Write to feedback@slickfast.com for commercial terms.
+
+## Feedback, bugs & feature requests
+
+- **GitHub:** [SlickFast/slickfast](https://github.com/SlickFast/slickfast) — bug reports and
+  feature requests via the [issue templates](https://github.com/SlickFast/slickfast/issues/new/choose).
+- **Email:** feedback@slickfast.com
+- Or ask your agent to *"report this as a SlickFast issue"* — the `report_issue` tool drafts
+  the report (with the repro spec) for you. Nothing is ever sent automatically.
 
 ## Developing locally
 
-Clone the repo, then from the package directory:
+Clone [the repo](https://github.com/SlickFast/slickfast), then from the package directory:
 
 ```bash
 cd apps/mcp

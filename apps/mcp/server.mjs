@@ -456,7 +456,8 @@ server.registerTool('report_issue', {
     '_Reported via the SlickFast report_issue tool._',
   ].filter(Boolean).join('\n\n');
   const mailto = `mailto:${FEEDBACK_EMAIL}?subject=${encodeURIComponent('SlickFast bug: ' + summary)}&body=${encodeURIComponent(body)}`;
-  const text = `Bug report ready — **nothing has been sent.** To submit, click this link (it opens your mail client):\n\n${mailto}\n\nOr copy the report below into an email to ${FEEDBACK_EMAIL}:\n\n---\n${body}`;
+  const ghIssue = `https://github.com/SlickFast/slickfast/issues/new?labels=bug&title=${encodeURIComponent('[bug] ' + summary)}&body=${encodeURIComponent(body)}`;
+  const text = `Bug report ready — **nothing has been sent.** To submit, pick either:\n\n- **GitHub issue** (preferred — public, trackable): ${ghIssue}\n- **Email** (opens your mail client): ${mailto}\n\nOr copy the report below into an email to ${FEEDBACK_EMAIL}:\n\n---\n${body}`;
   return { content: [{ type: 'text', text }] };
 });
 
