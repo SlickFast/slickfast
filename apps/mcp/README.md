@@ -101,7 +101,8 @@ Rendering is fully local and needs no network. Separately, SlickFast runs a **ho
 that turns a spec into a public `…/chart.png?spec=<url-encoded spec>` link — useful for
 embedding, posting to Slack/X/email, or getting a chart into a surface that can't display a
 local image (see the table above). The agent should **offer this only when you ask to share
-or post** — it never auto-inserts links. (The endpoint stays unadvertised during soft-launch.)
+or post** — it never auto-inserts links. Get an API key (free tier, no card) at
+[slickfast.com](https://slickfast.com).
 
 ## License
 

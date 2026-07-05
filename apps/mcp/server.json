@@ -7,13 +7,13 @@
     "source": "github"
   },
   "websiteUrl": "https://slickfast.com",
-  "version": "0.7.7",
+  "version": "0.7.8",
   "packages": [
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "@slickfast/mcp",
-      "version": "0.7.7",
+      "version": "0.7.8",
       "transport": {
         "type": "stdio"
       }

@@ -84,7 +84,7 @@ components:
       description: >
         SlickFast API key from slickfast.com. Send as `Authorization: Bearer <key>`
         (also accepted: `X-API-Key` header, or `?key=` on GET for embed URLs).
-        Open during soft-launch — no key required until checkout goes live.
+        Free tier (250 renders/mo, no card) and paid plans at https://slickfast.com.
   responses:
     BadSpec:
       description: Invalid spec — not JSON, not an object, missing type, render error, or too large
