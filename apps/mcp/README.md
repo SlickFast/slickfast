@@ -77,8 +77,9 @@ Rendering is always **local** — nothing leaves your machine. This section is p
 surface *displays* the result. `render_chart` returns two ways, and they differ a lot:
 
 - **`format:"svg"` → the reliable inline path.** Returns SVG *text*. In a chat surface that supports
-  **artifacts** (claude.ai, Claude Desktop), the agent renders that SVG directly in an artifact and
-  it **paints reliably**. Ask for a chart and Claude does this — no config, no gymnastics.
+  **artifacts** (claude.ai, Claude Desktop), the agent **creates an artifact containing that SVG**
+  and presents it — that's the display step; the SVG string in the tool result is not user-visible
+  on its own. Ask for a chart and Claude does this — no config, no gymnastics.
 - **`format:"png"` (default) → a base64 image block.** It only paints where the client renders MCP
   image blocks, which is **inconsistent across surfaces** — many chat UIs, and every coding/terminal
   view, don't. Don't depend on it for inline display.
