@@ -14,6 +14,14 @@ dashboards tiled into one image in a single call**.
 - **Bugs & feature requests:** [GitHub Issues](https://github.com/SlickFast/slickfast/issues)
 - **Email:** feedback@slickfast.com
 
+## This project's pulse — a LIVE chart, right here in the README
+
+The dashboard below is **not a screenshot**. It's a SlickFast **live chart**: a permanent
+image URL whose numbers update on their own. A scheduled job pushes fresh stats; every
+visitor sees current data. [Live Charts](https://slickfast.com) — embed once, update forever.
+
+![SlickFast live pulse — real project stats, updating automatically](https://api.slickfast.com/live/7eb0085dd74015764d54ec73ce4ee8bf.svg)
+
 ## Quick start (MCP)
 
 Add to your MCP client config (Claude Code, Claude Desktop, Cursor, …):
