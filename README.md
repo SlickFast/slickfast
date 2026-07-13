@@ -24,6 +24,11 @@ visitor sees current data. [Live Charts](https://slickfast.com) — embed once, 
 
 ## Quick start (MCP)
 
+**One-click:**
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=slickfast&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzbGlja2Zhc3QvbWNwIl19)
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_SlickFast_MCP-0098FF?style=for-the-badge&logo=githubcopilot&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=slickfast&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40slickfast%2Fmcp%22%5D%7D)
+
+
 Add to your MCP client config (Claude Code, Claude Desktop, Cursor, …):
 
 ```json
