@@ -22,6 +22,19 @@ visitor sees current data. [Live Charts](https://slickfast.com) — embed once, 
 
 ![SlickFast live pulse — real project stats, updating automatically](https://api.slickfast.com/live/7eb0085dd74015764d54ec73ce4ee8bf.svg)
 
+## Prove it yourself
+
+Don't take the speed or determinism claims on faith — run the benchmark on your own machine:
+
+```bash
+git clone https://github.com/SlickFast/slickfast && cd slickfast
+node scripts/bench.mjs
+```
+
+It renders all 47 chart types, times each, runs a 10,000-chart throughput burst, and
+double-renders everything to verify byte-identical output. On an M1 Max: **median 15µs per
+chart, ~140,000 renders/sec, 47/47 deterministic.** Your numbers are your numbers.
+
 ## Quick start (MCP)
 
 **One-click:**
