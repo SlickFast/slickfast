@@ -6,7 +6,7 @@
 //
 // v1: vertical bar only. More chart types fan out from here, reusing the helpers.
 
-import { resolveFlatPalette, resolveNestedTheme, tierPalette, NESTED_THEMES, getLuminance, contrastColor, hexToHsl, hslToHex } from '../palette-core/palette-core.mjs';
+import { resolveFlatPalette, resolveNestedTheme, tierPalette, FLAT_PALETTES, NESTED_THEMES, getLuminance, contrastColor, hexToHsl, hslToHex } from '../palette-core/palette-core.mjs';
 
 // Floor a mark's contrast against the background: if its luminance sits too close
 // to the background's, nudge its lightness AWAY (darker on light bg, lighter on
@@ -3033,10 +3033,22 @@ export const TYPE_TOGGLES = {
 };
 export const CONDITIONAL_TOGGLES = ['showValues', 'showTotal', 'showPoints'];
 
+// An unknown palette name must FAIL, not silently render the default palette —
+// an agent that typo'd "vibrant" needs the correction, not a wrong-colored chart.
+function assertKnownPalette(name) {
+  const known = [...FLAT_PALETTES, ...NESTED_THEMES].map((p) => p.name);
+  if (known.includes(name)) return;
+  const ci = typeof name === 'string' ? known.find((k) => k.toLowerCase() === name.toLowerCase()) : null;
+  throw new Error('render-core: unknown palette "' + name + '"' +
+    (ci ? ' — did you mean "' + ci + '"?' : '.') + ' Valid palettes: ' + known.join(', '));
+}
+
 // Dispatch by chart type. Every `case` here must have a TYPES row (checked by
 // scripts/check-surfaces.mjs). New types register in TYPES above, then here.
 export function renderSpec(spec) {
   spec = applyPreset(spec);
+  if (spec.palette !== undefined) assertKnownPalette(spec.palette);
+  if (Array.isArray(spec.pies)) for (const p of spec.pies) { if (p && p.palette !== undefined) assertKnownPalette(p.palette); }
   switch (spec.type) {
     case 'bar': return renderBar(spec);
     case 'grouped': return renderBarGrouped(spec);

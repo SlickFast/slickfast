@@ -121,6 +121,7 @@ The engine is pure and deterministic by contract: no IO, no `Date.now()`, no
 ## License
 
 [AGPL-3.0-only](LICENSE). You can use, self-host, and modify SlickFast freely; if you run a
-modified version as a network service, the AGPL requires you to share your changes. For a
-commercial license or the hosted API, see [slickfast.com](https://slickfast.com) or write to
-feedback@slickfast.com.
+modified version as a network service, the AGPL requires you to share your changes. Using it
+inside a commercial product? Simple per-app licenses from $99/year, no license keys:
+[slickfast.com/license.html](https://slickfast.com/license.html) (or
+licensing@slickfast.com). Hosted API plans: [slickfast.com](https://slickfast.com).
