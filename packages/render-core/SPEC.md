@@ -43,7 +43,7 @@ file saved to disk.
 | `fontWeight` | string | — | exact weight for all text (`"400"`–`"900"` or `"bold"`); overrides `bold` |
 | `valueUnit` | string | `""` | appended to values, e.g. `"$"`, `"%"`, `"ms"` |
 | `showValues` | boolean | `true`* | draw the numeric labels. **Only some types honor it** — the numeric charts (bar/grouped/stacked/horizontal/lollipop/diverging/pie/donut), the line family, `heatmap`, and `waterfall`. On every other type it is **ignored** (they show or omit values inherently). *Default is `true` except the line family (`false`, to avoid clutter). Call `describe_type` for a type's `honorsToggles`. |
-| `watermark` | boolean | `true` | tasteful "slickfast.com" mark. **Set `false` for the chart sites / paid output.** |
+| `watermark` | boolean | `true` | tasteful "slickfast.com" mark, on by default. On the hosted API, removal is a paid-plan feature. |
 
 **Readability is automatic:** text colors are chosen from the background's luminance
 (via palette-core), so labels stay legible on light *or* dark backgrounds.
@@ -74,6 +74,8 @@ explicit `colors[i]`), top-rounded, with value + category labels and "nice" axis
 | extra field | type | default | does |
 |---|---|---|---|
 | `showTotal` | boolean | `true` | "Total: N" badge, top-right |
+| `axis` | boolean | `true` | `false` hides the numeric scale + gridlines and tightens margins (plot edge-to-edge, symmetric) — pair with `showValues`. Also honored by `horizontal`. |
+| `titleAlign` | `"center"` \| `"left"` | `"center"` | `"left"` anchors the title at the left content edge (lines up with list-style dashboard tiles). Also honored by `horizontal`. |
 
 Minimal: `{ "type": "bar", "data": { "labels": ["A","B"], "series": [{ "values": [10,20] }] } }`
 
@@ -531,6 +533,14 @@ chart can span two columns, a tall one two rows. Each tile keeps its OWN scale �
 needs that; to compare the SAME metric on one shared scale, use a single grouped/multi-series chart
 (or separate boards), not side-by-side tiles.
 
+**Filling wide tiles (do this — it's the difference between "off" and "designed"):** a tile
+letterboxes its chart at the chart's own aspect ratio, so a default line chart (≈16:9) centered in
+a wide span-2 cell (≈5:1) leaves dead space on both sides. To make a chart FILL its cell, set the
+chart's own `width`/`height` to roughly the cell's shape: cell width ≈ `span[0] × tileWidth` (440
+default) plus gaps, cell height = `tileHeight`. E.g. on a 6-col board with `tileHeight: 180`, a
+span-`[2,1]` line chart with `"width": 1000, "height": 200` runs edge-to-edge — ultra-wide lines
+read like instrument bands. Same trick for any type that looks lost in its slot.
+
 Minimal: `{ "type": "dashboard", "layout": { "cols": 2 }, "tiles": [ { "chart": { "type": "kpi", "label": "Revenue", "value": 128400, "valuePrefix": "$", "delta": 12.4 } }, { "chart": { "type": "bar", "data": { "labels": ["A","B","C"], "series": [ { "name": "Sales", "values": [8,5,3] } ] } } } ] }`
 
 ## What an agent can change (the levers)
@@ -546,7 +556,7 @@ Minimal: `{ "type": "dashboard", "layout": { "cols": 2 }, "tiles": [ { "chart": 
   adapts to whatever fill you choose). (`matrix`/`checklist` glyphs stay semantic — no override.)
 - **Background** → `background` (any hex, or `"transparent"`)
 - **Size / aspect** → `width`, `height`
-- **Branding** → `watermark` (off for the sites, on for free-tier API output)
+- **Branding** → `watermark` (on by default; removal is a paid-plan feature on the hosted API)
 
 ## Rules for the engine (and any agent generating specs)
 

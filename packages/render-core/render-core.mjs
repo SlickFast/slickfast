@@ -164,7 +164,7 @@ export function renderBar(spec) {
   const title = spec.title || '';
   const labels = spec.data.labels;
   const values = spec.data.series[0].values.map((v) => Number(v) || 0);
-  const u = spec.valueUnit ? ' ' + spec.valueUnit : '';
+  const u = spec.valueUnit ? ' ' + String(spec.valueUnit).trim() : '';
   const showValues = spec.showValues !== false;
   const showTotal = spec.showTotal !== false && spec.valueUnit !== '%';          // single-type "Total: N" (RULES-LEDGER)
   const watermark = spec.watermark !== false;          // free-tier attribution (off for the feeder sites)
@@ -183,7 +183,12 @@ export function renderBar(spec) {
   const titleCol = txt(spec, isDark ? '#f1f5f9' : '#0f172a');
   const faint    = isDark ? '#475569' : '#94a3b8';
 
-  const M = { left: 56, right: 24, top: title ? 54 : 28, bottom: 46 };
+  // axis:false (OPT-IN, default unchanged): drop the numeric scale + gridlines and
+  // the left gutter they need — symmetric margins, plot edge-to-edge. Legitimate
+  // when showValues already prints every bar's number (dashboard-tile alignment,
+  // decision-log 2026-08-03). Absent the flag, this block renders byte-identically.
+  const showAxis = spec.axis !== false;
+  const M = { left: showAxis ? 56 : 24, right: 24, top: title ? 54 : 28, bottom: 46 };
   const plotW = W - M.left - M.right;
   const plotH = H - M.top - M.bottom;
   const maxV = Math.max(0, ...values);
@@ -197,7 +202,7 @@ export function renderBar(spec) {
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
 
   // gridlines + y-axis numbers
-  for (let v = 0; v <= niceMax + 1e-9; v += step) {
+  if (showAxis) for (let v = 0; v <= niceMax + 1e-9; v += step) {
     const y = r(yPix(v));
     p.push(`<line x1="${M.left}" y1="${y}" x2="${r(M.left + plotW)}" y2="${y}" stroke="${gridCol}" stroke-width="1"/>`);
     p.push(`<text x="${M.left - 8}" y="${r(y + 4)}" text-anchor="end" font-size="${fs - 2}"${wOpt(spec)} fill="${axisText}">${fmt(v)}</text>`);
@@ -219,7 +224,11 @@ export function renderBar(spec) {
     const total = values.reduce((s, v) => s + v, 0);
     p.push(`<text x="${r(W - M.right)}" y="${title ? 50 : 20}" text-anchor="end" font-size="${fs - 1}"${wOpt(spec)} fill="${axisText}">Total: ${esc(fmt(total) + u)}</text>`);
   }
-  if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+  // titleAlign:'left' (OPT-IN, default centered): anchor the title at the left content
+  // edge so it lines up with list-style dashboard tiles (decision-log 2026-08-03).
+  if (title) p.push(spec.titleAlign === 'left'
+    ? `<text x="${M.left}" y="33" text-anchor="start" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`
+    : `<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
   if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
   p.push(`</svg>`);
   return p.join('\n');
@@ -241,7 +250,7 @@ export function renderBarGrouped(spec) {
   const title = spec.title || '';
   const labels = spec.data.labels;
   const series = spec.data.series;
-  const u = spec.valueUnit ? ' ' + spec.valueUnit : '';
+  const u = spec.valueUnit ? ' ' + String(spec.valueUnit).trim() : '';
   const showValues = spec.showValues !== false;
   const watermark = spec.watermark !== false;
 
@@ -333,7 +342,7 @@ export function renderBarStacked(spec) {
   const title = spec.title || '';
   const labels = spec.data.labels;
   const series = spec.data.series;
-  const u = spec.valueUnit ? ' ' + spec.valueUnit : '';
+  const u = spec.valueUnit ? ' ' + String(spec.valueUnit).trim() : '';
   const showValues = spec.showValues !== false;
   const watermark = spec.watermark !== false;
   const is100 = spec.type === 'stacked100';   // normalize every bar to 100%
@@ -427,7 +436,7 @@ export function renderBarStackedH(spec) {
   const title = spec.title || '';
   const labels = spec.data.labels;
   const series = spec.data.series;
-  const u = spec.valueUnit ? ' ' + spec.valueUnit : '';
+  const u = spec.valueUnit ? ' ' + String(spec.valueUnit).trim() : '';
   const showValues = spec.showValues !== false;
   const watermark = spec.watermark !== false;
 
@@ -523,7 +532,7 @@ export function renderBarH(spec) {
   const title = spec.title || '';
   const labels = spec.data.labels;
   const values = spec.data.series[0].values.map((v) => Number(v) || 0);
-  const u = spec.valueUnit ? ' ' + spec.valueUnit : '';
+  const u = spec.valueUnit ? ' ' + String(spec.valueUnit).trim() : '';
   const showValues = spec.showValues !== false;
   const showTotal = spec.showTotal !== false && spec.valueUnit !== '%';
   const watermark = spec.watermark !== false;
@@ -539,9 +548,12 @@ export function renderBarH(spec) {
   const faint    = isDark ? '#475569' : '#94a3b8';
 
   const longest = Math.max(0, ...labels.map((l) => String(l).length));
+  // axis:false (OPT-IN): skip scale numbers + gridlines; bottom margin shrinks to a
+  // symmetric pad (the left gutter STAYS — it holds category labels, not the scale).
+  const showAxis = spec.axis !== false;
   // Left margin grows with the longest label. Cap at 42% of canvas (not a fixed 160px,
   // which clipped long labels on wide / Share-Card sizes); floor at 56 so it never collapses.
-  const M = { left: Math.max(56, Math.min(W * 0.42, 28 + longest * (fs * 0.62))), right: 52, top: title ? 54 : 28, bottom: 46 };
+  const M = { left: Math.max(56, Math.min(W * 0.42, 28 + longest * (fs * 0.62))), right: 52, top: title ? 54 : 28, bottom: showAxis ? 46 : 24 };
   const plotW = W - M.left - M.right;
   const plotH = H - M.top - M.bottom;
   const maxV = Math.max(0, ...values);
@@ -555,7 +567,7 @@ export function renderBarH(spec) {
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
 
   // vertical gridlines + x-axis numbers
-  for (let v = 0; v <= niceMax + 1e-9; v += step) {
+  if (showAxis) for (let v = 0; v <= niceMax + 1e-9; v += step) {
     const x = r(xPix(v));
     p.push(`<line x1="${x}" y1="${M.top}" x2="${x}" y2="${r(M.top + plotH)}" stroke="${gridCol}" stroke-width="1"/>`);
     p.push(`<text x="${x}" y="${r(M.top + plotH + 18)}" text-anchor="middle" font-size="${fs - 2}"${wOpt(spec)} fill="${axisText}">${fmt(v)}</text>`);
@@ -568,8 +580,13 @@ export function renderBarH(spec) {
     const w = xPix(v) - M.left;
     p.push(`<path d="${rightRoundedBar(M.left, y, Math.max(0, w), barH, 5)}" fill="${colors[i]}"/>`);
     if (showValues) {
-      if (w >= 44) p.push(`<text x="${r(xPix(v) - 8)}" y="${my}" text-anchor="end" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${spec.textColor || contrastColor(colors[i])}">${esc(fmt(v) + u)}</text>`);
-      else p.push(`<text x="${r(xPix(v) + 6)}" y="${my}" text-anchor="start" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${valText}">${esc(fmt(v) + u)}</text>`);
+      // Inside-vs-outside by ACTUAL label width, not a fixed threshold: an end-anchored
+      // label wider than its bar overruns LEFT across the axis into the category gutter
+      // (bug proven by SVG coords, 2026-07-30). Inside only when the label truly fits.
+      const labelStr = fmt(v) + u;
+      const labelW = labelStr.length * (fs - 1) * 0.62 + 16;
+      if (w >= labelW) p.push(`<text x="${r(xPix(v) - 8)}" y="${my}" text-anchor="end" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${spec.textColor || contrastColor(colors[i])}">${esc(labelStr)}</text>`);
+      else p.push(`<text x="${r(xPix(v) + 6)}" y="${my}" text-anchor="start" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${valText}">${esc(labelStr)}</text>`);
     }
     p.push(`<text x="${r(M.left - 10)}" y="${my}" text-anchor="end" font-size="${fs - 1}"${wOpt(spec)} fill="${catText}">${esc(labels[i])}</text>`);
   });
@@ -578,7 +595,11 @@ export function renderBarH(spec) {
     const total = values.reduce((s, v) => s + v, 0);
     p.push(`<text x="${r(W - M.right + 44)}" y="${title ? 50 : 20}" text-anchor="end" font-size="${fs - 1}"${wOpt(spec)} fill="${axisText}">Total: ${esc(fmt(total) + u)}</text>`);
   }
-  if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
+  // titleAlign:'left' — same opt-in as renderBar; here the left content edge is the
+  // category-label column's left, i.e. the canvas pad (24), not the bar axis.
+  if (title) p.push(spec.titleAlign === 'left'
+    ? `<text x="24" y="33" text-anchor="start" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`
+    : `<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
   if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
   p.push(`</svg>`);
   return p.join('\n');
@@ -606,7 +627,7 @@ export function renderDiverging(spec) {
   const title = spec.title || '';
   const labels = spec.data.labels;
   const series = spec.data.series;
-  const u = spec.valueUnit ? ' ' + spec.valueUnit : '';
+  const u = spec.valueUnit ? ' ' + String(spec.valueUnit).trim() : '';
   const showValues = spec.showValues !== false;
   const watermark = spec.watermark !== false;
 
@@ -723,7 +744,7 @@ export function renderLollipop(spec) {
   const title = spec.title || '';
   const labels = spec.data.labels;
   const values = spec.data.series[0].values.map((v) => Number(v) || 0);
-  const u = spec.valueUnit ? ' ' + spec.valueUnit : '';
+  const u = spec.valueUnit ? ' ' + String(spec.valueUnit).trim() : '';
   const showValues = spec.showValues !== false;
   const showTotal = spec.showTotal !== false && spec.valueUnit !== '%';
   const watermark = spec.watermark !== false;
@@ -795,7 +816,7 @@ export function renderKpi(spec) {
   const faint = isDark ? '#475569' : '#94a3b8';
 
   const label = spec.label || '';
-  const valueStr = (spec.valuePrefix || '') + fmt(spec.value) + (spec.valueUnit ? ' ' + spec.valueUnit : '');
+  const valueStr = (spec.valuePrefix || '') + fmt(spec.value) + (spec.valueUnit ? ' ' + String(spec.valueUnit).trim() : '');
 
   const hasDelta = spec.delta !== undefined && spec.delta !== null;
   const d = Number(spec.delta) || 0;
@@ -879,7 +900,7 @@ export function renderLine(spec) {
   const title = spec.title || '';
   const labels = spec.data.labels;
   const series = spec.data.series;
-  const u = spec.valueUnit ? ' ' + spec.valueUnit : '';
+  const u = spec.valueUnit ? ' ' + String(spec.valueUnit).trim() : '';
   const showValues = spec.showValues === true;   // off by default for lines (clutter)
   const showPoints = spec.showPoints !== false;   // on by default
   // Line shape + area fill — set via options (curve/area) or convenience type names.
@@ -1009,7 +1030,7 @@ export function renderSlope(spec) {
   const title = spec.title || '';
   const labels = spec.data.labels;
   const series = spec.data.series;
-  const u = spec.valueUnit ? ' ' + spec.valueUnit : '';
+  const u = spec.valueUnit ? ' ' + String(spec.valueUnit).trim() : '';
   const li = labels.length - 1;
   const pal = resolveFlatPalette(spec.palette || 'Clean Corporate', Math.max(series.length, 2));
   const colorOf = (s, i) => s.color || pal[i % pal.length];
@@ -1081,7 +1102,7 @@ export function renderPie(spec) {
   const donut = spec.type === 'donut' || spec.donut === true;
   const labels = spec.data.labels;
   const values = spec.data.series[0].values.map((v) => Number(v) || 0);
-  const u = spec.valueUnit ? ' ' + spec.valueUnit : '';
+  const u = spec.valueUnit ? ' ' + String(spec.valueUnit).trim() : '';
   const pre = spec.valuePrefix || '';   // e.g. "$" — honored in legend + donut total
   const explicit = spec.data.series[0].colors;
   const colors = (Array.isArray(explicit) && explicit.length >= labels.length)
@@ -1186,7 +1207,7 @@ export function renderPieOfPie(spec) {
   const donut = spec.donut !== false;            // default true (matches the site)
   const showValues = spec.showValues !== false;
   const pre = spec.valuePrefix || '';                       // legend honors prefix…
-  const u = spec.valueUnit ? ' ' + spec.valueUnit : '';     // …and unit
+  const u = spec.valueUnit ? ' ' + String(spec.valueUnit).trim() : '';     // …and unit
 
   const titleCol = txt(spec, isDark ? '#f1f5f9' : '#0f172a');
   const subCol = txt(spec, isDark ? '#cbd5e1' : '#475569');
@@ -1696,7 +1717,7 @@ export function renderFunnel(spec) {
   const palette = resolveFlatPalette(spec.palette || 'Clean Corporate', Math.max(n, 3));
   const titleCol = txt(spec, isDark ? '#f1f5f9' : '#0f172a');
   const faint = isDark ? '#475569' : '#94a3b8';
-  const u = spec.valueUnit ? ' ' + spec.valueUnit : '';
+  const u = spec.valueUnit ? ' ' + String(spec.valueUnit).trim() : '';
 
   const PAD = 24, GAP = 6, BAND_H = 64;
   const topY = title ? 54 : 24;
@@ -2255,7 +2276,7 @@ export function renderGauge(spec) {
   const rad = Math.min((W - PAD * 2) / 2, H - topY - 50);
   const cx = W / 2, cy = topY + rad + 6;
   const innerR = rad * 0.72;
-  const u = spec.valueUnit ? ' ' + spec.valueUnit : '';
+  const u = spec.valueUnit ? ' ' + String(spec.valueUnit).trim() : '';
 
   const p = [];
   p.push(svgOpen(W, H, font));
@@ -2423,7 +2444,7 @@ export function renderLeaderboard(spec) {
   const track = isDark ? '#1e293b' : '#f1f5f9';
   const valCol = txt(spec, isDark ? '#e2e8f0' : '#334155');
   const faint = isDark ? '#475569' : '#94a3b8';
-  const u = spec.valueUnit ? ' ' + spec.valueUnit : '';
+  const u = spec.valueUnit ? ' ' + String(spec.valueUnit).trim() : '';
 
   const PAD = 24, ROW_H = 40, RANKW = 30, LABELW = 140, VALW = 70;
   const topY = title ? 54 : 24;
