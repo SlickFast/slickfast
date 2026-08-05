@@ -78,11 +78,14 @@ console.log(`  ${identical}/${total} chart types byte-identical across repeat re
 // ── lap 5 (optional): PNG rasterization — the honest heavier step ────────────
 try {
   const { svgToPng } = await import('../packages/raster/raster.mjs');
-  const png = () => { const t = performance.now(); svgToPng(renderSpec(barSpec), { scale: 2 }); return performance.now() - t; };
-  png(); // warm
-  const times = [png(), png(), png()];
+  const svg = renderSpec(barSpec);
+  const lap = (scale, n) => { for (let i = 0; i < 5; i++) svgToPng(svg, { scale }); // warm
+    const t = performance.now(); for (let i = 0; i < n; i++) svgToPng(svg, { scale }); return (performance.now() - t) / n; };
   console.log(`── PNG rasterization (the raster step is the heavy one) ${'─'.repeat(10)}`);
-  console.log(`  retina PNG (scale 2): ${ms(median(times))} per chart — SVG is the ms-fast path; PNG is for when you need pixels\n`);
+  const p1 = lap(1, 200), p2 = lap(2, 100);
+  console.log(`  PNG scale 1 (800×450):  ${ms(p1)} per chart → ~${Math.round(1000 / p1).toLocaleString()}/sec single-core`);
+  console.log(`  PNG scale 2 (retina):   ${ms(p2)} per chart → ~${Math.round(1000 / p2).toLocaleString()}/sec single-core`);
+  console.log(`  (SVG is the µs-fast path; PNG is for when you need pixels. Scales ~linearly across cores.)\n`);
 } catch {
   console.log('── PNG lap skipped (run `npm install` in packages/raster to include it)\n');
 }
