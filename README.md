@@ -3,6 +3,9 @@
 **Charts & dashboards for AI agents. A tiny JSON spec in → a finished, retina-quality chart
 out. Milliseconds, a handful of tokens, nothing leaves your machine.**
 
+![SlickFast — one JSON spec, one dashboard image](https://raw.githubusercontent.com/SlickFast/github-dashboard-template/main/assets/showcase-teal.png)
+<sub>↑ Engine output — one JSON spec, one image. Get this exact board on your README with the [dashboard template](https://github.com/SlickFast/github-dashboard-template) (`teal-hero` layout).</sub>
+
 SlickFast is a **native SVG engine built for AI agents** — not a browser screenshotting a
 webpage, not a plotting library an agent has to write code against. A pure
 `spec → SVG → PNG` pipeline: **47 chart and information-design types** (bar, line, pie, KPI,
@@ -21,6 +24,17 @@ image URL whose numbers update on their own. A scheduled job pushes fresh stats;
 visitor sees current data. [Live Charts](https://slickfast.com) — embed once, update forever.
 
 ![SlickFast live pulse — real project stats, updating automatically](https://api.slickfast.com/live/7eb0085dd74015764d54ec73ce4ee8bf.svg)
+
+
+## The range — two boards, two renders
+
+A seller ops board (funnel, bullet graph, goal ring, gauge, calendar heatmap, leaderboard — demo data):
+
+![Seller weekly dashboard](https://raw.githubusercontent.com/SlickFast/slickfast/main/assets/demo-seller-weekly.png)
+
+And the board that explains the engine — it times its own render into its title:
+
+![How chart images get made](https://raw.githubusercontent.com/SlickFast/slickfast/main/assets/how-chart-images-get-made.png)
 
 ## Prove it yourself
 
