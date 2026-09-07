@@ -1,7 +1,6 @@
 # SlickFast
 
-**This is not a charting library.** This is a **deterministic render engine.**
-Spec in, same bytes out. Forever. Charts, boards, and whole Pages. No headless browser.
+**A deterministic render engine.** Spec in, same bytes out. Forever. Charts, boards, and whole Pages. No headless browser.
 
 ![SlickFast — one JSON spec, one dashboard image](https://raw.githubusercontent.com/SlickFast/github-dashboard-template/main/assets/showcase-teal.png)
 <sub>↑ Engine output — one JSON spec, one image. Get this exact board on your README with the [dashboard template](https://github.com/SlickFast/github-dashboard-template) (`teal-hero` layout).</sub>

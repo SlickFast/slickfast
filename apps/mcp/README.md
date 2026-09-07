@@ -5,7 +5,7 @@
 [![license](https://img.shields.io/npm/l/@slickfast/mcp?color=22d3ee)](https://github.com/SlickFast/slickfast/blob/main/LICENSE)
 [![MCP](https://img.shields.io/badge/MCP-server-22d3ee)](https://modelcontextprotocol.io)
 
-**This is not a charting library.** Spec in, same bytes out. Forever. Charts, boards,
+**A deterministic render engine.** Spec in, same bytes out. Forever. Charts, boards,
 and whole Pages. No headless browser.
 
 **⚡ Live** — SlickFast’s own project pulse, updating on a cron. Same trick works in *your* README:
