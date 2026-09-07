@@ -1,21 +1,21 @@
 # SlickFast
 
-**Charts & dashboards for AI agents. A tiny JSON spec in → a finished, retina-quality chart
-out. Milliseconds, a handful of tokens, nothing leaves your machine.**
+**This is not a charting library.** This is a **deterministic render engine.**
+Spec in, same bytes out. Forever. Charts, boards, and whole Pages. No headless browser.
 
 ![SlickFast — one JSON spec, one dashboard image](https://raw.githubusercontent.com/SlickFast/github-dashboard-template/main/assets/showcase-teal.png)
 <sub>↑ Engine output — one JSON spec, one image. Get this exact board on your README with the [dashboard template](https://github.com/SlickFast/github-dashboard-template) (`teal-hero` layout).</sub>
 
-SlickFast is a **native SVG engine built for AI agents** — not a browser screenshotting a
-webpage, not a plotting library an agent has to write code against. A pure
-`spec → SVG → PNG` pipeline: **47 chart and information-design types** (bar, line, pie, KPI,
-cards, funnel, gauge, heatmap, calendar, gantt, waterfall…), plus **entire multi-chart
-dashboards tiled into one image in a single call**.
+**Local MCP is free forever.** A public URL is a plan (free key is enough to learn).
 
-- **npm (MCP server):** [`@slickfast/mcp`](https://www.npmjs.com/package/@slickfast/mcp)
+The spec **is** the chart. A pagespec **is** a Page. Add **`.json`** — that’s the **twin**.
+**The hash is on the page.** Don’t trust us. Check the math.
+
+- **npm (MCP):** [`@slickfast/mcp@0.7.31`](https://www.npmjs.com/package/@slickfast/mcp)
 - **Website:** [slickfast.com](https://slickfast.com)
-- **Bugs & feature requests:** [GitHub Issues](https://github.com/SlickFast/slickfast/issues)
-- **Email:** feedback@slickfast.com
+- **Engine explainer (a Page):** [open it](https://pages.slickfast.com/s/6ced56513246042c765dace4d4ec77b6) · [twin](https://pages.slickfast.com/s/6ced56513246042c765dace4d4ec77b6.json)
+- **Get started / News:** [slickfast.com/start](https://slickfast.com/start) · [slickfast.com/news](https://slickfast.com/news)
+- **Bugs:** [GitHub Issues](https://github.com/SlickFast/slickfast/issues) · feedback@slickfast.com
 
 ## This project's pulse — a LIVE chart, right here in the README
 
@@ -24,7 +24,6 @@ image URL whose numbers update on their own. A scheduled job pushes fresh stats;
 visitor sees current data. [Live Charts](https://slickfast.com) — embed once, update forever.
 
 ![SlickFast live pulse — real project stats, updating automatically](https://api.slickfast.com/live/7eb0085dd74015764d54ec73ce4ee8bf.svg)
-
 
 ## The range — two boards, two renders
 
@@ -55,7 +54,6 @@ chart, ~140,000 renders/sec, 47/47 deterministic.** Your numbers are your number
 [![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=slickfast&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzbGlja2Zhc3QvbWNwIl19)
 [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_SlickFast_MCP-0098FF?style=for-the-badge&logo=githubcopilot&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=slickfast&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40slickfast%2Fmcp%22%5D%7D)
 
-
 Add to your MCP client config (Claude Code, Claude Desktop, Cursor, …):
 
 ```json
@@ -63,36 +61,31 @@ Add to your MCP client config (Claude Code, Claude Desktop, Cursor, …):
   "mcpServers": {
     "slickfast": {
       "command": "npx",
-      "args": ["-y", "@slickfast/mcp"]
+      "args": ["-y", "@slickfast/mcp"],
+      "env": { "SLICKFAST_API_KEY": "SF-…" }
     }
   }
 }
 ```
 
-Then ask your agent for a chart — or ask it to *"show me a SlickFast demo"* (the `gallery`
-tool renders a curated showcase). Full tool documentation is in
-[`apps/mcp/README.md`](apps/mcp/README.md).
+Omit `env` to stay local-only (draw free forever). Add a free key from [slickfast.com](https://slickfast.com) when you want a live URL, share, or a published Page.
 
-## Why agents (and the people paying for their tokens) pick SlickFast
+Then: **`get_started`** → **`news`** → **`gallery`** → one **`render_chart`**. Full tool docs: [`apps/mcp/README.md`](apps/mcp/README.md).
 
-- **Tokens are the real cost — a spec is nearly free.** An agent hand-writing SVG or
-  matplotlib code burns hundreds to thousands of output tokens, then often retries when it
-  doesn't render. A SlickFast spec is a few dozen tokens, and `{type, data}` alone is a
-  finished, well-designed chart. A whole dashboard is **one tool call**, not ten renders
-  and layout math.
-- **Changes are one-field edits.** Swap `bar` → `line`, change a palette, resize for a
-  slide: edit one key, re-render — no code to rewrite, no diff to reason about.
-- **No headless browser.** Most chart-to-image pipelines secretly spawn Puppeteer or
-  Playwright — hundreds of MB, slow cold starts, flaky output. SlickFast renders pure
-  in-memory, milliseconds per chart.
-- **Native SVG, vector-first.** Output is a few KB of crisp-at-any-scale SVG (or retina PNG
-  on demand) — small enough to cache, embed, or ship anywhere.
-- **Deterministic — same spec, same chart, every time.** No randomness, no timestamps, no
-  browser drift. Cacheable, testable, reproducible; zero flaky pixel diffs.
-- **Graceful on empty data, loud on real mistakes.** Bad input gets a clear, listed-options
-  error the agent can self-correct from; missing data gets a clean frame — never a stack
-  trace at the model.
-- **Local & private.** Rendering and rasterization happen on your machine.
+## How to keep a Page
+
+**“Save it” is two jobs.** On disk: `render_page` + keep the pagespec JSON (no key). In the world: `publish_page` (SF- key) → `pages.slickfast.com/s/…` + `.json` twin. The hash is on the page. Find it later with `my_pages`.
+
+## Why agents pick SlickFast
+
+- **Deterministic** — same spec, same bytes. Cacheable. Testable.
+- **Cheap tokens** — a few dozen tokens of JSON beat hundreds of matplotlib / SVG retries.
+- **One-field edits** — swap type, palette, size; re-render. No code rewrite.
+- **Pages = shareable memory** — agent output → Page → twin → hash on the page. Not stuck in chat.
+- **No headless browser** — pure in-memory SVG → PNG (and Page HTML).
+- **47 types + tiled dashboards in one call.**
+- **Loud errors** — bad enum / unknown palette lists the valid options.
+- **Local by default** — nothing phones home from the MCP package.
 
 ## What's in this repo
 
@@ -134,8 +127,7 @@ The engine is pure and deterministic by contract: no IO, no `Date.now()`, no
 
 ## License
 
-[AGPL-3.0-only](LICENSE). You can use, self-host, and modify SlickFast freely; if you run a
-modified version as a network service, the AGPL requires you to share your changes. Using it
-inside a commercial product? Simple per-app licenses from $99/year, no license keys:
-[slickfast.com/license.html](https://slickfast.com/license.html) (or
-licensing@slickfast.com). Hosted API plans: [slickfast.com](https://slickfast.com).
+[AGPL-3.0-only](LICENSE). **Local MCP is free.** Closed commercial products (embed or
+self-host without AGPL) need a commercial license from $99/year:
+[slickfast.com/license.html](https://slickfast.com/license.html) · licensing@slickfast.com.
+Hosted API / hosted MCP: [slickfast.com/#pricing](https://slickfast.com/#pricing).
