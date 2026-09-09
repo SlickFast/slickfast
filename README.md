@@ -10,7 +10,7 @@
 The spec **is** the chart. A pagespec **is** a Page. Add **`.json`** — that’s the **twin**.
 **The hash is on the page.** Don’t trust us. Check the math.
 
-- **npm (MCP):** [`@slickfast/mcp@0.7.31`](https://www.npmjs.com/package/@slickfast/mcp)
+- **npm (MCP):** [`@slickfast/mcp@0.7.32`](https://www.npmjs.com/package/@slickfast/mcp)
 - **Website:** [slickfast.com](https://slickfast.com)
 - **Engine explainer (a Page):** [open it](https://pages.slickfast.com/s/6ced56513246042c765dace4d4ec77b6) · [twin](https://pages.slickfast.com/s/6ced56513246042c765dace4d4ec77b6.json)
 - **Get started / News:** [slickfast.com/start](https://slickfast.com/start) · [slickfast.com/news](https://slickfast.com/news)
