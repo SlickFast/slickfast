@@ -185,8 +185,8 @@ export function renderBar(spec) {
 
   // axis:false (OPT-IN, default unchanged): drop the numeric scale + gridlines and
   // the left gutter they need — symmetric margins, plot edge-to-edge. Legitimate
-  // when showValues already prints every bar's number (dashboard-tile alignment,
-  // decision-log 2026-08-03). Absent the flag, this block renders byte-identically.
+  // when showValues already prints every bar's number (dashboard-tile alignment).
+  // Absent the flag, this block renders byte-identically.
   const showAxis = spec.axis !== false;
   const M = { left: showAxis ? 56 : 24, right: 24, top: title ? 54 : 28, bottom: 46 };
   const plotW = W - M.left - M.right;
@@ -225,7 +225,7 @@ export function renderBar(spec) {
     p.push(`<text x="${r(W - M.right)}" y="${title ? 50 : 20}" text-anchor="end" font-size="${fs - 1}"${wOpt(spec)} fill="${axisText}">Total: ${esc(fmt(total) + u)}</text>`);
   }
   // titleAlign:'left' (OPT-IN, default centered): anchor the title at the left content
-  // edge so it lines up with list-style dashboard tiles (decision-log 2026-08-03).
+  // edge so it lines up with list-style dashboard tiles.
   if (title) p.push(spec.titleAlign === 'left'
     ? `<text x="${M.left}" y="33" text-anchor="start" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`
     : `<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);

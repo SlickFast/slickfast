@@ -78,10 +78,6 @@ node -e 'import("./packages/render-core/render-core.mjs").then(m=>{
 Open `/tmp/test.svg`. Check: tiers relate, the drill-down reads at a glance, labels are
 legible, no broken colors.
 
-## Reference
-Full design-language analysis (why each palette works):
-`slickfast-research/research/_misc/pieofpie-palette-design-language.md`.
-
 ## Pre-ship checklist
 - [ ] One clear design principle (§ above)
 - [ ] 3 valid 6-digit hexes per tier — `node scripts/check-palettes.mjs` passes
