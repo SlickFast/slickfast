@@ -21,5 +21,5 @@
 <text x="44" y="188" text-anchor="middle" font-size="17" font-weight="800" fill="#1a1a1a">B</text>
 <rect x="82" y="169" width="57" height="26" rx="6" fill="#e2e8f0"/>
 <text x="110.5" y="187" text-anchor="middle" font-size="13" fill="#334155">Radar</text>
-<text x="550" y="215" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+<text x="548" y="212" text-anchor="end" font-size="12" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>

@@ -29,5 +29,5 @@
 <text x="122.78" y="373" text-anchor="end" font-size="12" fill="#475569">Japan</text>
 <text x="792" y="50" text-anchor="end" font-size="12" fill="#64748b">Total: 2,395</text>
 <text x="400" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Top Countries by Users</text>
-<text x="792" y="442" text-anchor="end" font-size="10" fill="#94a3b8" opacity="0.7">slickfast.com</text>
+<text x="788" y="438" text-anchor="end" font-size="14" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>

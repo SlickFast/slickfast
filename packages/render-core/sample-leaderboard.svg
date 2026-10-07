@@ -26,5 +26,5 @@
 <rect x="194" y="226" width="272" height="16" rx="8" fill="#f1f5f9"/>
 <rect x="194" y="226" width="173.9" height="16" rx="8" fill="#2563eb"/>
 <text x="536" y="239" text-anchor="end" font-size="13" font-weight="700" fill="#334155">390 k</text>
-<text x="550" y="253" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+<text x="548" y="250" text-anchor="end" font-size="12" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>

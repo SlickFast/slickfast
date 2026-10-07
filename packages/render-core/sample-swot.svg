@@ -25,5 +25,5 @@
 <text x="343" y="268" font-size="14" font-weight="700" fill="#C17817">Threats</text>
 <circle cx="347" cy="288" r="2.5" fill="#C17817"/>
 <text x="357" y="292" font-size="13" fill="#5b6270">Incumbent libraries</text>
-<text x="630" y="431" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+<text x="628" y="428" text-anchor="end" font-size="13" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>

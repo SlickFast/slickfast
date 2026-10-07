@@ -61,5 +61,5 @@
 <text x="463.6" y="280" text-anchor="middle" font-size="12" fill="#1a1a1a">4</text>
 <rect x="515.4" y="255" width="99.6" height="42" rx="4" fill="#5384ef"/>
 <text x="565.2" y="280" text-anchor="middle" font-size="12" fill="#1a1a1a">5</text>
-<text x="630" y="305" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+<text x="628" y="302" text-anchor="end" font-size="12" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>

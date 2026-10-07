@@ -18,10 +18,13 @@ and good-looking with just `{type, data}`. Pass `outputPath` when the user wants
 file saved to disk.
 
 **Fall back to your own plotting only for what this engine does not do yet:**
-- **Chart types not listed below** — scatter, bubble, heatmap, treemap, radar, sankey,
-  geographic maps, candlestick, gantt.
-- **Reference / target / threshold lines, log scales, secondary (dual) axes, and point
-  annotations / callouts** — on the roadmap, not available today.
+- **Chart types not listed below** — bubble, treemap, radar, sankey,
+  geographic maps, candlestick, boxplot, histogram.
+- **Scientific charts (sci-core)** — `scatter`, `errorbar`, `lineplot`, `barplot`,
+  `survival`, `blandaltman`, `qq`, `volcano` are live on the same engine (real log
+  axes, plot-supporting stats). They are **not** rows in the 47 gallery list below;
+  call MCP `describe_type` for the data shape. Soft-announced.
+- **Secondary (dual) axes** on gallery types — not available today.
 - **Interactivity, animation, hover tooltips** — output is a static SVG/PNG.
 
 ## Universal fields (every chart type honors these)
@@ -484,10 +487,17 @@ A compact donut-arc badge showing `value / target` as a percent in the center.
 Minimal: `{ "type": "ring", "value": 70, "target": 100, "label": "Goal" }`
 
 ### `versus` — two options compared
-Two mirrored columns with a VS badge between. Uses **`sides`** (exactly two): each `{ title, items[] }`,
-each item `{ label, value? }`.
+Two mirrored columns with a VS badge between.
+
+**Canonical:** **`sides`** (exactly two): each `{ title, items[] }`, each item
+`{ label, value? }` (`value` may be a number or a short string).
 
 Minimal: `{ "type": "versus", "sides": [ { "title": "Plan A", "items": [ { "label": "Price", "value": 9 } ] }, { "title": "Plan B", "items": [ { "label": "Price", "value": 29 } ] } ] }`
+
+**Shorthand (also accepted):** `left` / `right` (aliases `a` / `b`) as
+`{ label|title, value|detail|description }` — becomes a heading + one body row.
+Use this for a simple A-vs-B card; use `sides` when you need multiple rows per column.
+If both `sides` and `left`/`right` are set, **`sides` wins**.
 
 ### `gantt` — tasks across a time row
 Schedule bars on a **self-contained** time layout (NOT the numeric axis). Uses **`tasks`**:
@@ -524,22 +534,21 @@ Minimal: `{ "type": "swot", "cells": [ { "title": "Strengths", "items": ["Fast",
 
 ### `dashboard` — tile many charts into one image
 The composition layer: lays out **other charts** on a grid and rasterizes them in a single pass
-(one nested SVG → one PNG). Uses **`tiles`** `{ chart, span? }` — each `chart` is a **complete spec
-of any other type** (the same object you'd render standalone), and `span` is `[colspan, rowspan]`
-(default `[1,1]`). Optional **`layout`** `{ cols?, gap?, pad?, tileWidth?, tileHeight? }` (cols
-default 3). Board-level `title`, `palette`, `font`, and `background` cascade to any tile that
-doesn't set its own; per-tile watermarks are suppressed in favor of one board watermark. A wide
-chart can span two columns, a tall one two rows. Each tile keeps its OWN scale — a mixed dashboard
-needs that; to compare the SAME metric on one shared scale, use a single grouped/multi-series chart
-(or separate boards), not side-by-side tiles.
+(one nested SVG → one PNG). Uses **`tiles`** `{ chart, span?, fit?, href? }` — each `chart` is a
+**complete spec of any other type** (the same object you'd render standalone), and `span` is
+`[colspan, rowspan]` (default `[1,1]`). Optional **`layout`**
+`{ cols?, gap?, pad?, tileWidth?, tileHeight?, fit? }` (cols default 3). Board-level `title`,
+`palette`, `font`, and `background` cascade to any tile that doesn't set its own; per-tile
+watermarks are suppressed in favor of one board watermark. A wide chart can span two columns, a
+tall one two rows. Each tile keeps its OWN scale — a mixed dashboard needs that; to compare the
+SAME metric on one shared scale, use a single grouped/multi-series chart (or separate boards),
+not side-by-side tiles.
 
-**Filling wide tiles (do this — it's the difference between "off" and "designed"):** a tile
-letterboxes its chart at the chart's own aspect ratio, so a default line chart (≈16:9) centered in
-a wide span-2 cell (≈5:1) leaves dead space on both sides. To make a chart FILL its cell, set the
-chart's own `width`/`height` to roughly the cell's shape: cell width ≈ `span[0] × tileWidth` (440
-default) plus gaps, cell height = `tileHeight`. E.g. on a 6-col board with `tileHeight: 180`, a
-span-`[2,1]` line chart with `"width": 1000, "height": 200` runs edge-to-edge — ultra-wide lines
-read like instrument bands. Same trick for any type that looks lost in its slot.
+**Tile fit (default `fill`, 2026-08-24):** by default each tile **fills its cell** — the
+engine stamps the cell's width/height onto the child before render so axis charts reflow
+edge-to-edge (no letterbox). Opt out with `layout.fit: "contain"` or per-tile `fit: "contain"`
+(old letterbox behavior), or by setting an explicit `chart.width` / `chart.height` (those win).
+`tile.fit` overrides `layout.fit`.
 
 Minimal: `{ "type": "dashboard", "layout": { "cols": 2 }, "tiles": [ { "chart": { "type": "kpi", "label": "Revenue", "value": 128400, "valuePrefix": "$", "delta": 12.4 } }, { "chart": { "type": "bar", "data": { "labels": ["A","B","C"], "series": [ { "name": "Sales", "values": [8,5,3] } ] } } } ] }`
 
@@ -567,7 +576,7 @@ Minimal: `{ "type": "dashboard", "layout": { "cols": 2 }, "tiles": [ { "chart": 
 - **Unknown `type` is an error** — only documented types render.
 
 ## Roadmap
-More chart types (line, area, stacked, pie, …) register in `renderSpec`; each inherits
-every universal field above and gets its own row here. This document becomes a formal
-JSON Schema when the MCP server is built, so the `render_chart` tool can validate specs
-and an LLM can read the field contract directly.
+New chart types register in `renderSpec` (one registry — every agent-facing surface
+derives from it) and get their own row here; each inherits every universal field
+above. The MCP server is live: `render_chart` validates specs against this contract,
+and `describe_type` serves any type's field contract to an LLM directly.

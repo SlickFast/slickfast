@@ -25,5 +25,5 @@
 <text x="1012.5" y="153.84" font-size="35" font-weight="800" fill="#0f172a">61</text>
 <rect x="1012.5" y="171.6" width="47" height="24" rx="12" fill="#fef2f2"/>
 <text x="1036" y="187.6" text-anchor="middle" font-size="12.5" font-weight="700" fill="#dc2626">▼ 2%</text>
-<text x="1292" y="231" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+<text x="1290" y="228" text-anchor="end" font-size="13" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>

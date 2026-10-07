@@ -1,0 +1,9 @@
+{
+  "type": "dashboard",
+  "title": "Clickable tiles — drill golden",
+  "layout": { "cols": 2, "gap": 12, "pad": 16, "tileHeight": 120 },
+  "tiles": [
+    { "href": "https://api.slickfast.com/p/run-47?tile=qc&from=board", "chart": { "type": "kpi", "label": "QC drift", "value": 2.1 } },
+    { "chart": { "type": "kpi", "label": "plain tile", "value": 7 } }
+  ]
+}

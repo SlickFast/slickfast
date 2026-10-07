@@ -23,5 +23,5 @@
 <rect x="220.6" y="947" width="11" height="11" rx="2.5" fill="#06b6d4"/>
 <text x="238.6" y="956" font-size="16" fill="#475569">Social · 900</text>
 <text x="300" y="33" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Traffic by Source</text>
-<text x="592" y="992" text-anchor="end" font-size="10" fill="#94a3b8" opacity="0.7">slickfast.com</text>
+<text x="588" y="988" text-anchor="end" font-size="16" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>

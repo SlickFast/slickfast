@@ -14,5 +14,5 @@
 <circle cx="676" cy="137" r="6" fill="#d97706" stroke="#ffffff" stroke-width="3"/>
 <text x="676" y="157" text-anchor="middle" font-size="12" fill="#475569">Q4</text>
 <text x="676" y="174" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">Profitable</text>
-<text x="710" y="211" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+<text x="708" y="208" text-anchor="end" font-size="12" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>

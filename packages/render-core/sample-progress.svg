@@ -17,5 +17,5 @@
 <text x="576" y="205" text-anchor="end" font-size="13" fill="#334155">47 / 60</text>
 <rect x="24" y="214" width="552" height="14" rx="7" fill="#e2e8f0"/>
 <rect x="24" y="214" width="432.4" height="14" rx="7" fill="#d97706"/>
-<text x="590" y="237" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+<text x="588" y="234" text-anchor="end" font-size="12" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>

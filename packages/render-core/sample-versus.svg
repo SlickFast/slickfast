@@ -19,5 +19,5 @@
 <text x="582" y="162" text-anchor="end" font-size="13" font-weight="700" fill="#059669">50,000</text>
 <circle cx="310" cy="187" r="20" fill="#ffffff" stroke="#94a3b8" stroke-opacity="0.5"/>
 <text x="310" y="192" text-anchor="middle" font-size="13" font-weight="800" fill="#94a3b8">VS</text>
-<text x="610" y="311" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+<text x="608" y="308" text-anchor="end" font-size="12" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>

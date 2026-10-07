@@ -7,5 +7,5 @@
 <text x="74.5" y="140" text-anchor="middle" font-size="12.5" font-weight="700" fill="#059669">▲ 12.4%</text>
 <polyline points="40,164 87.33,161.2 134.67,162.6 182,157.47 229.33,154.67 276.67,153.27 324,150" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <circle cx="324" cy="150" r="2.6" fill="#059669"/>
-<text x="330" y="171" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+<text x="328" y="168" text-anchor="end" font-size="12" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>

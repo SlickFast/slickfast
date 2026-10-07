@@ -381,5 +381,5 @@
 <rect x="782" y="82" width="11" height="11" rx="2" fill="#ebedf0"/>
 <rect x="782" y="96" width="11" height="11" rx="2" fill="#ebedf0"/>
 <rect x="782" y="110" width="11" height="11" rx="2" fill="#ebedf0"/>
-<text x="810" y="173" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+<text x="808" y="170" text-anchor="end" font-size="12" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>

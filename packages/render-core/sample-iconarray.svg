@@ -11,5 +11,5 @@
 <circle cx="305" cy="60.6" r="6.6" fill="#e2e8f0"/><path d="M295.4,84 Q295.4,68.52 305,68.52 Q314.6,68.52 314.6,84 Z" fill="#e2e8f0"/>
 <circle cx="343" cy="60.6" r="6.6" fill="#e2e8f0"/><path d="M333.4,84 Q333.4,68.52 343,68.52 Q352.6,68.52 352.6,84 Z" fill="#e2e8f0"/>
 <circle cx="381" cy="60.6" r="6.6" fill="#e2e8f0"/><path d="M371.4,84 Q371.4,68.52 381,68.52 Q390.6,68.52 390.6,84 Z" fill="#e2e8f0"/>
-<text x="410" y="95" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+<text x="408" y="92" text-anchor="end" font-size="12" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>

@@ -13,5 +13,5 @@
 <rect x="24" y="300" width="552" height="72" rx="12" fill="#d97706"/>
 <text x="300" y="334" text-anchor="middle" font-size="17" font-weight="700" fill="#1a1a1a">Infra</text>
 <text x="300" y="352" text-anchor="middle" font-size="13" fill="#1a1a1a" opacity="0.85">Railway + Docker</text>
-<text x="590" y="379" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+<text x="588" y="376" text-anchor="end" font-size="12" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>

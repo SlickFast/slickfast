@@ -18,5 +18,5 @@
 <text x="32" y="205" font-size="13" font-weight="600" fill="#475569">Sites</text>
 <rect x="484.67" y="188" width="165.33" height="26" rx="5" fill="#059669"/>
 <text x="567.33" y="205" text-anchor="middle" font-size="11" fill="#1a1a1a">Relaunch</text>
-<text x="670" y="233" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+<text x="668" y="230" text-anchor="end" font-size="12" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>

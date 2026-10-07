@@ -69,6 +69,7 @@ const SAMPLES = [
   { spec: 'sample-tierlist-spec.json', out: 'sample-tierlist.svg' },
   { spec: 'sample-swot-spec.json', out: 'sample-swot.svg' },
   { spec: 'sample-dashboard-spec.json', out: 'sample-dashboard.svg' },
+  { spec: 'sample-dashboard-href-spec.json', out: 'sample-dashboard-href.svg' },
   { spec: 'sample-textstyle-spec.json', out: 'sample-textstyle.svg' },
 ];
 

@@ -33,6 +33,14 @@ const svgOpen = (W, H, font) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox
 const r = (n) => Math.round(n * 100) / 100;                 // 2dp — keeps SVG clean & snapshots stable
 const fmt = (n) => (Number(n) || 0).toLocaleString('en-US'); // deterministic thousands separators
 
+// Bottom-right house mark. One helper — do not restyle per type (law 8).
+// Default on (spec.watermark !== false). Local MCP + free API keep it; paid can turn it off.
+// Size scales a little with canvas, clamped so a KPI is readable and a dashboard is not a billboard.
+export function watermarkEl(W, H) {
+  const fs = Math.max(12, Math.min(16, Math.round(Math.sqrt(W * H) / 42)));
+  return `<text x="${r(W - 12)}" y="${r(H - 12)}" text-anchor="end" font-size="${fs}" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>`;
+}
+
 // Largest-remainder rounding → integer percentages that sum to EXACTLY 100
 // (RULES-LEDGER: 100% stacks never drift to 99/101 from naïve rounding).
 function pct100(vals) {
@@ -167,7 +175,7 @@ export function renderBar(spec) {
   const u = spec.valueUnit ? ' ' + String(spec.valueUnit).trim() : '';
   const showValues = spec.showValues !== false;
   const showTotal = spec.showTotal !== false && spec.valueUnit !== '%';          // single-type "Total: N" (RULES-LEDGER)
-  const watermark = spec.watermark !== false;          // free-tier attribution (off for the feeder sites)
+  const watermark = spec.watermark !== false;          // house mark (off for paid API / feeder sites)
   // Explicit per-bar colors (e.g. a site export where the user customized bars)
   // win; otherwise pull from the palette by index.
   const explicit = spec.data.series[0].colors;
@@ -229,7 +237,7 @@ export function renderBar(spec) {
   if (title) p.push(spec.titleAlign === 'left'
     ? `<text x="${M.left}" y="33" text-anchor="start" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`
     : `<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
-  if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -319,7 +327,7 @@ export function renderBarGrouped(spec) {
   }
 
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
-  if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -417,7 +425,7 @@ export function renderBarStacked(spec) {
   });
 
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
-  if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -513,7 +521,7 @@ export function renderBarStackedH(spec) {
   });
 
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
-  if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -600,7 +608,7 @@ export function renderBarH(spec) {
   if (title) p.push(spec.titleAlign === 'left'
     ? `<text x="24" y="33" text-anchor="start" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`
     : `<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
-  if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -725,7 +733,7 @@ export function renderDiverging(spec) {
   });
 
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
-  if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -795,7 +803,7 @@ export function renderLollipop(spec) {
     p.push(`<text x="${r(W - M.right)}" y="${title ? 50 : 20}" text-anchor="end" font-size="${fs - 1}"${wOpt(spec)} fill="${axisText}">Total: ${esc(fmt(total) + u)}</text>`);
   }
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
-  if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -882,7 +890,7 @@ export function renderKpi(spec) {
       p.push(`<text x="${r(px + pillW / 2)}" y="${r(y + pillH * 0.68)}" text-anchor="middle" font-size="${pillFont}" ${wAttr(spec, 700)} fill="${pillTx}">${esc(dText)}</text>`);
     }
   }
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -1013,7 +1021,7 @@ export function renderLine(spec) {
   }
 
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
-  if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -1083,7 +1091,7 @@ export function renderSlope(spec) {
   }
 
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
-  if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -1184,7 +1192,7 @@ export function renderPie(spec) {
   }
 
   if (title) p.push(`<text x="${r(W / 2)}" y="33" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
-  if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -1343,7 +1351,7 @@ export function renderPieOfPie(spec) {
   });
 
   if (title) p.push(`<text x="${r(W / 2)}" y="26" text-anchor="middle" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
-  if (watermark) p.push(`<text x="${r(W - 8)}" y="${r(H - 8)}" text-anchor="end" font-size="10" fill="${faint}" opacity="0.7">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -1453,7 +1461,7 @@ export function renderCards(spec) {
     }
   });
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -1510,7 +1518,7 @@ export function renderLayers(spec) {
     }
   });
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -1564,7 +1572,7 @@ export function renderProgress(spec) {
     if (cl > 0) p.push(`<rect x="${PAD}" y="${r(barY)}" width="${r(Math.max(barH, cl * trackW))}" height="${barH}" rx="7" fill="${fill}"/>`);
   });
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -1629,7 +1637,7 @@ export function renderWaffle(spec) {
     p.push(`<text x="${legendX + 20}" y="${r(ly + 11)}" font-size="${fs}"${wOpt(spec)} fill="${legendCol}">${esc((pt.label || '') + '  ' + fmt(vals[i]))}</text>`);
   });
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -1690,7 +1698,7 @@ export function renderHeatmap(spec) {
     });
   });
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -1747,7 +1755,7 @@ export function renderFunnel(spec) {
     p.push(`<text x="${r(cx)}" y="${r(my + 15)}" text-anchor="middle" font-size="${fs - 1}"${wOpt(spec)} fill="${tc}">${esc(fmt(vals[i]) + u + '  ·  ' + pct + '%')}</text>`);
   });
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -1793,7 +1801,7 @@ export function renderPyramid(spec) {
     p.push(`<text x="${r(cx)}" y="${r((yTop + yBot) / 2 + 4)}" text-anchor="middle" font-size="${fs + 1}" ${wAttr(spec, 700)} fill="${tc}">${esc(lbl)}</text>`);
   });
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -1845,7 +1853,7 @@ export function renderQuadrant(spec) {
     p.push(`<text x="${r(rightHalf ? x - 10 : x + 10)}" y="${r(y + 4)}" text-anchor="${rightHalf ? 'end' : 'start'}" font-size="${fs}"${wOpt(spec)} fill="${labelCol}">${esc(it.label || '')}</text>`);
   });
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -1897,7 +1905,7 @@ export function renderTimeline(spec) {
     }
   });
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -1954,7 +1962,7 @@ export function renderVenn(spec) {
     p.push(`<text x="${r(c[2][0] + R * 0.4)}" y="${r(c[2][1] + R + 18)}" text-anchor="middle" font-size="${fs + 1}" ${wAttr(spec, 700)} fill="${labelCol}">${esc((sets[2].label || '') + '  ' + val(2))}</text>`);
   }
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -2038,7 +2046,7 @@ export function renderMatrix(spec) {
     });
   });
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -2084,7 +2092,7 @@ export function renderChecklist(spec) {
     p.push(`<text x="${r(gx + s + 14)}" y="${r(cy + fs * 0.35)}" font-size="${fs + 1}"${wOpt(spec)} fill="${lc}">${esc(it.label || '')}</text>`);
   });
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -2125,7 +2133,7 @@ export function renderIconArray(spec) {
     p.push(personGlyph(x + ICON / 2, y, ICON, k < filled ? fillCol : emptyCol));
   }
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -2182,7 +2190,7 @@ export function renderSteps(spec) {
     if (st.description) p.push(`<text x="${r(x)}" y="${r(cy + R + 42)}" text-anchor="middle" font-size="${fs - 1}"${wOpt(spec)} fill="${descCol}">${esc(st.description)}</text>`);
   });
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -2244,7 +2252,7 @@ export function renderTable(spec) {
     }
   });
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -2290,7 +2298,7 @@ export function renderGauge(spec) {
   p.push(`<text x="${r(cx - (rad + innerR) / 2)}" y="${r(cy + 16)}" text-anchor="middle" font-size="${fs - 2}" fill="${faint}">${esc(fmt(min))}</text>`);
   p.push(`<text x="${r(cx + (rad + innerR) / 2)}" y="${r(cy + 16)}" text-anchor="middle" font-size="${fs - 2}" fill="${faint}">${esc(fmt(max))}</text>`);
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -2347,7 +2355,7 @@ export function renderBullet(spec) {
     if (target != null) p.push(`<line x1="${r(sx(target))}" y1="${r(barY - 4)}" x2="${r(sx(target))}" y2="${r(barY + barH + 4)}" stroke="${tickCol}" stroke-width="2.5"/>`);
   });
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -2418,7 +2426,7 @@ export function renderCalendar(spec) {
     p.push(`<rect x="${r(x)}" y="${r(y)}" width="${CELL}" height="${CELL}" rx="2" fill="${cellColor(valByDoy[doy] || 0)}"/>`);
   }
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -2472,12 +2480,16 @@ export function renderLeaderboard(spec) {
     p.push(`<text x="${W - PAD}" y="${r(cy + 5)}" text-anchor="end" font-size="${fs}" ${wAttr(spec, 700)} fill="${valCol}">${esc(fmt(it.value) + u)}</text>`);
   });
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
 
 // ── callout — hero stat + caption + annotation ────────────────────────────────
+// Note rail: a right-side chip + vertical rule. Long notes on narrow tiles used to
+// push the rule left through the caption (npm pulse "released Aug 26" clipped).
+// When the rail would collide with value/caption, stack the note under the caption
+// with no rule. Short notes on wide canvases keep the classic right rail.
 export function renderCallout(spec) {
   const bg = spec.background || '#ffffff';
   const transparent = bg === 'transparent' || bg === 'none';
@@ -2494,23 +2506,56 @@ export function renderCallout(spec) {
   const PAD = 28, W = spec.width || 620, H = spec.height || 220;
   const topY = title ? 50 : 20;
   const valueStr = (spec.valuePrefix || '') + (spec.value != null ? fmt(spec.value) : '') + (spec.valueUnit || '');
+  const hasValue = valueStr !== '';
+  const caption = spec.caption != null ? String(spec.caption) : '';
+  const note = spec.note != null ? String(spec.note) : '';
+
+  // Rough advance widths (Inter-ish) — enough to decide rail vs stack, not for kerning.
+  const approxTextW = (s, size) => Math.round(String(s).length * size * 0.56);
+  const leftContentR = PAD + Math.max(
+    hasValue ? approxTextW(valueStr, (H - topY) * 0.42) : 0,
+    caption ? approxTextW(caption, fs + 2) : 0,
+    48,
+  );
 
   const p = [];
   p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
   if (title) p.push(`<text x="${PAD}" y="33" font-size="${fs + 5}" ${wAttr(spec, 700)} fill="${titleCol}">${esc(title)}</text>`);
 
-  const by = topY + (H - topY) * 0.5;
-  p.push(`<text x="${PAD}" y="${r(by)}" font-size="${r((H - topY) * 0.42)}" ${wAttr(spec, 800)} fill="${accent}">${esc(valueStr)}</text>`);
-  if (spec.caption) p.push(`<text x="${PAD}" y="${r(by + (H - topY) * 0.22)}" font-size="${fs + 2}"${wOpt(spec)} fill="${capCol}">${esc(spec.caption)}</text>`);
-  if (spec.note) {
-    const nw = Math.round(String(spec.note).length * (fs * 0.62) + 22);
-    const nx = W - PAD - nw, ny = topY + 12;
-    p.push(`<line x1="${r(nx - 14)}" y1="${r(topY + 6)}" x2="${r(nx - 14)}" y2="${H - 20}" stroke="${faint}" stroke-opacity="0.5"/>`);
-    p.push(`<rect x="${r(nx)}" y="${r(ny)}" width="${nw}" height="26" rx="8" fill="${accent}" fill-opacity="0.14"/>`);
-    p.push(`<text x="${r(nx + nw / 2)}" y="${r(ny + 17)}" text-anchor="middle" font-size="${fs}" ${wAttr(spec, 600)} fill="${accent}">${esc(spec.note)}</text>`);
+  const bodyTop = topY;
+  const bodyH = H - bodyTop - (watermark ? 18 : 10);
+  const by = bodyTop + bodyH * (hasValue ? 0.48 : 0.42);
+  if (hasValue) {
+    p.push(`<text x="${PAD}" y="${r(by)}" font-size="${r(bodyH * 0.42)}" ${wAttr(spec, 800)} fill="${accent}">${esc(valueStr)}</text>`);
   }
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  const capY = hasValue ? by + bodyH * 0.22 : bodyTop + bodyH * 0.38;
+  if (caption) {
+    p.push(`<text x="${PAD}" y="${r(capY)}" font-size="${fs + 2}"${wOpt(spec)} fill="${capCol}">${esc(caption)}</text>`);
+  }
+
+  if (note) {
+    const noteFs = fs;
+    const wantNw = Math.round(approxTextW(note, noteFs) + 22);
+    const railGap = 16;
+    const maxRailW = Math.max(56, W - PAD - leftContentR - railGap - 14);
+    const fitsRail = wantNw <= maxRailW && (W - PAD - Math.min(wantNw, maxRailW) - 14) >= leftContentR + railGap;
+
+    if (fitsRail) {
+      const nw = Math.min(wantNw, maxRailW);
+      const nx = W - PAD - nw, ny = topY + 12;
+      p.push(`<line x1="${r(nx - 14)}" y1="${r(topY + 6)}" x2="${r(nx - 14)}" y2="${H - 20}" stroke="${faint}" stroke-opacity="0.5"/>`);
+      p.push(`<rect x="${r(nx)}" y="${r(ny)}" width="${nw}" height="26" rx="8" fill="${accent}" fill-opacity="0.14"/>`);
+      p.push(`<text x="${r(nx + nw / 2)}" y="${r(ny + 17)}" text-anchor="middle" font-size="${noteFs}" ${wAttr(spec, 600)} fill="${accent}">${esc(note)}</text>`);
+    } else {
+      // Stack: full-width note chip under caption — no vertical rule through the text.
+      const chipY = Math.min(H - 36, Math.round((caption ? capY : by) + 18));
+      const chipW = Math.min(W - PAD * 2, Math.max(wantNw, approxTextW(note, noteFs) + 22));
+      p.push(`<rect x="${PAD}" y="${r(chipY)}" width="${r(chipW)}" height="26" rx="8" fill="${accent}" fill-opacity="0.14"/>`);
+      p.push(`<text x="${r(PAD + chipW / 2)}" y="${r(chipY + 17)}" text-anchor="middle" font-size="${noteFs}" ${wAttr(spec, 600)} fill="${accent}">${esc(note)}</text>`);
+    }
+  }
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -2549,14 +2594,39 @@ export function renderRing(spec) {
   if (dash > 0) p.push(`<circle cx="${r(cx)}" cy="${r(cy)}" r="${r(R)}" fill="none" stroke="${accent}" stroke-width="${r(sw)}" stroke-linecap="round" stroke-dasharray="${r(dash)} ${r(circ - dash)}" transform="rotate(-90 ${r(cx)} ${r(cy)})"/>`);
   p.push(`<text x="${r(cx)}" y="${r(cy + R * 0.18)}" text-anchor="middle" font-size="${r(R * 0.5)}" ${wAttr(spec, 800)} fill="${valueCol}">${Math.round(frac * 100)}%</text>`);
   if (spec.label) p.push(`<text x="${r(cx)}" y="${r(cy + R + sw / 2 + 16)}" text-anchor="middle" font-size="${fs}"${wOpt(spec)} fill="${labelCol}">${esc(spec.label)}</text>`);
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
 
 // ── versus — two options mirrored side by side ────────────────────────────────
+// Canonical: sides:[{ title, items:[{label,value?}] }, …] (see SPEC).
+// Shorthand agents keep inventing: left/right (or a/b) as { label|title, value|detail }.
+// Without normalizing those, you get two tinted empty panels + "VS" — data looks
+// "invisible" (2026-08-26). Accept both; sides wins when present.
+function versusSideFrom(raw) {
+  if (!raw || typeof raw !== 'object') return { title: '', items: [] };
+  const title = raw.title != null && String(raw.title) !== '' ? String(raw.title)
+    : (raw.label != null ? String(raw.label) : '');
+  if (Array.isArray(raw.items)) return { title, color: raw.color, items: raw.items };
+  const body = raw.value != null ? raw.value
+    : (raw.detail != null ? raw.detail
+      : (raw.description != null ? raw.description
+        : (raw.sub != null ? raw.sub : null)));
+  // One visible row under the heading — string bodies are the whole point of the shorthand.
+  if (body != null && String(body) !== '') return { title, color: raw.color, items: [{ label: String(body) }] };
+  return { title, color: raw.color, items: [] };
+}
+
 export function renderVersus(spec) {
-  const sides = Array.isArray(spec.sides) ? spec.sides.slice(0, 2) : [];
+  // Always normalize: agents put {label,value} inside sides[] too — same empty-panel
+  // trap as left/right if we only normalize the shorthand branch (2026-08-26).
+  let sides = Array.isArray(spec.sides) ? spec.sides.slice(0, 2).map(versusSideFrom) : [];
+  if (!sides.length) {
+    const L = spec.left ?? spec.a;
+    const R = spec.right ?? spec.b;
+    if (L != null || R != null) sides = [versusSideFrom(L), versusSideFrom(R)];
+  }
   const bg = spec.background || '#ffffff';
   const transparent = bg === 'transparent' || bg === 'none';
   const isDark = !transparent && getLuminance(bg) < 0.35;
@@ -2588,14 +2658,21 @@ export function renderVersus(spec) {
     const items = Array.isArray(side.items) ? side.items : [];
     items.forEach((it, i) => {
       const iy = topY + 52 + i * 28;
-      p.push(`<text x="${r(x + 16)}" y="${r(iy)}" font-size="${fs}"${wOpt(spec)} fill="${labelCol}">${esc(it.label || '')}</text>`);
-      if (it.value != null) p.push(`<text x="${r(x + colW - 14)}" y="${r(iy)}" text-anchor="end" font-size="${fs}" ${wAttr(spec, 700)} fill="${col}">${esc(fmt(it.value))}</text>`);
+      // Long shorthand bodies: wrap isn't available in SVG text — keep one line, clip via length if huge
+      const lab = it.label != null ? String(it.label) : '';
+      p.push(`<text x="${r(x + 16)}" y="${r(iy)}" font-size="${fs}"${wOpt(spec)} fill="${labelCol}">${esc(lab)}</text>`);
+      if (it.value != null && it.value !== '') {
+        // Numbers get thousands separators; strings (agent shorthand) print as-is.
+        // Never run string copy through fmt() — Number("URL…") → 0 (silent data loss).
+        const valStr = typeof it.value === 'number' ? fmt(it.value) : String(it.value);
+        p.push(`<text x="${r(x + colW - 14)}" y="${r(iy)}" text-anchor="end" font-size="${fs}" ${wAttr(spec, 700)} fill="${col}">${esc(valStr)}</text>`);
+      }
     });
   });
   const mx = PAD + colW + GAP / 2, my = topY + (H - topY) / 2;
   p.push(`<circle cx="${r(mx)}" cy="${r(my)}" r="20" fill="${transparent ? '#ffffff' : bg}" stroke="${faint}" stroke-opacity="0.5"/>`);
   p.push(`<text x="${r(mx)}" y="${r(my + 5)}" text-anchor="middle" font-size="${fs}" ${wAttr(spec, 800)} fill="${faint}">VS</text>`);
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -2640,7 +2717,7 @@ export function renderGantt(spec) {
     p.push(`<text x="${PAD}" y="${r(y + ROWH / 2 + 4)}" font-size="${fs}"${wOpt(spec)} fill="${labelCol}">${esc(t.label || '')}</text>`);
     p.push(`<rect x="${r(xOf(Number(t.start) || 0))}" y="${r(y + 6)}" width="${r(Math.max(3, xOf(Number(t.end) || 0) - xOf(Number(t.start) || 0)))}" height="${ROWH - 12}" rx="5" fill="${fill}"/>`);
   });
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -2695,7 +2772,7 @@ export function renderWaterfall(spec) {
     }
     p.push(`<text x="${r(x + bandW / 2)}" y="${H - 26}" text-anchor="middle" font-size="${fs - 2}"${wOpt(spec)} fill="${catText}">${esc(s.label)}</text>`);
   });
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -2739,7 +2816,7 @@ export function renderSwimlane(spec) {
       p.push(`<text x="${r(bx + colW / 2)}" y="${r(y + LANEH / 2 + 4)}" text-anchor="middle" font-size="${fs - 2}" fill="${contrastColor(it.color || col)}">${esc(it.label || '')}</text>`);
     });
   });
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -2812,7 +2889,7 @@ export function renderTierList(spec) {
     });
     ty += rowH + GAP;
   });
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -2855,7 +2932,7 @@ export function renderSwot(spec) {
       p.push(`<text x="${r(x + 30)}" y="${r(ly)}" font-size="${fs}"${wOpt(spec)} fill="${bodyCol}">${esc(typeof it === 'string' ? it : (it && it.label) || '')}</text>`);
     });
   }
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -2873,19 +2950,20 @@ export function renderSwot(spec) {
 // A greedy first-fit packer honors spans (a wide chart over 2 cols, a tall one over
 // 2 rows). Robust by construction: an empty board draws a frame, a bad/nested-
 // dashboard tile draws a muted error card instead of throwing the whole render.
-export function renderDashboard(spec) {
+// Pack dashboard tiles + cell geometry. Shared by render + diagnoseDashboard.
+// When the board watermark is on, reserve a bottom gutter so the house mark
+// (baseline H-12, up to 16px) does not run through the bottom row of tiles.
+function dashboardGeometry(spec) {
   const tiles = (Array.isArray(spec.tiles) ? spec.tiles : []).filter((t) => t && t.chart);
   const n = tiles.length;
   const title = spec.title || '';
   const L = spec.layout || {};
-
+  const watermark = spec.watermark !== false;
   const cols = Math.max(1, Math.min(Number(L.cols) || Math.min(Math.max(n, 1), 3), 12));
   const gap = L.gap != null ? Number(L.gap) : 20;
   const PAD = L.pad != null ? Number(L.pad) : 24;
   const TILE_W = L.tileWidth != null ? Number(L.tileWidth) : 440;
   const TILE_H = L.tileHeight != null ? Number(L.tileHeight) : 300;
-
-  // Greedy first-fit packer → placements {r,c,cs,rs}. Deterministic (data order).
   const occ = [];
   const taken = (rr, cc, cs, rs) => {
     for (let a = rr; a < rr + rs; a++) for (let b = cc; b < cc + cs; b++) if (occ[a] && occ[a][b]) return true;
@@ -2905,23 +2983,73 @@ export function renderDashboard(spec) {
     }
   });
   const totalRows = Math.max(1, placements.reduce((m, p) => Math.max(m, p.r + p.rs), 0));
+  const titleH = title ? 46 : 0;
+  const W = spec.width || PAD * 2 + cols * TILE_W + (cols - 1) * gap;
+  // Mark clearance: glyph top ≈ (H - 12) - fs; fs ≤ 16 → want ~20px under tiles.
+  // Auto height grows by the gutter. Fixed tiny canvases shrink/skip gutter so cellH stays ≥1.
+  const WM_WANT = watermark ? 20 : 0;
+  const H = spec.height || PAD * 2 + WM_WANT + titleH + totalRows * TILE_H + (totalRows - 1) * gap;
+  const contentH = H - PAD * 2 - titleH - gap * (totalRows - 1);
+  const WM_GUTTER = watermark ? Math.min(WM_WANT, Math.max(0, contentH - totalRows)) : 0;
+  const cellW = Math.max(1, (W - PAD * 2 - gap * (cols - 1)) / cols);
+  const cellH = Math.max(1, (contentH - WM_GUTTER) / totalRows);
+  return { tiles, n, title, L, cols, gap, PAD, TILE_W, TILE_H, placements, totalRows, titleH, W, H, cellW, cellH, watermark, WM_GUTTER };
+}
+
+function tileFitMode(t, L) {
+  const raw = (t && t.fit) || (L && L.fit) || 'fill';
+  return raw === 'contain' ? 'contain' : 'fill';
+}
+
+function tileShouldFill(t, L) {
+  if (tileFitMode(t, L) !== 'fill') return false;
+  const chart = t && t.chart;
+  if (!chart || chart.type === 'dashboard') return false;
+  // Explicit size = agent chose the frame — leave it (contain-like).
+  return chart.width == null && chart.height == null;
+}
+
+/** Agent-visible layout facts for a dashboard spec (no render). */
+export function diagnoseDashboard(spec) {
+  const g = dashboardGeometry(spec);
+  const tiles = g.tiles.map((t, i) => {
+    const pl = g.placements[i];
+    const cellW = Math.round(pl.cs * g.cellW + (pl.cs - 1) * g.gap);
+    const cellH = Math.round(pl.rs * g.cellH + (pl.rs - 1) * g.gap);
+    const fit = tileFitMode(t, g.L);
+    const filled = tileShouldFill(t, g.L);
+    const chart = t.chart || {};
+    const usedW = filled ? cellW : Math.round(Number(chart.width) || 800);
+    const usedH = filled ? cellH : Math.round(Number(chart.height) || 450);
+    const letterboxed = cellW > 0 && cellH > 0
+      && Math.abs(usedW / usedH - cellW / cellH) > 0.02;
+    return {
+      i,
+      type: chart.type || null,
+      span: [pl.cs, pl.rs],
+      cell: [cellW, cellH],
+      chart: [usedW, usedH],
+      fit,
+      filled,
+      letterboxed,
+    };
+  });
+  return { fitDefault: 'fill', tiles };
+}
+
+export function renderDashboard(spec) {
+  const g = dashboardGeometry(spec);
+  const { tiles, n, title, L, gap, PAD, placements, titleH, W, H, cellW, cellH, watermark } = g;
 
   const bg = spec.background || '#f1f5f9';
   const transparent = bg === 'transparent' || bg === 'none';
   const isDark = !transparent && getLuminance(bg) < 0.35;
   const fs = spec.fontSize ? Number(spec.fontSize) : 13;
   const font = resolveFont(spec);
-  const watermark = spec.watermark !== false;
-  const titleH = title ? 46 : 0;
   const surface = isDark ? '#1e293b' : '#ffffff';
   const border = isDark ? '#334155' : '#e2e8f0';
   const faint = isDark ? '#475569' : '#94a3b8';
   const titleCol = txt(spec, isDark ? '#f1f5f9' : '#0f172a');
-
-  const W = spec.width || PAD * 2 + cols * TILE_W + (cols - 1) * gap;
-  const H = spec.height || PAD * 2 + titleH + totalRows * TILE_H + (totalRows - 1) * gap;
-  const cellW = (W - PAD * 2 - gap * (cols - 1)) / cols;
-  const cellH = (H - PAD * 2 - titleH - gap * (totalRows - 1)) / totalRows;
 
   const p = [];
   p.push(svgOpen(W, H, font));
@@ -2939,6 +3067,16 @@ export function renderDashboard(spec) {
     const w = pl.cs * cellW + (pl.cs - 1) * gap;
     const h = pl.rs * cellH + (pl.rs - 1) * gap;
 
+    // Clickable tile (2026-08-14): tile.href wraps the whole tile in an
+    // SVG link. Opt-in, additive — specs without href render byte-identically. Links
+    // fire when the SVG is a DOCUMENT (live-chart URL opened directly, inline embeds,
+    // Pages) — NOT inside <img>/GitHub/email; see the surface-truth note. target=_top
+    // so a click navigates the page, not just the embedded frame.
+    const tileHref = typeof t.href === 'string' && t.href
+      ? t.href.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+      : null;
+    if (tileHref) p.push(`<a href="${tileHref}" target="_top">`);
+
     // card surface (rounded); the framed border is drawn AFTER the child so it
     // always reads, whatever the child paints.
     p.push(`<rect x="${r(x)}" y="${r(y)}" width="${r(w)}" height="${r(h)}" rx="12" fill="${transparent ? 'none' : surface}"/>`);
@@ -2948,6 +3086,9 @@ export function renderDashboard(spec) {
       p.push(tileNote(x, y, w, h, faint, fs, 'Nested dashboards not supported'));
     } else {
       // Cascade board styling to tiles that don't set their own; one board watermark.
+      // 2026-08-24: default fit=fill — stamp cell size onto the child so axis
+      // charts reflow into the slot (kills letterbox). Opt out: layout.fit / tile.fit
+      // "contain", or set an explicit chart width/height.
       const child = {
         ...chart,
         background: chart.background || surface,
@@ -2955,10 +3096,15 @@ export function renderDashboard(spec) {
         font: chart.font || spec.font,
         palette: chart.palette || spec.palette,
       };
+      if (tileShouldFill(t, L)) {
+        child.width = Math.round(w);
+        child.height = Math.round(h);
+      }
       let svg;
       try { svg = renderSpec(child); } catch (e) {
         p.push(tileNote(x, y, w, h, faint, fs, 'Invalid tile: ' + e.message));
         p.push(`<rect x="${r(x)}" y="${r(y)}" width="${r(w)}" height="${r(h)}" rx="12" fill="none" stroke="${border}" stroke-width="1"/>`);
+        if (tileHref) p.push('</a>');
         return;
       }
       const vb = svg.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/);
@@ -2968,9 +3114,10 @@ export function renderDashboard(spec) {
     }
     // framed border on top
     p.push(`<rect x="${r(x)}" y="${r(y)}" width="${r(w)}" height="${r(h)}" rx="12" fill="none" stroke="${border}" stroke-width="1"/>`);
+    if (tileHref) p.push('</a>');
   });
 
-  if (watermark) p.push(`<text x="${W - 10}" y="${H - 9}" text-anchor="end" font-size="9" fill="${faint}" opacity="0.6">slickfast.com</text>`);
+  if (watermark) p.push(watermarkEl(W, H));
   p.push(`</svg>`);
   return p.join('\n');
 }
@@ -3029,7 +3176,7 @@ export const TYPES = [
   { type: 'leaderboard', family: 'layout',       needsData: false, dataKey: 'items',  summary: 'leaderboard (ranked rows: rank + bar + value)' },
   { type: 'callout',     family: 'layout',       needsData: false, summary: 'stat callout — hero number + caption + annotation' },
   { type: 'ring',        family: 'layout',       needsData: false, summary: 'progress ring — radial % toward a target' },
-  { type: 'versus',      family: 'layout',       needsData: false, dataKey: 'sides', summary: 'versus — two options compared side by side' },
+  { type: 'versus',      family: 'layout',       needsData: false, dataKey: 'sides', summary: 'versus — two options compared side by side (sides[] or left/right shorthand)' },
   { type: 'gantt',       family: 'layout',       needsData: false, dataKey: 'tasks', summary: 'gantt — tasks across a time row' },
   { type: 'waterfall',   family: 'layout',       needsData: false, dataKey: 'steps', summary: 'waterfall — running total, step by step' },
   { type: 'swimlane',    family: 'layout',       needsData: false, dataKey: 'lanes', summary: 'swimlane roadmap — lanes × phases grid' },
@@ -3064,8 +3211,26 @@ function assertKnownPalette(name) {
     (ci ? ' — did you mean "' + ci + '"?' : '.') + ' Valid palettes: ' + known.join(', '));
 }
 
+// External renderer registry — the socket (2026-08-14). Add-on
+// modules (sci-core, …) plug additional types into dispatch — and therefore into
+// dashboard tiles, which route every child through renderSpec — WITHOUT touching
+// the switch below. Built-ins are protected: a registration can never override any
+// engine type or alias (byte-determinism of the 47 stays engine-owned, forever).
+const EXTERNAL_RENDERERS = new Map();
+const BUILTIN_ALIASES = new Set(['stacked-area', 'piepie']); // case tokens not in TYPES rows
+export function registerRenderers(map) {
+  for (const [type, fn] of Object.entries(map)) {
+    if (TYPES.some((t) => t.type === type) || BUILTIN_ALIASES.has(type)) {
+      throw new Error('render-core: refusing to register "' + type + '" — built-in types cannot be overridden.');
+    }
+    if (typeof fn !== 'function') throw new Error('render-core: renderer for "' + type + '" must be a function.');
+    EXTERNAL_RENDERERS.set(type, fn);
+  }
+}
+
 // Dispatch by chart type. Every `case` here must have a TYPES row (checked by
-// scripts/check-surfaces.mjs). New types register in TYPES above, then here.
+// scripts/check-surfaces.mjs). New types register in TYPES above, then here —
+// or arrive via registerRenderers (external modules; resolved in the default case).
 export function renderSpec(spec) {
   spec = applyPreset(spec);
   if (spec.palette !== undefined) assertKnownPalette(spec.palette);
@@ -3113,6 +3278,10 @@ export function renderSpec(spec) {
     case 'tierlist': return renderTierList(spec);
     case 'swot': return renderSwot(spec);
     case 'dashboard': return renderDashboard(spec);
-    default: throw new Error('render-core: unknown chart type "' + spec.type + '"');
+    default: {
+      const ext = EXTERNAL_RENDERERS.get(spec.type);
+      if (ext) return ext(spec);
+      throw new Error('render-core: unknown chart type "' + spec.type + '"');
+    }
   }
 }

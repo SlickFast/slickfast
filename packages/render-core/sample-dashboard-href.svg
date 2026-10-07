@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 924 218" width="924" height="218" style="max-width:100%;height:auto" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="924" height="218" fill="#f1f5f9"/>
+<text x="462" y="33" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">Clickable tiles — drill golden</text>
+<a href="https://api.slickfast.com/p/run-47?tile=qc&amp;from=board" target="_top">
+<rect x="16" y="62" width="440" height="120" rx="12" fill="#ffffff"/>
+<svg x="16" y="62" width="440" height="120" viewBox="0 0 440 120" preserveAspectRatio="xMidYMid meet">
+<rect x="0" y="0" width="440" height="120" rx="14" fill="#ffffff"/>
+<rect x="18" y="28" width="5" height="64" rx="2.5" fill="#2563eb"/>
+<text x="40" y="48" font-size="14" font-weight="600" fill="#64748b">QC drift</text>
+<text x="40" y="104" font-size="42" font-weight="800" fill="#0f172a">2.1</text>
+</svg>
+<rect x="16" y="62" width="440" height="120" rx="12" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+</a>
+<rect x="468" y="62" width="440" height="120" rx="12" fill="#ffffff"/>
+<svg x="468" y="62" width="440" height="120" viewBox="0 0 440 120" preserveAspectRatio="xMidYMid meet">
+<rect x="0" y="0" width="440" height="120" rx="14" fill="#ffffff"/>
+<rect x="18" y="28" width="5" height="64" rx="2.5" fill="#2563eb"/>
+<text x="40" y="48" font-size="14" font-weight="600" fill="#64748b">plain tile</text>
+<text x="40" y="104" font-size="42" font-weight="800" fill="#0f172a">7</text>
+</svg>
+<rect x="468" y="62" width="440" height="120" rx="12" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+<text x="912" y="206" text-anchor="end" font-size="12" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
+</svg>

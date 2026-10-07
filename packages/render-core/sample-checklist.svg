@@ -11,5 +11,5 @@
 <text x="62" y="191.55" font-size="14" fill="#334155">Billing live</text>
 <path d="M29.8,219.8 L40.2,230.2 M40.2,219.8 L29.8,230.2" fill="none" stroke="#dc2626" stroke-width="3.12" stroke-linecap="round"/>
 <text x="62" y="229.55" font-size="14" fill="#334155">SOC 2 audit</text>
-<text x="510" y="247" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+<text x="508" y="244" text-anchor="end" font-size="12" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>

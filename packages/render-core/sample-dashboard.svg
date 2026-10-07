@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1408 914" width="1408" height="914" style="max-width:100%;height:auto" font-family="Inter, system-ui, -apple-system, sans-serif">
-<rect x="0" y="0" width="1408" height="914" fill="#f1f5f9"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1408 934" width="1408" height="934" style="max-width:100%;height:auto" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="1408" height="934" fill="#f1f5f9"/>
 <text x="704" y="33" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">Q2 Growth Dashboard</text>
 <rect x="24" y="70" width="440" height="260" rx="12" fill="#ffffff"/>
-<svg x="24" y="70" width="440" height="260" viewBox="0 0 340 180" preserveAspectRatio="xMidYMid meet">
-<rect x="0" y="0" width="340" height="180" rx="14" fill="#ffffff"/>
-<rect x="18" y="28" width="5" height="124" rx="2.5" fill="#2563eb"/>
+<svg x="24" y="70" width="440" height="260" viewBox="0 0 440 260" preserveAspectRatio="xMidYMid meet">
+<rect x="0" y="0" width="440" height="260" rx="14" fill="#ffffff"/>
+<rect x="18" y="28" width="5" height="204" rx="2.5" fill="#2563eb"/>
 <text x="40" y="48" font-size="14" font-weight="600" fill="#64748b">Monthly Recurring Revenue</text>
 <text x="40" y="104" font-size="42" font-weight="800" fill="#0f172a">$128,400</text>
 <rect x="40" y="124" width="69" height="24" rx="12" fill="#ecfdf5"/>
@@ -12,9 +12,9 @@
 </svg>
 <rect x="24" y="70" width="440" height="260" rx="12" fill="none" stroke="#e2e8f0" stroke-width="1"/>
 <rect x="484" y="70" width="440" height="260" rx="12" fill="#ffffff"/>
-<svg x="484" y="70" width="440" height="260" viewBox="0 0 340 180" preserveAspectRatio="xMidYMid meet">
-<rect x="0" y="0" width="340" height="180" rx="14" fill="#ffffff"/>
-<rect x="18" y="28" width="5" height="124" rx="2.5" fill="#2563eb"/>
+<svg x="484" y="70" width="440" height="260" viewBox="0 0 440 260" preserveAspectRatio="xMidYMid meet">
+<rect x="0" y="0" width="440" height="260" rx="14" fill="#ffffff"/>
+<rect x="18" y="28" width="5" height="204" rx="2.5" fill="#2563eb"/>
 <text x="40" y="48" font-size="14" font-weight="600" fill="#64748b">Active Users</text>
 <text x="40" y="104" font-size="42" font-weight="800" fill="#0f172a">8,640</text>
 <rect x="40" y="124" width="62" height="24" rx="12" fill="#ecfdf5"/>
@@ -22,9 +22,9 @@
 </svg>
 <rect x="484" y="70" width="440" height="260" rx="12" fill="none" stroke="#e2e8f0" stroke-width="1"/>
 <rect x="944" y="70" width="440" height="260" rx="12" fill="#ffffff"/>
-<svg x="944" y="70" width="440" height="260" viewBox="0 0 340 180" preserveAspectRatio="xMidYMid meet">
-<rect x="0" y="0" width="340" height="180" rx="14" fill="#ffffff"/>
-<rect x="18" y="28" width="5" height="124" rx="2.5" fill="#2563eb"/>
+<svg x="944" y="70" width="440" height="260" viewBox="0 0 440 260" preserveAspectRatio="xMidYMid meet">
+<rect x="0" y="0" width="440" height="260" rx="14" fill="#ffffff"/>
+<rect x="18" y="28" width="5" height="204" rx="2.5" fill="#2563eb"/>
 <text x="40" y="48" font-size="14" font-weight="600" fill="#64748b">Churn</text>
 <text x="40" y="104" font-size="42" font-weight="800" fill="#0f172a">2.3 %</text>
 <rect x="40" y="124" width="69" height="24" rx="12" fill="#ecfdf5"/>
@@ -32,79 +32,79 @@
 </svg>
 <rect x="944" y="70" width="440" height="260" rx="12" fill="none" stroke="#e2e8f0" stroke-width="1"/>
 <rect x="24" y="350" width="900" height="260" rx="12" fill="#ffffff"/>
-<svg x="24" y="350" width="900" height="260" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid meet">
-<rect x="0" y="0" width="800" height="450" fill="#ffffff"/>
-<line x1="56" y1="386" x2="776" y2="386" stroke="#e2e8f0" stroke-width="1"/>
-<text x="48" y="390" text-anchor="end" font-size="11" fill="#64748b">0</text>
-<line x1="56" y1="303" x2="776" y2="303" stroke="#e2e8f0" stroke-width="1"/>
-<text x="48" y="307" text-anchor="end" font-size="11" fill="#64748b">100</text>
-<line x1="56" y1="220" x2="776" y2="220" stroke="#e2e8f0" stroke-width="1"/>
-<text x="48" y="224" text-anchor="end" font-size="11" fill="#64748b">200</text>
-<line x1="56" y1="137" x2="776" y2="137" stroke="#e2e8f0" stroke-width="1"/>
-<text x="48" y="141" text-anchor="end" font-size="11" fill="#64748b">300</text>
-<line x1="56" y1="54" x2="776" y2="54" stroke="#e2e8f0" stroke-width="1"/>
+<svg x="24" y="350" width="900" height="260" viewBox="0 0 900 260" preserveAspectRatio="xMidYMid meet">
+<rect x="0" y="0" width="900" height="260" fill="#ffffff"/>
+<line x1="56" y1="196" x2="876" y2="196" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="200" text-anchor="end" font-size="11" fill="#64748b">0</text>
+<line x1="56" y1="160.5" x2="876" y2="160.5" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="164.5" text-anchor="end" font-size="11" fill="#64748b">100</text>
+<line x1="56" y1="125" x2="876" y2="125" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="129" text-anchor="end" font-size="11" fill="#64748b">200</text>
+<line x1="56" y1="89.5" x2="876" y2="89.5" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="93.5" text-anchor="end" font-size="11" fill="#64748b">300</text>
+<line x1="56" y1="54" x2="876" y2="54" stroke="#e2e8f0" stroke-width="1"/>
 <text x="48" y="58" text-anchor="end" font-size="11" fill="#64748b">400</text>
-<text x="56" y="404" text-anchor="start" font-size="12" fill="#475569">Jan</text>
-<text x="200" y="404" text-anchor="middle" font-size="12" fill="#475569">Feb</text>
-<text x="344" y="404" text-anchor="middle" font-size="12" fill="#475569">Mar</text>
-<text x="488" y="404" text-anchor="middle" font-size="12" fill="#475569">Apr</text>
-<text x="632" y="404" text-anchor="middle" font-size="12" fill="#475569">May</text>
-<text x="776" y="404" text-anchor="end" font-size="12" fill="#475569">Jun</text>
-<path d="M56,286.4 L200,228.3 L344,244.9 L488,178.5 L632,195.1 L776,128.7" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="56" cy="286.4" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
-<circle cx="200" cy="228.3" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
-<circle cx="344" cy="244.9" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
-<circle cx="488" cy="178.5" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
-<circle cx="632" cy="195.1" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
-<circle cx="776" cy="128.7" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
-<path d="M56,319.6 L200,294.7 L344,253.2 L488,269.8 L632,211.7 L776,170.2" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="56" cy="319.6" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
-<circle cx="200" cy="294.7" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
-<circle cx="344" cy="253.2" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
-<circle cx="488" cy="269.8" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
-<circle cx="632" cy="211.7" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
-<circle cx="776" cy="170.2" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
-<circle cx="305.48" cy="430" r="5" fill="#2563eb"/>
-<text x="316.48" y="434" font-size="12" fill="#475569">Product A</text>
-<circle cx="405" cy="430" r="5" fill="#7c3aed"/>
-<text x="416" y="434" font-size="12" fill="#475569">Product B</text>
-<text x="400" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Monthly Active Users</text>
+<text x="56" y="214" text-anchor="start" font-size="12" fill="#475569">Jan</text>
+<text x="220" y="214" text-anchor="middle" font-size="12" fill="#475569">Feb</text>
+<text x="384" y="214" text-anchor="middle" font-size="12" fill="#475569">Mar</text>
+<text x="548" y="214" text-anchor="middle" font-size="12" fill="#475569">Apr</text>
+<text x="712" y="214" text-anchor="middle" font-size="12" fill="#475569">May</text>
+<text x="876" y="214" text-anchor="end" font-size="12" fill="#475569">Jun</text>
+<path d="M56,153.4 L220,128.55 L384,135.65 L548,107.25 L712,114.35 L876,85.95" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="56" cy="153.4" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="220" cy="128.55" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="384" cy="135.65" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="548" cy="107.25" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="712" cy="114.35" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="876" cy="85.95" r="3.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<path d="M56,167.6 L220,156.95 L384,139.2 L548,146.3 L712,121.45 L876,103.7" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="56" cy="167.6" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="220" cy="156.95" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="384" cy="139.2" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="548" cy="146.3" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="712" cy="121.45" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="876" cy="103.7" r="3.5" fill="#7c3aed" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="355.48" cy="240" r="5" fill="#2563eb"/>
+<text x="366.48" y="244" font-size="12" fill="#475569">Product A</text>
+<circle cx="455" cy="240" r="5" fill="#7c3aed"/>
+<text x="466" y="244" font-size="12" fill="#475569">Product B</text>
+<text x="450" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Monthly Active Users</text>
 </svg>
 <rect x="24" y="350" width="900" height="260" rx="12" fill="none" stroke="#e2e8f0" stroke-width="1"/>
 <rect x="944" y="350" width="440" height="260" rx="12" fill="#ffffff"/>
-<svg x="944" y="350" width="440" height="260" viewBox="0 0 340 230" preserveAspectRatio="xMidYMid meet">
-<rect x="0" y="0" width="340" height="230" fill="#ffffff"/>
-<text x="170" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Capacity used</text>
-<path d="M40,186 A130,130 0 0 1 300,186 L263.6,186 A93.6,93.6 0 0 0 76.4,186 Z" fill="#e2e8f0"/>
-<path d="M40,186 A130,130 0 0 1 260.17,92.36 L234.93,118.58 A93.6,93.6 0 0 0 76.4,186 Z" fill="#2563eb"/>
-<text x="170" y="180" text-anchor="middle" font-size="54.6" font-weight="800" fill="#0f172a">372 GB</text>
-<text x="170" y="204" text-anchor="middle" font-size="13" fill="#475569">of 500 GB</text>
-<text x="58.2" y="202" text-anchor="middle" font-size="11" fill="#94a3b8">0</text>
-<text x="281.8" y="202" text-anchor="middle" font-size="11" fill="#94a3b8">500</text>
+<svg x="944" y="350" width="440" height="260" viewBox="0 0 440 260" preserveAspectRatio="xMidYMid meet">
+<rect x="0" y="0" width="440" height="260" fill="#ffffff"/>
+<text x="220" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Capacity used</text>
+<path d="M60,216 A160,160 0 0 1 380,216 L335.2,216 A115.19999999999999,115.19999999999999 0 0 0 104.8,216 Z" fill="#e2e8f0"/>
+<path d="M60,216 A160,160 0 0 1 330.98,100.75 L299.91,133.02 A115.19999999999999,115.19999999999999 0 0 0 104.8,216 Z" fill="#2563eb"/>
+<text x="220" y="210" text-anchor="middle" font-size="67.2" font-weight="800" fill="#0f172a">372 GB</text>
+<text x="220" y="234" text-anchor="middle" font-size="13" fill="#475569">of 500 GB</text>
+<text x="82.4" y="232" text-anchor="middle" font-size="11" fill="#94a3b8">0</text>
+<text x="357.6" y="232" text-anchor="middle" font-size="11" fill="#94a3b8">500</text>
 </svg>
 <rect x="944" y="350" width="440" height="260" rx="12" fill="none" stroke="#e2e8f0" stroke-width="1"/>
 <rect x="24" y="630" width="440" height="260" rx="12" fill="#ffffff"/>
-<svg x="24" y="630" width="440" height="260" viewBox="0 0 600 344" preserveAspectRatio="xMidYMid meet">
-<rect x="0" y="0" width="600" height="344" fill="#ffffff"/>
-<text x="300" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Signup funnel</text>
-<path d="M24,54 L576,54 L396.6,118 L203.4,118 Z" fill="#2563eb"/>
-<text x="300" y="84" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Visitors</text>
-<text x="300" y="101" text-anchor="middle" font-size="12" fill="#ffffff">12,000  ·  100%</text>
-<path d="M203.4,124 L396.6,124 L341.4,188 L258.6,188 Z" fill="#7c3aed"/>
-<text x="300" y="154" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Signups</text>
-<text x="300" y="171" text-anchor="middle" font-size="12" fill="#ffffff">4,200  ·  35%</text>
-<path d="M258.6,194 L341.4,194 L314.72,258 L285.28,258 Z" fill="#059669"/>
-<text x="300" y="224" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a">Trials</text>
-<text x="300" y="241" text-anchor="middle" font-size="12" fill="#1a1a1a">1,800  ·  15%</text>
-<path d="M285.28,264 L314.72,264 L314.72,328 L285.28,328 Z" fill="#d97706"/>
-<text x="300" y="294" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a">Paid</text>
-<text x="300" y="311" text-anchor="middle" font-size="12" fill="#1a1a1a">640  ·  5%</text>
+<svg x="24" y="630" width="440" height="260" viewBox="0 0 440 260" preserveAspectRatio="xMidYMid meet">
+<rect x="0" y="0" width="440" height="260" fill="#ffffff"/>
+<text x="220" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Signup funnel</text>
+<path d="M24,54 L416,54 L288.6,118 L151.4,118 Z" fill="#2563eb"/>
+<text x="220" y="84" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Visitors</text>
+<text x="220" y="101" text-anchor="middle" font-size="12" fill="#ffffff">12,000  ·  100%</text>
+<path d="M151.4,124 L288.6,124 L249.4,188 L190.6,188 Z" fill="#7c3aed"/>
+<text x="220" y="154" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Signups</text>
+<text x="220" y="171" text-anchor="middle" font-size="12" fill="#ffffff">4,200  ·  35%</text>
+<path d="M190.6,194 L249.4,194 L230.45,258 L209.55,258 Z" fill="#059669"/>
+<text x="220" y="224" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a">Trials</text>
+<text x="220" y="241" text-anchor="middle" font-size="12" fill="#1a1a1a">1,800  ·  15%</text>
+<path d="M209.55,264 L230.45,264 L230.45,328 L209.55,328 Z" fill="#d97706"/>
+<text x="220" y="294" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a">Paid</text>
+<text x="220" y="311" text-anchor="middle" font-size="12" fill="#1a1a1a">640  ·  5%</text>
 </svg>
 <rect x="24" y="630" width="440" height="260" rx="12" fill="none" stroke="#e2e8f0" stroke-width="1"/>
 <rect x="484" y="630" width="440" height="260" rx="12" fill="#ffffff"/>
-<svg x="484" y="630" width="440" height="260" viewBox="0 0 600 366" preserveAspectRatio="xMidYMid meet">
-<rect x="0" y="0" width="600" height="366" fill="#ffffff"/>
-<text x="300" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Revenue by segment</text>
+<svg x="484" y="630" width="440" height="260" viewBox="0 0 440 260" preserveAspectRatio="xMidYMid meet">
+<rect x="0" y="0" width="440" height="260" fill="#ffffff"/>
+<text x="220" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Revenue by segment</text>
 <rect x="24" y="54" width="26" height="26" rx="4" fill="#2563eb"/>
 <rect x="54" y="54" width="26" height="26" rx="4" fill="#2563eb"/>
 <rect x="84" y="54" width="26" height="26" rx="4" fill="#2563eb"/>
@@ -214,32 +214,32 @@
 </svg>
 <rect x="484" y="630" width="440" height="260" rx="12" fill="none" stroke="#e2e8f0" stroke-width="1"/>
 <rect x="944" y="630" width="440" height="260" rx="12" fill="#ffffff"/>
-<svg x="944" y="630" width="440" height="260" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid meet">
-<rect x="0" y="0" width="800" height="450" fill="#ffffff"/>
-<line x1="56" y1="404" x2="776" y2="404" stroke="#e2e8f0" stroke-width="1"/>
-<text x="48" y="408" text-anchor="end" font-size="11" fill="#64748b">0</text>
-<line x1="56" y1="334" x2="776" y2="334" stroke="#e2e8f0" stroke-width="1"/>
-<text x="48" y="338" text-anchor="end" font-size="11" fill="#64748b">10</text>
-<line x1="56" y1="264" x2="776" y2="264" stroke="#e2e8f0" stroke-width="1"/>
-<text x="48" y="268" text-anchor="end" font-size="11" fill="#64748b">20</text>
-<line x1="56" y1="194" x2="776" y2="194" stroke="#e2e8f0" stroke-width="1"/>
-<text x="48" y="198" text-anchor="end" font-size="11" fill="#64748b">30</text>
-<line x1="56" y1="124" x2="776" y2="124" stroke="#e2e8f0" stroke-width="1"/>
-<text x="48" y="128" text-anchor="end" font-size="11" fill="#64748b">40</text>
-<line x1="56" y1="54" x2="776" y2="54" stroke="#e2e8f0" stroke-width="1"/>
+<svg x="944" y="630" width="440" height="260" viewBox="0 0 440 260" preserveAspectRatio="xMidYMid meet">
+<rect x="0" y="0" width="440" height="260" fill="#ffffff"/>
+<line x1="56" y1="214" x2="416" y2="214" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="218" text-anchor="end" font-size="11" fill="#64748b">0</text>
+<line x1="56" y1="182" x2="416" y2="182" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="186" text-anchor="end" font-size="11" fill="#64748b">10</text>
+<line x1="56" y1="150" x2="416" y2="150" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="154" text-anchor="end" font-size="11" fill="#64748b">20</text>
+<line x1="56" y1="118" x2="416" y2="118" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="122" text-anchor="end" font-size="11" fill="#64748b">30</text>
+<line x1="56" y1="86" x2="416" y2="86" stroke="#e2e8f0" stroke-width="1"/>
+<text x="48" y="90" text-anchor="end" font-size="11" fill="#64748b">40</text>
+<line x1="56" y1="54" x2="416" y2="54" stroke="#e2e8f0" stroke-width="1"/>
 <text x="48" y="58" text-anchor="end" font-size="11" fill="#64748b">50</text>
-<path d="M128,404 L128,115 Q128,110 133,110 L219,110 Q224,110 224,115 L224,404 Z" fill="#2563eb"/>
-<text x="176" y="103" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">42</text>
-<text x="176" y="422" text-anchor="middle" font-size="12" fill="#475569">Lead</text>
-<path d="M368,404 L368,241 Q368,236 373,236 L459,236 Q464,236 464,241 L464,404 Z" fill="#7c3aed"/>
-<text x="416" y="229" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">24</text>
-<text x="416" y="422" text-anchor="middle" font-size="12" fill="#475569">Demo</text>
-<path d="M608,404 L608,332 Q608,327 613,327 L699,327 Q704,327 704,332 L704,404 Z" fill="#059669"/>
-<text x="656" y="320" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">11</text>
-<text x="656" y="422" text-anchor="middle" font-size="12" fill="#475569">Won</text>
-<text x="776" y="50" text-anchor="end" font-size="12" fill="#64748b">Total: 77</text>
-<text x="400" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Deals by stage</text>
+<path d="M78.8,214 L78.8,84.6 Q78.8,79.6 83.8,79.6 L148.2,79.6 Q153.2,79.6 153.2,84.6 L153.2,214 Z" fill="#2563eb"/>
+<text x="116" y="72.6" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">42</text>
+<text x="116" y="232" text-anchor="middle" font-size="12" fill="#475569">Lead</text>
+<path d="M198.8,214 L198.8,142.2 Q198.8,137.2 203.8,137.2 L268.2,137.2 Q273.2,137.2 273.2,142.2 L273.2,214 Z" fill="#7c3aed"/>
+<text x="236" y="130.2" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">24</text>
+<text x="236" y="232" text-anchor="middle" font-size="12" fill="#475569">Demo</text>
+<path d="M318.8,214 L318.8,183.8 Q318.8,178.8 323.8,178.8 L388.2,178.8 Q393.2,178.8 393.2,183.8 L393.2,214 Z" fill="#059669"/>
+<text x="356" y="171.8" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">11</text>
+<text x="356" y="232" text-anchor="middle" font-size="12" fill="#475569">Won</text>
+<text x="416" y="50" text-anchor="end" font-size="12" fill="#64748b">Total: 77</text>
+<text x="220" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Deals by stage</text>
 </svg>
 <rect x="944" y="630" width="440" height="260" rx="12" fill="none" stroke="#e2e8f0" stroke-width="1"/>
-<text x="1398" y="905" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+<text x="1396" y="922" text-anchor="end" font-size="16" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>

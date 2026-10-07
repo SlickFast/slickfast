@@ -29,5 +29,5 @@
 <rect x="579.1" y="409" width="10" height="10" rx="2.5" fill="#FCD848"/>
 <text x="595.1" y="418" font-size="12" fill="#475569">APAC · $10</text>
 <text x="460" y="26" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Revenue breakdown</text>
-<text x="912" y="452" text-anchor="end" font-size="10" fill="#94a3b8" opacity="0.7">slickfast.com</text>
+<text x="908" y="448" text-anchor="end" font-size="15" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>

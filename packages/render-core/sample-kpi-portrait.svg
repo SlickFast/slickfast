@@ -5,5 +5,5 @@
 <text x="54" y="434" font-size="96" font-weight="800" fill="#0f172a">$142,800</text>
 <rect x="54" y="467" width="148" height="55" rx="27.5" fill="#ecfdf5"/>
 <text x="128" y="504.4" text-anchor="middle" font-size="29" font-weight="700" fill="#059669">▲ 9.2%</text>
-<text x="590" y="791" text-anchor="end" font-size="9" fill="#94a3b8" opacity="0.6">slickfast.com</text>
+<text x="588" y="788" text-anchor="end" font-size="16" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
 </svg>
