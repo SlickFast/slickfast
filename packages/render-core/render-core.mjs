@@ -102,6 +102,28 @@ function niceScale(max, ticks = 5) {
   return { step, niceMax: Math.ceil(m / step) * step };
 }
 
+// Value axis that can go below zero. With nothing below zero it IS the old axis:
+// lo = 0, hi = niceScale's niceMax, same step, ticks built by the same running sum
+// from 0, and pos(v) = (v − 0) / (hi − 0) — exact in floating point — so every chart
+// without negatives draws byte-identical. With values below zero, lo/hi snap OUT to
+// whole steps so 0 is always a tick (the zero line). pos(v) is 0 at lo, 1 at hi.
+function valueAxis(values, minTop = 0) {
+  const nums = values.map((v) => Number(v) || 0);
+  const minV = Math.min(0, ...nums), maxV = Math.max(minTop, ...nums);
+  let lo = 0, hi, step;
+  if (minV < 0) {
+    step = niceNum(niceNum(maxV - minV, false) / 5, true);
+    lo = Math.floor(minV / step) * step;
+    if (lo === minV) lo -= step;   // room under the lowest bar for its label
+    hi = Math.max(Math.ceil(maxV / step) * step, 0);
+  } else {
+    ({ step, niceMax: hi } = niceScale(maxV));
+  }
+  const ticks = [];
+  for (let v = lo; v <= hi + 1e-9; v += step) ticks.push(Math.abs(v) < step * 1e-9 ? 0 : v);
+  return { lo, hi, step, ticks, pos: (v) => (v - lo) / (hi - lo) };
+}
+
 // Bar with rounded TOP corners, flat bottom (sits flush on the axis) — the
 // RULES-LEDGER bar look, as an SVG path.
 function topRoundedBar(x, y, w, h, rad) {
@@ -199,9 +221,9 @@ export function renderBar(spec) {
   const M = { left: showAxis ? 56 : 24, right: 24, top: title ? 54 : 28, bottom: 46 };
   const plotW = W - M.left - M.right;
   const plotH = H - M.top - M.bottom;
-  const maxV = Math.max(0, ...values);
-  const { step, niceMax } = niceScale(maxV);
-  const yPix = (v) => M.top + plotH - (v / niceMax) * plotH;
+  const ax = valueAxis(values);
+  const yPix = (v) => M.top + plotH - ax.pos(v) * plotH;
+  const y0 = yPix(0);   // the zero line (= the floor when nothing is below zero)
   const band = plotW / labels.length;
   const barW = Math.min(band * 0.62, 96);
 
@@ -210,7 +232,7 @@ export function renderBar(spec) {
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
 
   // gridlines + y-axis numbers
-  if (showAxis) for (let v = 0; v <= niceMax + 1e-9; v += step) {
+  if (showAxis) for (const v of ax.ticks) {
     const y = r(yPix(v));
     p.push(`<line x1="${M.left}" y1="${y}" x2="${r(M.left + plotW)}" y2="${y}" stroke="${gridCol}" stroke-width="1"/>`);
     p.push(`<text x="${M.left - 8}" y="${r(y + 4)}" text-anchor="end" font-size="${fs - 2}"${wOpt(spec)} fill="${axisText}">${fmt(v)}</text>`);
@@ -220,12 +242,18 @@ export function renderBar(spec) {
   values.forEach((v, i) => {
     const x = M.left + i * band + (band - barW) / 2;
     const y = yPix(v);
-    const h = (M.top + plotH) - y;
     const cx = r(x + barW / 2);
-    p.push(`<path d="${topRoundedBar(x, y, barW, h, 5)}" fill="${colors[i]}"/>`);
-    if (showValues) p.push(`<text x="${cx}" y="${r(y - 7)}" text-anchor="middle" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${valText}">${esc(fmt(v) + u)}</text>`);
+    if (v < 0) {   // below zero: hang from the zero line, label underneath (diverging's look)
+      p.push(`<path d="${bottomRoundedBar(x, y0, barW, y - y0, 5)}" fill="${colors[i]}"/>`);
+      if (showValues) p.push(`<text x="${cx}" y="${r(y + fs + 3)}" text-anchor="middle" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${valText}">${esc(fmt(v) + u)}</text>`);
+    } else {
+      p.push(`<path d="${topRoundedBar(x, y, barW, y0 - y, 5)}" fill="${colors[i]}"/>`);
+      if (showValues) p.push(`<text x="${cx}" y="${r(y - 7)}" text-anchor="middle" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${valText}">${esc(fmt(v) + u)}</text>`);
+    }
     p.push(`<text x="${cx}" y="${r(M.top + plotH + 18)}" text-anchor="middle" font-size="${fs - 1}"${wOpt(spec)} fill="${catText}">${esc(labels[i])}</text>`);
   });
+
+  if (ax.lo < 0) p.push(`<line x1="${M.left}" y1="${r(y0)}" x2="${r(M.left + plotW)}" y2="${r(y0)}" stroke="${isDark ? '#64748b' : '#334155'}" stroke-width="1.75"/>`);
 
   // total (single-type badge), title, watermark
   if (showTotal) {
@@ -278,9 +306,9 @@ export function renderBarGrouped(spec) {
   const M = { left: 56, right: 24, top: title ? 54 : 28, bottom: multi ? 64 : 46 };
   const plotW = W - M.left - M.right;
   const plotH = H - M.top - M.bottom;
-  const maxV = Math.max(0, ...series.flatMap((s) => s.values.map((v) => Number(v) || 0)));
-  const { step, niceMax } = niceScale(maxV);
-  const yPix = (v) => M.top + plotH - (v / niceMax) * plotH;
+  const ax = valueAxis(series.flatMap((s) => s.values));
+  const yPix = (v) => M.top + plotH - ax.pos(v) * plotH;
+  const y0 = yPix(0);   // the zero line (= the floor when nothing is below zero)
   const band = plotW / labels.length;               // one group per category
   const groupW = Math.min(band * 0.72, 132);         // width of the whole cluster
   const n = series.length;
@@ -291,7 +319,7 @@ export function renderBarGrouped(spec) {
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
 
   // gridlines + y-axis numbers
-  for (let v = 0; v <= niceMax + 1e-9; v += step) {
+  for (const v of ax.ticks) {
     const y = r(yPix(v));
     p.push(`<line x1="${M.left}" y1="${y}" x2="${r(M.left + plotW)}" y2="${y}" stroke="${gridCol}" stroke-width="1"/>`);
     p.push(`<text x="${M.left - 8}" y="${r(y + 4)}" text-anchor="end" font-size="${fs - 2}"${wOpt(spec)} fill="${axisText}">${fmt(v)}</text>`);
@@ -304,13 +332,19 @@ export function renderBarGrouped(spec) {
       const v = Number(s.values[i]) || 0;
       const x = gx + si * barW;
       const y = yPix(v);
-      const h = (M.top + plotH) - y;
       const cx = r(x + barW / 2);
-      p.push(`<path d="${topRoundedBar(x + 1, y, barW - 2, h, 4)}" fill="${seriesColor(s, si)}"/>`);
-      if (showValues && v > 0) p.push(`<text x="${cx}" y="${r(y - 6)}" text-anchor="middle" font-size="${fs - 3}" ${wAttr(spec, 600)} fill="${valText}">${esc(fmt(v) + u)}</text>`);
+      if (v < 0) {   // below zero: hang from the zero line, label underneath
+        p.push(`<path d="${bottomRoundedBar(x + 1, y0, barW - 2, y - y0, 4)}" fill="${seriesColor(s, si)}"/>`);
+        if (showValues) p.push(`<text x="${cx}" y="${r(y + fs + 1)}" text-anchor="middle" font-size="${fs - 3}" ${wAttr(spec, 600)} fill="${valText}">${esc(fmt(v) + u)}</text>`);
+      } else {
+        p.push(`<path d="${topRoundedBar(x + 1, y, barW - 2, y0 - y, 4)}" fill="${seriesColor(s, si)}"/>`);
+        if (showValues && v > 0) p.push(`<text x="${cx}" y="${r(y - 6)}" text-anchor="middle" font-size="${fs - 3}" ${wAttr(spec, 600)} fill="${valText}">${esc(fmt(v) + u)}</text>`);
+      }
     });
     p.push(`<text x="${r(M.left + i * band + band / 2)}" y="${r(M.top + plotH + 18)}" text-anchor="middle" font-size="${fs - 1}"${wOpt(spec)} fill="${catText}">${esc(lab)}</text>`);
   });
+
+  if (ax.lo < 0) p.push(`<line x1="${M.left}" y1="${r(y0)}" x2="${r(M.left + plotW)}" y2="${r(y0)}" stroke="${isDark ? '#64748b' : '#334155'}" stroke-width="1.75"/>`);
 
   // legend — series identity (RULES-LEDGER bar charts have no on-chart series names;
   // the engine's multi-series legend supplies them, matching the line family).
@@ -770,9 +804,9 @@ export function renderLollipop(spec) {
   const M = { left: 56, right: 24, top: title ? 54 : 28, bottom: 46 };
   const plotW = W - M.left - M.right;
   const plotH = H - M.top - M.bottom;
-  const maxV = Math.max(0, ...values);
-  const { step, niceMax } = niceScale(maxV);
-  const yPix = (v) => M.top + plotH - (v / niceMax) * plotH;
+  const ax = valueAxis(values);
+  const yPix = (v) => M.top + plotH - ax.pos(v) * plotH;
+  const y0 = yPix(0);   // stems start at zero (= the floor when nothing is below zero)
   const band = plotW / labels.length;
   const baseY = M.top + plotH;
 
@@ -781,7 +815,7 @@ export function renderLollipop(spec) {
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
 
   // gridlines + y-axis numbers
-  for (let v = 0; v <= niceMax + 1e-9; v += step) {
+  for (const v of ax.ticks) {
     const y = r(yPix(v));
     p.push(`<line x1="${M.left}" y1="${y}" x2="${r(M.left + plotW)}" y2="${y}" stroke="${gridCol}" stroke-width="1"/>`);
     p.push(`<text x="${M.left - 8}" y="${r(y + 4)}" text-anchor="end" font-size="${fs - 2}"${wOpt(spec)} fill="${axisText}">${fmt(v)}</text>`);
@@ -792,11 +826,13 @@ export function renderLollipop(spec) {
     const cx = r(M.left + i * band + band / 2);
     const y = yPix(v);
     const mc = contrastFloor(colors[i], bg, transparent);   // keep pale marks visible
-    p.push(`<line x1="${cx}" y1="${r(baseY)}" x2="${cx}" y2="${r(y)}" stroke="${mc}" stroke-width="3" stroke-linecap="round"/>`);
+    p.push(`<line x1="${cx}" y1="${r(y0)}" x2="${cx}" y2="${r(y)}" stroke="${mc}" stroke-width="3" stroke-linecap="round"/>`);
     p.push(`<circle cx="${cx}" cy="${r(y)}" r="7" fill="${mc}"/>`);
-    if (showValues) p.push(`<text x="${cx}" y="${r(y - 14)}" text-anchor="middle" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${valText}">${esc(fmt(v) + u)}</text>`);
+    if (showValues) p.push(`<text x="${cx}" y="${r(v < 0 ? y + fs + 10 : y - 14)}" text-anchor="middle" font-size="${fs - 1}" ${wAttr(spec, 600)} fill="${valText}">${esc(fmt(v) + u)}</text>`);
     p.push(`<text x="${cx}" y="${r(baseY + 18)}" text-anchor="middle" font-size="${fs - 1}"${wOpt(spec)} fill="${catText}">${esc(labels[i])}</text>`);
   });
+
+  if (ax.lo < 0) p.push(`<line x1="${M.left}" y1="${r(y0)}" x2="${r(M.left + plotW)}" y2="${r(y0)}" stroke="${isDark ? '#64748b' : '#334155'}" stroke-width="1.75"/>`);
 
   if (showTotal) {
     const total = values.reduce((s, v) => s + v, 0);
@@ -931,11 +967,10 @@ export function renderLine(spec) {
   const M = { left: 56, right: 24, top: title ? 54 : 28, bottom: multi ? 64 : 46 };
   const plotW = W - M.left - M.right;
   const plotH = H - M.top - M.bottom;
-  const maxV = stackedArea
-    ? Math.max(1, ...labels.map((_, i) => series.reduce((s, sr) => s + (Number(sr.values[i]) || 0), 0)))
-    : Math.max(0, ...series.flatMap((s) => s.values.map((v) => Number(v) || 0)));
-  const { step, niceMax } = niceScale(maxV);
-  const yPix = (v) => M.top + plotH - (v / niceMax) * plotH;
+  const ax = stackedArea
+    ? valueAxis(labels.map((_, i) => series.reduce((s, sr) => s + (Number(sr.values[i]) || 0), 0)), 1)
+    : valueAxis(series.flatMap((s) => s.values));
+  const yPix = (v) => M.top + plotH - ax.pos(v) * plotH;
   const n = labels.length;
   const xPix = (i) => M.left + (n > 1 ? i / (n - 1) : 0.5) * plotW;
 
@@ -943,7 +978,7 @@ export function renderLine(spec) {
   p.push(svgOpen(W, H, font));
   if (!transparent) p.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`);
 
-  for (let v = 0; v <= niceMax + 1e-9; v += step) {
+  for (const v of ax.ticks) {
     const y = r(yPix(v));
     p.push(`<line x1="${M.left}" y1="${y}" x2="${r(M.left + plotW)}" y2="${y}" stroke="${gridCol}" stroke-width="1"/>`);
     p.push(`<text x="${M.left - 8}" y="${r(y + 4)}" text-anchor="end" font-size="${fs - 2}"${wOpt(spec)} fill="${axisText}">${fmt(v)}</text>`);
@@ -998,7 +1033,7 @@ export function renderLine(spec) {
       if (!pts.length) return;   // empty series → draw nothing (area/stepped index pts[0])
       const d = smooth ? smoothPath(pts) : stepped ? steppedPath(pts) : straightPath(pts);
       if (area) {
-        const baseY = r(M.top + plotH);
+        const baseY = r(yPix(0));   // fill to the zero line (= the floor when nothing is below zero)
         p.push(`<path d="${d} L${pts[pts.length - 1][0]},${baseY} L${pts[0][0]},${baseY} Z" fill="${col}" fill-opacity="0.16" stroke="none"/>`);
       }
       p.push(`<path d="${d}" fill="none" stroke="${col}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`);
@@ -1006,6 +1041,9 @@ export function renderLine(spec) {
       if (showValues) vals.forEach((v, i) => p.push(`<text x="${r(xPix(i))}" y="${r(yPix(v) - 9)}" text-anchor="middle" font-size="${fs - 2}" ${wAttr(spec, 600)} fill="${valText}">${esc(fmt(v) + u)}</text>`));
     });
   }
+
+  // values below zero: emphasize the zero line (same look as diverging)
+  if (ax.lo < 0) p.push(`<line x1="${M.left}" y1="${r(yPix(0))}" x2="${r(M.left + plotW)}" y2="${r(yPix(0))}" stroke="${isDark ? '#64748b' : '#334155'}" stroke-width="1.75"/>`);
 
   if (multi) {
     const items = series.map((s, i) => ({ name: s.name || ('Series ' + (i + 1)), col: colorOf(s, i) }));
@@ -3226,6 +3264,100 @@ export function registerRenderers(map) {
     if (typeof fn !== 'function') throw new Error('render-core: renderer for "' + type + '" must be a function.');
     EXTERNAL_RENDERERS.set(type, fn);
   }
+}
+
+// ── Values below zero: the door check ─────────────────────────────────────────
+// Most of the 47 draw from a zero baseline (axes start at 0, parts of a whole add up).
+// Fed a value below zero they draw a WRONG picture: lines and bars off the plot,
+// stacked segments silently dropped, pie percentages over 100. Until each type learns
+// signed data, the surfaces refuse such specs at the door with a fix-it message
+// (GOLD RULE 9) instead of shipping a chart that lies.
+// NOT called inside renderSpec on purpose: specs already stored (live charts, links)
+// keep rendering exactly as before (GOLD RULE 7). Pure: no IO, no clock, no randomness.
+// Types not listed here draw below zero honestly (bar, grouped, lollipop, line, smooth,
+// area, stepped, difference via valueAxis; diverging, waterfall, heatmap, kpi, cards,
+// gauge, progress, bullet, leaderboard, table…).
+const SIGNED_HINT = {
+  bars: 'For bars above and below zero use "bar", "grouped" or "diverging"; for a running total use "waterfall".',
+  lines: 'For lines that go below zero use "line", "smooth", "area" or "stepped".',
+  whole: 'Parts of a whole can\'t be below zero — check the data.',
+};
+// Draw below zero since 2026-10-13 (valueAxis): bar, grouped, lollipop, line, smooth,
+// area, stepped, difference — so they are NOT listed here.
+const SERIES_BELOW_ZERO = {
+  stacked: 'bars', stacked100: 'bars', stackedh: 'bars', horizontal: 'bars',
+  stackedArea: 'lines', 'stacked-area': 'lines', slope: 'lines',
+  pie: 'whole', donut: 'whole',
+};
+const below = (v) => v !== null && v !== '' && typeof v !== 'boolean' && Number(v) < 0;
+
+// → null, or { type, where, value, hint } for the FIRST value below zero (dashboards: inside their tiles).
+export function findBelowZero(spec) {
+  if (!spec || typeof spec !== 'object') return null;
+  const t = spec.type;
+  const hit = (where, value, kind) => ({ type: t, where, value: Number(value), hint: SIGNED_HINT[kind] });
+  if (t === 'dashboard') {
+    const tiles = Array.isArray(spec.tiles) ? spec.tiles : [];
+    for (let i = 0; i < tiles.length; i++) {
+      const f = tiles[i] && tiles[i].chart ? findBelowZero(tiles[i].chart) : null;
+      if (f) return { ...f, where: `tile ${i + 1} (${f.type}), ${f.where}` };
+    }
+    return null;
+  }
+  const kind = SERIES_BELOW_ZERO[t];
+  if (kind) {
+    const d = spec.data || {};
+    const labels = Array.isArray(d.labels) ? d.labels : [];
+    const series = Array.isArray(d.series) ? d.series : [];
+    for (let si = 0; si < series.length; si++) {
+      const vals = series[si] && Array.isArray(series[si].values) ? series[si].values : [];
+      for (let i = 0; i < vals.length; i++) {
+        if (below(vals[i])) {
+          const name = series[si].name ? `series "${series[si].name}"` : `series ${si + 1}`;
+          return hit(`${name}, ${labels[i] != null ? `"${labels[i]}"` : `point ${i + 1}`}`, vals[i], kind);
+        }
+      }
+    }
+    return null;
+  }
+  const list = (arr, key, what) => {
+    const a = Array.isArray(arr) ? arr : [];
+    for (let i = 0; i < a.length; i++) if (a[i] && below(a[i][key])) return hit(`${what} ${a[i].label != null ? `"${a[i].label}"` : i + 1}`, a[i][key], 'whole');
+    return null;
+  };
+  switch (t) {
+    case 'pieofpie': case 'piepie': {
+      const pies = Array.isArray(spec.pies) ? spec.pies : [];
+      for (let pi = 0; pi < pies.length; pi++) {
+        const vals = pies[pi] && Array.isArray(pies[pi].values) ? pies[pi].values : [];
+        const labels = (pies[pi] && Array.isArray(pies[pi].labels)) ? pies[pi].labels : [];
+        for (let i = 0; i < vals.length; i++) if (below(vals[i])) return hit(`pie ${pi + 1}, ${labels[i] != null ? `"${labels[i]}"` : `slice ${i + 1}`}`, vals[i], 'whole');
+      }
+      return null;
+    }
+    case 'waffle': return list(spec.parts, 'value', 'part');
+    case 'funnel': return list(spec.stages, 'value', 'stage');
+    case 'iconarray':
+      if (below(spec.total)) return hit('total', spec.total, 'whole');
+      if (below(spec.filled)) return hit('filled', spec.filled, 'whole');
+      return null;
+    case 'ring':
+      if (below(spec.value)) return hit('value', spec.value, 'whole');
+      if (below(spec.target)) return hit('target', spec.target, 'whole');
+      return null;
+    case 'calendar': {
+      const days = spec.days && typeof spec.days === 'object' ? spec.days : {};
+      for (const k of Object.keys(days)) if (below(days[k])) return hit(`day ${k}`, days[k], 'whole');
+      return null;
+    }
+    default: return null;
+  }
+}
+
+// Throws the fix-it error the surfaces return (400 on the API, isError on MCP).
+export function assertDrawable(spec) {
+  const f = findBelowZero(spec);
+  if (f) throw new Error(`render-core: "${f.type}" can't draw values below zero yet — ${f.where} is ${f.value}. ${f.hint}`);
 }
 
 // Dispatch by chart type. Every `case` here must have a TYPES row (checked by

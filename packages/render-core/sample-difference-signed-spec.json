@@ -1,0 +1,35 @@
+{
+  "type": "difference",
+  "title": "Actual vs budget",
+  "data": {
+    "labels": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May"
+    ],
+    "series": [
+      {
+        "name": "Actual",
+        "values": [
+          10,
+          -4,
+          -12,
+          3,
+          9
+        ]
+      },
+      {
+        "name": "Budget",
+        "values": [
+          5,
+          0,
+          -5,
+          0,
+          5
+        ]
+      }
+    ]
+  }
+}

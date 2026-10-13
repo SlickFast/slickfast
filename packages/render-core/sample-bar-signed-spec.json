@@ -1,0 +1,26 @@
+{
+  "type": "bar",
+  "title": "Profit by quarter ($K)",
+  "data": {
+    "labels": [
+      "Q1",
+      "Q2",
+      "Q3",
+      "Q4",
+      "Q5",
+      "Q6"
+    ],
+    "series": [
+      {
+        "values": [
+          42,
+          18,
+          -25,
+          -8,
+          30,
+          55
+        ]
+      }
+    ]
+  }
+}

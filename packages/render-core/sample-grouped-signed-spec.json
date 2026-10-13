@@ -1,0 +1,32 @@
+{
+  "type": "grouped",
+  "title": "Change vs last year (%)",
+  "data": {
+    "labels": [
+      "Q1",
+      "Q2",
+      "Q3",
+      "Q4"
+    ],
+    "series": [
+      {
+        "name": "EU",
+        "values": [
+          5,
+          -3,
+          8,
+          -6
+        ]
+      },
+      {
+        "name": "US",
+        "values": [
+          -2,
+          4,
+          -9,
+          3
+        ]
+      }
+    ]
+  }
+}

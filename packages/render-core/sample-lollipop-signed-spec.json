@@ -1,0 +1,24 @@
+{
+  "type": "lollipop",
+  "title": "Net change",
+  "data": {
+    "labels": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "series": [
+      {
+        "values": [
+          22,
+          -14,
+          6,
+          -30,
+          18
+        ]
+      }
+    ]
+  }
+}

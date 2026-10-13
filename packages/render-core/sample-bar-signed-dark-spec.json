@@ -1,0 +1,24 @@
+{
+  "type": "bar",
+  "title": "Losses (exact tick)",
+  "background": "#111217",
+  "valueUnit": "K",
+  "data": {
+    "labels": [
+      "Q1",
+      "Q2",
+      "Q3",
+      "Q4"
+    ],
+    "series": [
+      {
+        "values": [
+          -12,
+          -40,
+          -7,
+          -20
+        ]
+      }
+    ]
+  }
+}

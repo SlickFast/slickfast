@@ -1,0 +1,27 @@
+{
+  "type": "area",
+  "title": "Monthly profit ($K)",
+  "data": {
+    "labels": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun"
+    ],
+    "series": [
+      {
+        "name": "Profit",
+        "values": [
+          12,
+          5,
+          -8,
+          -3,
+          6,
+          15
+        ]
+      }
+    ]
+  }
+}

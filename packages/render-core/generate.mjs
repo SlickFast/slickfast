@@ -71,6 +71,14 @@ const SAMPLES = [
   { spec: 'sample-dashboard-spec.json', out: 'sample-dashboard.svg' },
   { spec: 'sample-dashboard-href-spec.json', out: 'sample-dashboard-href.svg' },
   { spec: 'sample-textstyle-spec.json', out: 'sample-textstyle.svg' },
+  // values below zero (valueAxis, 2026-10-13)
+  { spec: 'sample-line-signed-spec.json', out: 'sample-line-signed.svg' },
+  { spec: 'sample-area-signed-spec.json', out: 'sample-area-signed.svg' },
+  { spec: 'sample-bar-signed-spec.json', out: 'sample-bar-signed.svg' },
+  { spec: 'sample-bar-signed-dark-spec.json', out: 'sample-bar-signed-dark.svg' },
+  { spec: 'sample-grouped-signed-spec.json', out: 'sample-grouped-signed.svg' },
+  { spec: 'sample-lollipop-signed-spec.json', out: 'sample-lollipop-signed.svg' },
+  { spec: 'sample-difference-signed-spec.json', out: 'sample-difference-signed.svg' },
 ];
 
 const check = process.argv.includes('--check');

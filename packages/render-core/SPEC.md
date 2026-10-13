@@ -25,6 +25,14 @@ file saved to disk.
   axes, plot-supporting stats). They are **not** rows in the 47 gallery list below;
   call MCP `describe_type` for the data shape. Soft-announced.
 - **Secondary (dual) axes** on gallery types — not available today.
+- **Values below zero** — `bar`, `grouped`, `lollipop`, `line`, `smooth`, `area`,
+  `stepped` and `difference` draw them: the axis extends below zero, a zero line is
+  drawn, bars below zero hang from it with their label underneath, areas fill to zero.
+  Still refused with a fix-it error (they draw from a zero baseline): `stacked`,
+  `stacked100`, `stackedh`, `horizontal`, `stackedArea`, `slope`, `pie`, `donut`,
+  `pieofpie`, `waffle`, `funnel`, `iconarray`, `ring`, `calendar`. `diverging`,
+  `waterfall`, `kpi`, `cards`, `heatmap`, `gauge`, `table` and the rest show values
+  below zero as they are.
 - **Interactivity, animation, hover tooltips** — output is a static SVG/PNG.
 
 ## Universal fields (every chart type honors these)
