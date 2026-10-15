@@ -94,6 +94,7 @@ Then: **`get_started`** → **`news`** → **`gallery`** → one **`render_chart
 | `packages/palette-core/` | The color library: palettes, nested themes, WCAG contrast, tokens. |
 | `packages/raster/` | SVG → PNG rasterization (resvg). |
 | `packages/fonts/` | The swappable font layer. |
+| `packages/sci-core/` | Scientific charts: scatter, errorbar, lineplot, barplot, survival, Bland–Altman, Q–Q, volcano — log axes and curve fits. [README](packages/sci-core/README.md) |
 | `apps/mcp/` | The MCP server published as `@slickfast/mcp` — a thin surface over the engine. |
 | `apps/api/` | The hosted HTTP API — [`API.md`](apps/api/API.md) is the how-to-call-it guide (no MCP needed: `curl`, `<img src>`, any language), [`openapi.yaml`](apps/api/openapi.yaml) the machine-readable contract. Live at `api.slickfast.com`; free tier at [slickfast.com](https://slickfast.com). |
 | `scripts/` | The safety net: golden checks, registry-drift check, 323-case torture suite, palette hex check. |
@@ -107,6 +108,8 @@ cd ../../packages/raster && npm install          # native resvg binding (PNG)
 
 # from the repo root — the full safety net:
 node packages/render-core/generate.mjs --check   # golden snapshots (all types)
+node packages/sci-core/golden/generate.mjs --check # sci-core golden snapshots
+node packages/sci-core/verify-stats.mjs           # sci-core statistics checks
 node scripts/check-surfaces.mjs                  # type-registry drift check
 node scripts/torture.mjs                         # 323 empty/edge-case renders
 node scripts/check-palettes.mjs                  # palette hex validation

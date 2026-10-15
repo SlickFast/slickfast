@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" style="max-width:100%;height:auto" font-family="Inter, system-ui, -apple-system, sans-serif">
+<rect x="0" y="0" width="800" height="450" fill="#ffffff"/>
+<line x1="76" y1="366" x2="776" y2="366" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="70.5" y1="366" x2="76" y2="366" stroke="#64748b" stroke-width="1"/>
+<text x="68" y="370" text-anchor="end" font-size="11" fill="#64748b">0</text>
+<line x1="76" y1="303.6" x2="776" y2="303.6" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="70.5" y1="303.6" x2="76" y2="303.6" stroke="#64748b" stroke-width="1"/>
+<text x="68" y="307.6" text-anchor="end" font-size="11" fill="#64748b">2</text>
+<line x1="76" y1="241.2" x2="776" y2="241.2" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="70.5" y1="241.2" x2="76" y2="241.2" stroke="#64748b" stroke-width="1"/>
+<text x="68" y="245.2" text-anchor="end" font-size="11" fill="#64748b">4</text>
+<line x1="76" y1="178.8" x2="776" y2="178.8" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="70.5" y1="178.8" x2="76" y2="178.8" stroke="#64748b" stroke-width="1"/>
+<text x="68" y="182.8" text-anchor="end" font-size="11" fill="#64748b">6</text>
+<line x1="76" y1="116.4" x2="776" y2="116.4" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="70.5" y1="116.4" x2="76" y2="116.4" stroke="#64748b" stroke-width="1"/>
+<text x="68" y="120.4" text-anchor="end" font-size="11" fill="#64748b">8</text>
+<line x1="76" y1="54" x2="776" y2="54" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="70.5" y1="54" x2="76" y2="54" stroke="#64748b" stroke-width="1"/>
+<text x="68" y="58" text-anchor="end" font-size="11" fill="#64748b">10</text>
+<line x1="76" y1="54" x2="76" y2="366" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="76" y1="366" x2="76" y2="371.5" stroke="#64748b" stroke-width="1"/>
+<text x="76" y="384" text-anchor="middle" font-size="11" fill="#64748b">-4</text>
+<line x1="163.5" y1="54" x2="163.5" y2="366" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="163.5" y1="366" x2="163.5" y2="371.5" stroke="#64748b" stroke-width="1"/>
+<text x="163.5" y="384" text-anchor="middle" font-size="11" fill="#64748b">-3</text>
+<line x1="251" y1="54" x2="251" y2="366" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="251" y1="366" x2="251" y2="371.5" stroke="#64748b" stroke-width="1"/>
+<text x="251" y="384" text-anchor="middle" font-size="11" fill="#64748b">-2</text>
+<line x1="338.5" y1="54" x2="338.5" y2="366" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="338.5" y1="366" x2="338.5" y2="371.5" stroke="#64748b" stroke-width="1"/>
+<text x="338.5" y="384" text-anchor="middle" font-size="11" fill="#64748b">-1</text>
+<line x1="426" y1="54" x2="426" y2="366" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="426" y1="366" x2="426" y2="371.5" stroke="#64748b" stroke-width="1"/>
+<text x="426" y="384" text-anchor="middle" font-size="11" fill="#64748b">0</text>
+<line x1="513.5" y1="54" x2="513.5" y2="366" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="513.5" y1="366" x2="513.5" y2="371.5" stroke="#64748b" stroke-width="1"/>
+<text x="513.5" y="384" text-anchor="middle" font-size="11" fill="#64748b">1</text>
+<line x1="601" y1="54" x2="601" y2="366" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="601" y1="366" x2="601" y2="371.5" stroke="#64748b" stroke-width="1"/>
+<text x="601" y="384" text-anchor="middle" font-size="11" fill="#64748b">2</text>
+<line x1="688.5" y1="54" x2="688.5" y2="366" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="688.5" y1="366" x2="688.5" y2="371.5" stroke="#64748b" stroke-width="1"/>
+<text x="688.5" y="384" text-anchor="middle" font-size="11" fill="#64748b">3</text>
+<line x1="776" y1="54" x2="776" y2="366" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="776" y1="366" x2="776" y2="371.5" stroke="#64748b" stroke-width="1"/>
+<text x="776" y="384" text-anchor="middle" font-size="11" fill="#64748b">4</text>
+<line x1="426" y1="54" x2="426" y2="366" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="76" y1="325.41" x2="776" y2="325.41" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="7 4"/>
+<text x="770" y="320.41" text-anchor="end" font-size="10" font-weight="600" fill="#94a3b8">p = 0.05</text>
+<line x1="513.5" y1="54" x2="513.5" y2="366" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="7 4"/>
+<line x1="338.5" y1="54" x2="338.5" y2="366" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="7 4"/>
+<circle cx="347.25" cy="344.19" r="2.8" fill="#cbd5e1" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="391" cy="353.58" r="2.8" fill="#cbd5e1" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="408.5" cy="361.17" r="2.8" fill="#cbd5e1" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="434.75" cy="364.57" r="2.8" fill="#cbd5e1" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="452.25" cy="356.61" r="2.8" fill="#cbd5e1" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="496" cy="327.88" r="2.8" fill="#cbd5e1" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="154.75" cy="85.2" r="2.8" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="207.25" cy="272.4" r="2.8" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="268.5" cy="291.18" r="2.8" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="321" cy="318.49" r="2.8" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="522.25" cy="312.99" r="2.8" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="548.5" cy="300.58" r="2.8" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="618.5" cy="210" r="2.8" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="697.25" cy="116.4" r="2.8" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<text x="426" y="406" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">log₂ fold change</text>
+<text transform="translate(16,210) rotate(-90)" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">−log₁₀ p</text>
+<circle cx="233.88" cy="430" r="5" fill="#cbd5e1"/>
+<text x="244.88" y="434" font-size="12" fill="#475569">Not significant (6)</text>
+<circle cx="406.2" cy="430" r="5" fill="#2563eb"/>
+<text x="417.2" y="434" font-size="12" fill="#475569">Down (4)</text>
+<circle cx="498.44" cy="430" r="5" fill="#dc2626"/>
+<text x="509.44" y="434" font-size="12" fill="#475569">Up (4)</text>
+<text x="400" y="33" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Differential expression — treated vs control</text>
+<text x="788" y="438" text-anchor="end" font-size="14" font-weight="700" letter-spacing="0.04em" fill="#22d3ee" opacity="0.88">SlickFast</text>
+</svg>

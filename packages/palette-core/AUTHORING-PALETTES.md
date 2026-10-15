@@ -1,6 +1,6 @@
 # Authoring premium nested palettes (pie-of-pie themes)
 
-For Cowork (and any agent) adding new **premium color themes** for pie-of-pie charts.
+For anyone (human or agent) adding new **premium color themes** for pie-of-pie charts.
 Follow this and a new theme is live in one file edit — no engine code.
 
 ## Where themes live

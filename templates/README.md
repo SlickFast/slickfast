@@ -4,7 +4,7 @@ Drop-in, polished specs for common use cases. Each is a complete `render_chart` 
 on the **existing** engine types — copy one, swap your data, render. (These are presets, not
 new chart types; new types are a separate, snapshot-locked effort.)
 
-Grounded in what real dashboards ship (Grafana, Tremor, Geckoboard) per Cowork's research.
+Grounded in what real dashboards ship (Grafana, Tremor, Geckoboard), based on public dashboard research.
 
 | Template | Type | Use case |
 |---|---|---|
